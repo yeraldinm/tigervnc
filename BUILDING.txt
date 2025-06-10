@@ -404,3 +404,16 @@ Distribution-specific packaging
 
 Configuration for building packages for current versions of RHEL/CentOS
 and Ubuntu LTS can be found under contrib/packages.
+
+====================
+Running unit tests
+====================
+
+TigerVNC includes unit tests built with CMake and GoogleTest. Ensure that the
+GoogleTest development files are available (for example the ``libgtest-dev``
+package on Debian or Ubuntu). Build and run the tests with::
+
+  cmake -S . -B build
+  cmake --build build
+  ctest --test-dir tests/unit
+
