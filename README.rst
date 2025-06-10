@@ -150,3 +150,8 @@ This distribution contains software from the X Window System.  This is:
  WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
  ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
  SOFTWARE.
+
+Packaging
+=========
+
+See ``doc/packaging.rst`` for instructions on creating packages for macOS, Windows and common Linux distributions using Snap or Flatpak.

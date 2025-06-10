@@ -1,0 +1,19 @@
+app-id: com.tigervnc.vncviewer
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+command: vncviewer
+finish-args:
+  - --share=network
+  - --socket=fallback-x11
+  - --socket=wayland
+modules:
+  - name: tigervnc
+    buildsystem: cmake
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DTIGERVNC_BUILD_VIEWER=ON
+    sources:
+      - type: archive
+        url: https://github.com/TigerVNC/tigervnc/archive/refs/heads/master.tar.gz
+        sha256: 31237913037407a81b998ecd3be5fca6b505947084723759dec73493de60c0c4
