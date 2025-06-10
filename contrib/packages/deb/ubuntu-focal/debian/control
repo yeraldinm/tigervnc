@@ -26,7 +26,7 @@ Build-Depends:
  libxrandr-dev,
  libxdamage-dev,
  libxfixes-dev,
- libfltk1.3-dev,
+ libfltk1.4-dev | libfltk1.3-dev,
  xorg-server-source,
  xserver-xorg-dev,
  openjdk-8-jdk,
