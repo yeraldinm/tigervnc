@@ -432,8 +432,23 @@ void CConnection::setExtendedDesktopSize(unsigned reason,
 
   server.supportsSetDesktopSize = true;
 
-  if ((reason != reasonClient) || (result == resultSuccess))
-    server.setDimensions(w, h, layout);
+  if ((reason != reasonClient) || (result == resultSuccess)) {
+    try {
+      server.setDimensions(w, h, layout);
+    } catch (std::invalid_argument&) {
+      char buffer[2048];
+      layout.print(buffer, sizeof(buffer));
+      vlog.error("Invalid screen layout from server:");
+      vlog.error("%s", buffer);
+      showMsgBox(MsgBoxFlags::M_OK | MsgBoxFlags::M_ICONWARNING,
+                 "Invalid screen layout",
+                 "The server sent an invalid screen configuration. "
+                 "Using a fallback layout.");
+      ScreenSet fallback;
+      fallback.add_screen(Screen(0, 0, 0, w, h, 0));
+      server.setDimensions(w ? w : 1, h ? h : 1, fallback);
+    }
+  }
 
   if ((reason == reasonClient) && (result != resultSuccess)) {
     vlog.error("SetDesktopSize failed: %d", result);
@@ -513,7 +528,18 @@ void CConnection::serverInit(int width, int height,
                              const PixelFormat& pf,
                              const char* name)
 {
-  server.setDimensions(width, height);
+  try {
+    server.setDimensions(width, height);
+  } catch (std::invalid_argument&) {
+    vlog.error("Invalid screen configuration from server");
+    ScreenSet fallback;
+    fallback.add_screen(Screen(0, 0, 0, width, height, 0));
+    server.setDimensions(width ? width : 1, height ? height : 1, fallback);
+    showMsgBox(MsgBoxFlags::M_OK | MsgBoxFlags::M_ICONWARNING,
+               "Invalid screen layout",
+               "The server sent an invalid screen configuration. "
+               "Using a fallback layout.");
+  }
   server.setPF(pf);
   server.setName(name);
 
