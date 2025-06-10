@@ -68,6 +68,8 @@ WARNING: winvnc is currently unmaintained and may not function correctly.
 There are no active maintainers for the Windows server.  Users are advised to
 consider alternative VNC solutions or contribute fixes if they rely on winvnc.
 
+Version information can be displayed using ``-version`` on the command line.
+
 winvnc may not work if the Fast user switching or Remote desktop features are
 in use.
 
