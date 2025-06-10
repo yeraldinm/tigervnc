@@ -40,6 +40,7 @@
 #include <rfb/Security.h>
 #include <rfb/fenceTypes.h>
 #include <rfb/screenTypes.h>
+#include <rfb/ScreenSet.h>
 
 #include <network/TcpSocket.h>
 #ifndef WIN32
@@ -322,7 +323,8 @@ void CConn::setExtendedDesktopSize(unsigned reason, unsigned result,
     rfb::ScreenSet fallback;
     fallback.add_screen(rfb::Screen(0, 0, 0, w, h, 0));
     server.setDimensions(w ? w : 1, h ? h : 1, fallback);
-    showMsgBox(rfb::MsgBoxFlags::M_OK | rfb::MsgBoxFlags::M_ICONWARNING,
+    showMsgBox(static_cast<rfb::MsgBoxFlags>(rfb::MsgBoxFlags::M_OK |
+                                             rfb::MsgBoxFlags::M_ICONWARNING),
                _( "Invalid screen layout" ),
                _( "The server sent an invalid screen configuration. "
                   "Using a fallback layout." ));

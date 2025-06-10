@@ -34,6 +34,7 @@
 #include <rfb/clipboardTypes.h>
 #include <rfb/fenceTypes.h>
 #include <rfb/screenTypes.h>
+#include <rfb/ScreenSet.h>
 #include <rfb/CMsgReader.h>
 #include <rfb/CMsgWriter.h>
 #include <rfb/CSecurity.h>
@@ -440,7 +441,8 @@ void CConnection::setExtendedDesktopSize(unsigned reason,
       layout.print(buffer, sizeof(buffer));
       vlog.error("Invalid screen layout from server:");
       vlog.error("%s", buffer);
-      showMsgBox(MsgBoxFlags::M_OK | MsgBoxFlags::M_ICONWARNING,
+      showMsgBox(static_cast<MsgBoxFlags>(MsgBoxFlags::M_OK |
+                                          MsgBoxFlags::M_ICONWARNING),
                  "Invalid screen layout",
                  "The server sent an invalid screen configuration. "
                  "Using a fallback layout.");
@@ -535,7 +537,8 @@ void CConnection::serverInit(int width, int height,
     ScreenSet fallback;
     fallback.add_screen(Screen(0, 0, 0, width, height, 0));
     server.setDimensions(width ? width : 1, height ? height : 1, fallback);
-    showMsgBox(MsgBoxFlags::M_OK | MsgBoxFlags::M_ICONWARNING,
+    showMsgBox(static_cast<MsgBoxFlags>(MsgBoxFlags::M_OK |
+                                        MsgBoxFlags::M_ICONWARNING),
                "Invalid screen layout",
                "The server sent an invalid screen configuration. "
                "Using a fallback layout.");
