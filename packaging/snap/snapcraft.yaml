@@ -1,0 +1,31 @@
+name: tigervnc
+base: core22
+version: '1.15.80'
+summary: TigerVNC remote desktop viewer
+
+description: |
+  TigerVNC is a high-performance, platform-neutral implementation of VNC.
+  This snap ships the vncviewer application.
+
+grade: stable
+confinement: strict
+
+parts:
+  tigervnc:
+    plugin: cmake
+    source: https://github.com/TigerVNC/tigervnc.git
+    build-packages:
+      - build-essential
+      - libfltk1.3-dev
+      - libjpeg-turbo8-dev
+    stage-packages:
+      - libfltk1.3
+      - libjpeg-turbo8
+    install: |
+      mkdir -p $SNAPCRAFT_PART_INSTALL/bin
+      install -Dm755 vncviewer $SNAPCRAFT_PART_INSTALL/bin/vncviewer
+
+apps:
+  vncviewer:
+    command: bin/vncviewer
+    plugs: [network, x11, wayland]
