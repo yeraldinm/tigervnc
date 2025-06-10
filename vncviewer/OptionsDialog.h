@@ -66,6 +66,7 @@ protected:
   static void handleRSAAES(Fl_Widget *widget, void *data);
 
   static void handleSystemKeys(Fl_Widget *widget, void *data);
+  static void handleDesktopSize(Fl_Widget *widget, void *data);
 
   static void handleClipboard(Fl_Widget *widget, void *data);
 
@@ -140,6 +141,12 @@ protected:
   Fl_Round_Button *allMonitorsButton;
   Fl_Round_Button *selectedMonitorsButton;
   Fl_Monitor_Arrangement *monitorArrangement;
+
+  Fl_Group *desktopSizeGroup;
+  Fl_Check_Button *desktopSizeCheckbox;
+  Fl_Int_Input *desktopWidthInput;
+  Fl_Int_Input *desktopHeightInput;
+  Fl_Check_Button *remoteResizeCheckbox;
 
   /* Misc. */
   Fl_Check_Button *sharedCheckbox;
