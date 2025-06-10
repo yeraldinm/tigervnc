@@ -312,7 +312,21 @@ void CConn::setExtendedDesktopSize(unsigned reason, unsigned result,
                                    int w, int h,
                                    const rfb::ScreenSet& layout)
 {
-  CConnection::setExtendedDesktopSize(reason, result, w, h, layout);
+  try {
+    CConnection::setExtendedDesktopSize(reason, result, w, h, layout);
+  } catch (std::invalid_argument&) {
+    char buffer[2048];
+    layout.print(buffer, sizeof(buffer));
+    vlog.error("Invalid screen layout from server:");
+    vlog.error("%s", buffer);
+    rfb::ScreenSet fallback;
+    fallback.add_screen(rfb::Screen(0, 0, 0, w, h, 0));
+    server.setDimensions(w ? w : 1, h ? h : 1, fallback);
+    showMsgBox(rfb::MsgBoxFlags::M_OK | rfb::MsgBoxFlags::M_ICONWARNING,
+               _( "Invalid screen layout" ),
+               _( "The server sent an invalid screen configuration. "
+                  "Using a fallback layout." ));
+  }
 
   if (reason == rfb::reasonClient)
     desktop->setDesktopSizeDone(result);
