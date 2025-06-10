@@ -51,6 +51,7 @@ const char* rfb::win32::AppName = "TigerVNC Server";
 extern bool runAsService;
 static bool runServer = true;
 static bool close_console = false;
+static bool showVersion = false;
 
 
 //
@@ -77,6 +78,7 @@ static void programUsage() {
   printf("  -start                               - Start the WinVNC server system service.\n");
   printf("  -stop                                - Stop the WinVNC server system service.\n");
   printf("  -status                              - Query the WinVNC service status.\n");
+  printf("  -version                             - Display version information and exit.\n");
   printf("  -help                                - Provide usage information.\n");
   printf("  -noconsole                           - Run without a console (i.e. no stderr/stdout)\n");
   printf("  <setting>=<value>                    - Set the named configuration parameter.\n");
@@ -206,6 +208,12 @@ static void processParams(int argc, char** argv) {
         if (!FreeConsole())
           vlog.info("Unable to close console:%lu", GetLastError());
 
+      } else if ((strcasecmp(argv[i], "-version") == 0) ||
+                 (strcasecmp(argv[i], "--version") == 0) ||
+                 (strcasecmp(argv[i], "-V") == 0)) {
+        runServer = false;
+        showVersion = true;
+
       } else if ((strcasecmp(argv[i], "-help") == 0) ||
         (strcasecmp(argv[i], "--help") == 0) ||
         (strcasecmp(argv[i], "-h") == 0) ||
@@ -264,12 +272,14 @@ int WINAPI WinMain(HINSTANCE /*inst*/, HINSTANCE /*prevInst*/, char* /*cmdLine*/
     // - By default, just log errors to stderr
     
 
-    // - Print program details and process the command line
-    programInfo();
-
-	int argc = __argc;
-	char **argv = __argv;
+    int argc = __argc;
+    char **argv = __argv;
     processParams(argc, argv);
+
+    if (showVersion) {
+      programInfo();
+      return 0;
+    }
 
     // - Run the server if required
     if (runServer) {
