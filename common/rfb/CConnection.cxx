@@ -544,7 +544,10 @@ void CConnection::serverInit(int width, int height,
     server.setDimensions(width ? width : 1, height ? height : 1, fallback);
     showMsgBox(static_cast<MsgBoxFlags>(MsgBoxFlags::M_OK |
                                         MsgBoxFlags::M_ICONWARNING),
-
+               "Invalid screen configuration",
+               "The server sent an invalid screen configuration. "
+               "Using a fallback layout.");
+  }
   
   server.setPF(pf);
   server.setName(name);
