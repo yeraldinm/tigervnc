@@ -13,3 +13,9 @@ config.h
 cmake_install.cmake
 cmake_uninstall.cmake
 install_manifest.txt
+
+# Build directories
+/build/
+
+# Test results
+/tests/unit/test-results.xml
