@@ -48,6 +48,7 @@ static void usage()
 {
   fprintf(stderr,"Usage: %s [file]\n", prog);
   fprintf(stderr,"       %s -f\n", prog);
+  fprintf(stderr,"       %s -t [-f]\n", prog);
   exit(1);
 }
 
@@ -99,6 +100,19 @@ static int encrypt_pipe() {
     return 1;
 
   return 0;
+}
+
+static std::vector<std::vector<uint8_t>>
+read_pipe_passwords()
+{
+  std::vector<std::vector<uint8_t>> pwds;
+  for (int i = 0; i < 2; i++) {
+    const char *result = getpassword(nullptr);
+    if (!result)
+      break;
+    pwds.push_back(rfb::obfuscate(result));
+  }
+  return pwds;
 }
 
 #ifdef HAVE_PWQUALITY
@@ -185,6 +199,9 @@ int main(int argc, char** argv)
   prog = argv[0];
 
   char fname[PATH_MAX];
+  bool tmpdir = false;
+  bool filter = false;
+  char tmpname[PATH_MAX];
 
   fname[0] = '\0';
 
@@ -198,8 +215,10 @@ int main(int argc, char** argv)
       exit(0);
     } else if (strcmp(argv[i], "-q") == 0) {
       // allowed for backwards compatibility
+    } else if (strcmp(argv[i], "-t") == 0) {
+      tmpdir = true;
     } else if (strncmp(argv[i], "-f", 2) == 0) {
-      return encrypt_pipe();
+      filter = true;
     } else if (argv[i][0] == '-') {
       fprintf(stderr, "%s: Unrecognized option '%s'\n", prog, argv[i]);
       fprintf(stderr, "See '%s --help' for more information.\n", prog);
@@ -217,7 +236,19 @@ int main(int argc, char** argv)
     }
   }
 
-  if (fname[0] == '\0') {
+  if (filter && !tmpdir)
+    return encrypt_pipe();
+
+  if (tmpdir) {
+    snprintf(tmpname, sizeof(tmpname), "/tmp/vncpasswd.XXXXXX");
+    if (mkdtemp(tmpname) == nullptr) {
+      perror("mkdtemp");
+      exit(1);
+    }
+    snprintf(fname, sizeof(fname), "%s/passwd", tmpname);
+  }
+
+  if (!tmpdir && fname[0] == '\0') {
     const char* configDir = core::getvncconfigdir();
     if (configDir == nullptr) {
       fprintf(stderr, "Could not determine VNC config directory path\n");
@@ -231,6 +262,36 @@ int main(int argc, char** argv)
       }
     }
     snprintf(fname, sizeof(fname), "%s/passwd", configDir);
+  }
+
+  if (filter && tmpdir) {
+    std::vector<std::vector<uint8_t>> pwds = read_pipe_passwords();
+    if (pwds.empty())
+      return 1;
+    std::vector<uint8_t> obfuscated = pwds[0];
+    std::vector<uint8_t> obfuscatedReadOnly;
+    if (pwds.size() > 1)
+      obfuscatedReadOnly = pwds[1];
+
+    FILE* fp = fopen(fname, "w");
+    if (!fp) {
+      fprintf(stderr, "Couldn't open %s for writing\n", fname);
+      exit(1);
+    }
+    chmod(fname, S_IRUSR|S_IWUSR);
+    if (fwrite(obfuscated.data(), obfuscated.size(), 1, fp) != 1) {
+      fprintf(stderr, "Writing to %s failed\n", fname);
+      exit(1);
+    }
+    if (!obfuscatedReadOnly.empty()) {
+      if (fwrite(obfuscatedReadOnly.data(), obfuscatedReadOnly.size(), 1, fp) != 1) {
+        fprintf(stderr, "Writing to %s failed\n", fname);
+        exit(1);
+      }
+    }
+    fclose(fp);
+    printf("%s\n", tmpname);
+    return 0;
   }
 
   while (true) {
@@ -265,6 +326,8 @@ int main(int argc, char** argv)
     }
 
     fclose(fp);
+    if (tmpdir)
+      printf("%s\n", tmpname);
 
     return 0;
   }
