@@ -451,7 +451,6 @@ void CConnection::setExtendedDesktopSize(unsigned reason,
       rfb::ScreenSet fallback;
       fallback.add_screen(rfb::Screen(0, 0, 0, w, h, 0));
 
-
       server.setDimensions(w ? w : 1, h ? h : 1, fallback);
     }
   }
@@ -537,6 +536,9 @@ void CConnection::serverInit(int width, int height,
   try {
     server.setDimensions(width, height);
   } catch (std::invalid_argument&) {
+
+    vlog.error("Invalid screen dimensions %dx%d from server", width, height);
+
     vlog.error("Invalid screen configuration from server");
 
     rfb::ScreenSet fallback;
@@ -545,7 +547,6 @@ void CConnection::serverInit(int width, int height,
     showMsgBox(static_cast<MsgBoxFlags>(MsgBoxFlags::M_OK |
                                         MsgBoxFlags::M_ICONWARNING),
 
-  
   server.setPF(pf);
   server.setName(name);
 

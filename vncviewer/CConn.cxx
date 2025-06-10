@@ -328,6 +328,7 @@ void CConn::setExtendedDesktopSize(unsigned reason, unsigned result,
     showMsgBox(static_cast<rfb::MsgBoxFlags>(rfb::MsgBoxFlags::M_OK |
                                              rfb::MsgBoxFlags::M_ICONWARNING),
 
+
                _( "Invalid screen layout" ),
                _( "The server sent an invalid screen configuration. "
                   "Using a fallback layout." ));
