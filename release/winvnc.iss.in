@@ -1,7 +1,5 @@
 [Setup]
-#ifdef WIN64
 ArchitecturesInstallIn64BitMode=x64
-#endif
 AppName=TigerVNC server
 AppVerName=TigerVNC server v@VERSION@ (@BUILD@)
 AppVersion=@VERSION@
@@ -17,9 +15,12 @@ LicenseFile=@CMAKE_SOURCE_DIR@\LICENCE.TXT
 Name: "{sys}\config\systemprofile\Desktop"
 
 [Files]
-Source: "@CMAKE_BINARY_DIR@\win\winvnc\winvnc4.exe"; DestDir: "{app}"; Flags: ignoreversion restartreplace; 
-Source: "@CMAKE_BINARY_DIR@\win\wm_hooks\wm_hooks.dll"; DestDir: "{app}"; Flags: ignoreversion restartreplace; 
-Source: "@CMAKE_BINARY_DIR@\win\vncconfig\vncconfig.exe"; DestDir: "{app}"; Flags: ignoreversion restartreplace; 
+Source: "@WIN32_BINARY_DIR@\win\winvnc\winvnc4.exe"; DestDir: "{app}"; Flags: ignoreversion restartreplace; Check: not IsWin64
+Source: "@WIN64_BINARY_DIR@\win\winvnc\winvnc4.exe"; DestDir: "{app}"; Flags: ignoreversion restartreplace; Check: IsWin64
+Source: "@WIN32_BINARY_DIR@\win\wm_hooks\wm_hooks.dll"; DestDir: "{app}"; Flags: ignoreversion restartreplace; Check: not IsWin64
+Source: "@WIN64_BINARY_DIR@\win\wm_hooks\wm_hooks.dll"; DestDir: "{app}"; Flags: ignoreversion restartreplace; Check: IsWin64
+Source: "@WIN32_BINARY_DIR@\win\vncconfig\vncconfig.exe"; DestDir: "{app}"; Flags: ignoreversion restartreplace; Check: not IsWin64
+Source: "@WIN64_BINARY_DIR@\win\vncconfig\vncconfig.exe"; DestDir: "{app}"; Flags: ignoreversion restartreplace; Check: IsWin64
 Source: "@CMAKE_SOURCE_DIR@\README.rst"; DestDir: "{app}"; Flags: ignoreversion
 Source: "@CMAKE_SOURCE_DIR@\LICENCE.TXT"; DestDir: "{app}"; Flags: ignoreversion
 
