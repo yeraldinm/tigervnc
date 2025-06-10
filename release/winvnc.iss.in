@@ -33,8 +33,8 @@ Name: "{group}\VNC server (Service-Mode)\Register VNC service"; FileName: "{app}
 Name: "{group}\VNC server (Service-Mode)\Unregister VNC service"; FileName: "{app}\winvnc4.exe"; Parameters: "-unregister";
 Name: "{group}\VNC server (Service-Mode)\Start VNC service"; FileName: "{app}\winvnc4.exe"; Parameters: "-noconsole -start";
 Name: "{group}\VNC server (Service-Mode)\Stop VNC service"; FileName: "{app}\winvnc4.exe"; Parameters: "-noconsole -stop";
-Name: "{group}\License"; FileName: "write.exe"; Parameters: "LICENCE.TXT"; WorkingDir: "{app}"; Flags: "useapppaths"
-Name: "{group}\Read me"; FileName: "write.exe"; Parameters: "README.rst"; WorkingDir: "{app}"; Flags: "useapppaths"
+Name: "{group}\License"; FileName: "notepad.exe"; Parameters: "LICENCE.TXT"; WorkingDir: "{app}"; Flags: "useapppaths"
+Name: "{group}\Read me"; FileName: "notepad.exe"; Parameters: "README.rst"; WorkingDir: "{app}"; Flags: "useapppaths"
 Name: "{group}\Uninstall TigerVNC server"; FileName: "{uninstallexe}"; WorkingDir: "{app}";
 
 [Tasks]
