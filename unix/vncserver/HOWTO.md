@@ -8,7 +8,11 @@ $ vncserver :x [vncserver options] [Xvnc options]
 and that was it. It worked fine for some cases, but far from all. There
 were issues when users wanted to use it in combination with *systemd*.
 Therefore, the implementation had to be changed to comply with *SELinux*
-and *systemd* rules.
+and *systemd* rules.  The new service unit executes the helper script
+`vncsession-start` directly from TigerVNC's installation directory.  That
+script in turn invokes the TigerVNC binaries, such as `Xvnc`, using
+absolute paths so that any alternative `vncserver` implementations do not
+interfere.
 
 # How to start TigerVNC server
 ## Add a user mapping
@@ -113,6 +117,12 @@ If you previously used TigerVNC and you were used to start it by using
 configuration files placed in `/etc/systemd/system/vncserver@.service`,
 in order to avoid them being prioritized by the new systemd service
 files from latest TigerVNC.
+
+The `vncserver@.service` unit does not rely on `/usr/bin/vncserver`.
+Instead it calls TigerVNC's own `vncsession-start` helper from
+`/usr/libexec`.  This helper uses absolute paths to ensure the correct
+`Xvnc` binary is executed even if other VNC packages install alternative
+wrappers.
 
 # Limitations
 You will not be able to start a TigerVNC server for a user who is
