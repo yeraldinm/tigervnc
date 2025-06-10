@@ -593,6 +593,21 @@ createTunnel(const char *gatewayHost, const char *remoteHost,
              int remotePort, int localPort)
 {
   const char *cmd = getenv("VNC_VIA_CMD");
+  auto isSafeArg = [](const char *arg) {
+    if (!arg)
+      return false;
+    while (*arg) {
+      if (!isalnum((unsigned char)*arg) && !strchr("._:-@[]", *arg))
+        return false;
+      arg++;
+    }
+    return true;
+  };
+
+  if (!isSafeArg(gatewayHost) || !isSafeArg(remoteHost)) {
+    fprintf(stderr, "Unsafe characters in host specification\n");
+    return;
+  }
   char *cmd2, *percent;
   char lport[10], rport[10];
   sprintf(lport, "%d", localPort);
