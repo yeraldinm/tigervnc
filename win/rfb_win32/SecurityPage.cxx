@@ -33,7 +33,6 @@
 using namespace core;
 using namespace rfb;
 using namespace rfb::win32;
-using namespace std;
 
 static LogWriter vlog("AuthDialog");
 
@@ -46,7 +45,7 @@ SecurityPage::SecurityPage(Security *security_)
 void
 SecurityPage::initDialog()
 {
-  list<uint8_t> secTypes;
+  std::list<uint8_t> secTypes;
 
   if (isItemChecked(IDC_ENC_X509))
     enableX509Dialogs();
@@ -67,7 +66,7 @@ SecurityPage::initDialog()
     }
   }
 
-  list<uint32_t> secTypesExt;
+  std::list<uint32_t> secTypesExt;
 
   secTypesExt = security->GetEnabledExtSecTypes();
 
@@ -121,7 +120,7 @@ SecurityPage::onOk() {
   bool x509_loaded = false;
 #endif
   bool vnc_loaded = false;
-  list<uint32_t> secTypes;
+  std::list<uint32_t> secTypes;
 
   /* Keep same priorities as in common/rfb/SecurityClient::secTypes */
   secTypes.push_back(secTypeVeNCrypt);
