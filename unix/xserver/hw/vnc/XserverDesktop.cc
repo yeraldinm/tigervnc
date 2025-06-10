@@ -245,7 +245,8 @@ void XserverDesktop::setCursor(int width, int height, int hotX, int hotY,
   uint8_t *out;
   const unsigned char *in;
 
-  cursorData = new uint8_t[width * height * 4];
+  size_t data_len = (size_t)width * height * 4;
+  cursorData = new uint8_t[data_len];
 
   // Un-premultiply alpha
   in = rgbaData;

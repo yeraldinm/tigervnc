@@ -1194,7 +1194,8 @@ static void vncHooksSetCursor(DeviceIntPtr dev, ScreenPtr screen,
     hotX = cursor->bits->xhot;
     hotY = cursor->bits->yhot;
 
-    rgbaData = malloc(width * height * 4);
+    size_t data_len = (size_t)width * height * 4;
+    rgbaData = malloc(data_len);
     if (rgbaData == NULL)
       goto out;
 
