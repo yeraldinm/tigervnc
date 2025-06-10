@@ -13,7 +13,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libfltk1.3-dev fluid gettext appstream
+          sudo apt-get install -y libfltk1.4-dev fluid gettext appstream
           sudo apt-get install -y libpixman-1-dev libjpeg-turbo8-dev
           sudo apt-get install -y libgnutls28-dev nettle-dev libgmp-dev
           sudo apt-get install -y libxtst-dev libxdamage-dev libxfixes-dev libxrandr-dev libpam-dev
