@@ -2,8 +2,9 @@ FROM ubuntu:noble
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update
-RUN apt-get -y install packaging-dev equivs
+RUN apt-get update && \
+    apt-get install -y packaging-dev equivs && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN useradd -s /bin/bash -m deb
 RUN echo >> /etc/sudoers
