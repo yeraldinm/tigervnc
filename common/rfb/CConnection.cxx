@@ -442,6 +442,7 @@ void CConnection::setExtendedDesktopSize(unsigned reason,
       layout.print(buffer, sizeof(buffer));
       vlog.error("Invalid screen layout from server:");
       vlog.error("%s", buffer);
+
       showMsgBox(static_cast<MsgBoxFlags>(MsgBoxFlags::M_OK |
                                           MsgBoxFlags::M_ICONWARNING),
                  "Invalid screen layout",
@@ -449,6 +450,7 @@ void CConnection::setExtendedDesktopSize(unsigned reason,
                  "Using a fallback layout.");
       rfb::ScreenSet fallback;
       fallback.add_screen(rfb::Screen(0, 0, 0, w, h, 0));
+
       server.setDimensions(w ? w : 1, h ? h : 1, fallback);
     }
   }
@@ -534,16 +536,17 @@ void CConnection::serverInit(int width, int height,
   try {
     server.setDimensions(width, height);
   } catch (std::invalid_argument&) {
+
     vlog.error("Invalid screen dimensions %dx%d from server", width, height);
+
+    vlog.error("Invalid screen configuration from server");
+
     rfb::ScreenSet fallback;
     fallback.add_screen(rfb::Screen(0, 0, 0, width, height, 0));
     server.setDimensions(width ? width : 1, height ? height : 1, fallback);
     showMsgBox(static_cast<MsgBoxFlags>(MsgBoxFlags::M_OK |
                                         MsgBoxFlags::M_ICONWARNING),
-               "Invalid screen layout",
-               "The server sent an invalid screen configuration. "
-               "Using a fallback layout.");
-  }
+
   server.setPF(pf);
   server.setName(name);
 
