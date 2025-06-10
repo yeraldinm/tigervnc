@@ -8,15 +8,24 @@
 
 if(WIN32)
 
-if(CMAKE_SIZEOF_VOID_P MATCHES 8)
-  set(INST_SUFFIX 64)
-  set(INST_DEFS -DWIN64)
+option(COMBINED_INSTALLER "Build combined 32/64-bit installer" OFF)
+set(WIN32_BINARY_DIR ${CMAKE_BINARY_DIR} CACHE PATH "Directory containing 32-bit build")
+set(WIN64_BINARY_DIR ${CMAKE_BINARY_DIR} CACHE PATH "Directory containing 64-bit build")
+
+if(COMBINED_INSTALLER)
+  set(INST_SUFFIX "")
+  set(INST_DEFS "")
+else()
+  if(CMAKE_SIZEOF_VOID_P MATCHES 8)
+    set(INST_SUFFIX 64)
+    set(INST_DEFS -DWIN64)
+  endif()
 endif()
 
 configure_file(tigervnc.iss.in tigervnc.iss)
 
 add_custom_command(OUTPUT ${CMAKE_PROJECT_NAME}${INST_SUFFIX}-${VERSION}.exe
-  COMMAND iscc -o. ${INST_DEFS} -F${CMAKE_PROJECT_NAME}${INST_SUFFIX}-${VERSION} tigervnc.iss
+  COMMAND iscc -DW32="${WIN32_BINARY_DIR}" -DW64="${WIN64_BINARY_DIR}" -o. ${INST_DEFS} -F${CMAKE_PROJECT_NAME}${INST_SUFFIX}-${VERSION} tigervnc.iss
   DEPENDS vncviewer tigervnc.iss)
 add_custom_target(installer DEPENDS ${CMAKE_PROJECT_NAME}${INST_SUFFIX}-${VERSION}.exe)
 
@@ -24,7 +33,7 @@ if(BUILD_WINVNC)
   configure_file(winvnc.iss.in winvnc.iss)
 
   add_custom_command(OUTPUT ${CMAKE_PROJECT_NAME}${INST_SUFFIX}-winvnc-${VERSION}.exe
-    COMMAND iscc -o. ${INST_DEFS} -F${CMAKE_PROJECT_NAME}${INST_SUFFIX}-winvnc-${VERSION} winvnc.iss
+    COMMAND iscc -DW32="${WIN32_BINARY_DIR}" -DW64="${WIN64_BINARY_DIR}" -o. ${INST_DEFS} -F${CMAKE_PROJECT_NAME}${INST_SUFFIX}-winvnc-${VERSION} winvnc.iss
     DEPENDS winvnc4 wm_hooks vncconfig winvnc.iss)
   add_custom_target(winvnc_installer DEPENDS ${CMAKE_PROJECT_NAME}${INST_SUFFIX}-winvnc-${VERSION}.exe)
 endif()
