@@ -9,9 +9,9 @@ machine.  VNC is platform-independent and supports a wide variety of operating
 systems and architectures as both servers and clients.
 
 TigerVNC is a high-speed version of VNC based on the RealVNC 4 and X.org code
-bases.  TigerVNC started as a next-generation development effort for TightVNC
+bases.  TigerVNC started as a next-generation development effort for YVNC
 on Unix and Linux platforms, but it split from its parent project in early 2009
-so that TightVNC could focus on Windows platforms.  TigerVNC supports a variant
+so that YVNC could focus on Windows platforms.  TigerVNC supports a variant
 of Tight encoding that is greatly accelerated by the use of the libjpeg-turbo
 JPEG codec.
 
