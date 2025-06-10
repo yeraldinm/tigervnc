@@ -56,6 +56,7 @@
 #include <FL/Fl_Round_Button.H>
 #include <FL/Fl_Int_Input.H>
 #include <FL/Fl_Choice.H>
+#include <FL/Fl_Box.H>
 
 std::map<OptionsCallback*, void*> OptionsDialog::callbacks;
 
@@ -341,6 +342,26 @@ void OptionsDialog::loadOptions(void)
 
   handleFullScreenMode(selectedMonitorsButton, this);
 
+  if (strcmp(desktopSize, "") != 0) {
+    int w, h;
+    if (sscanf(desktopSize, "%dx%d", &w, &h) == 2) {
+      char buf[16];
+      snprintf(buf, sizeof(buf), "%d", w);
+      desktopWidthInput->value(buf);
+      snprintf(buf, sizeof(buf), "%d", h);
+      desktopHeightInput->value(buf);
+      desktopSizeCheckbox->value(true);
+    } else {
+      desktopSizeCheckbox->value(false);
+    }
+  } else {
+    desktopSizeCheckbox->value(false);
+  }
+
+  remoteResizeCheckbox->value(::remoteResize);
+
+  handleDesktopSize(desktopSizeCheckbox, this);
+
   /* Misc. */
   sharedCheckbox->value(shared);
   reconnectCheckbox->value(reconnectOnError);
@@ -481,6 +502,19 @@ void OptionsDialog::storeOptions(void)
   }
 
   fullScreenSelectedMonitors.setMonitors(monitorArrangement->value());
+
+  if (desktopSizeCheckbox->value() &&
+      (strlen(desktopWidthInput->value()) > 0) &&
+      (strlen(desktopHeightInput->value()) > 0)) {
+    char buf[64];
+    snprintf(buf, sizeof(buf), "%sx%s", desktopWidthInput->value(),
+             desktopHeightInput->value());
+    desktopSize.setParam(buf);
+  } else {
+    desktopSize.setParam("");
+  }
+
+  remoteResize.setParam(remoteResizeCheckbox->value());
 
   /* Misc. */
   shared.setParam(sharedCheckbox->value());
@@ -1092,6 +1126,51 @@ void OptionsDialog::createDisplayPage(int tx, int ty, int tw, int th)
   ty += INNER_MARGIN;
   width = tw - OUTER_MARGIN * 2;
 
+  /* Desktop sizing */
+  ty += GROUP_LABEL_OFFSET;
+  // TRANSLATORS: Label for remote desktop sizing options
+  desktopSizeGroup = new Fl_Group(tx, ty, width, 0, _("Desktop sizing"));
+  desktopSizeGroup->labelfont(FL_BOLD);
+  desktopSizeGroup->box(FL_FLAT_BOX);
+  desktopSizeGroup->align(FL_ALIGN_LEFT | FL_ALIGN_TOP);
+
+  {
+    tx += INDENT;
+    ty += TIGHT_MARGIN;
+    width -= INDENT;
+
+    // TRANSLATORS: Request a desktop resize when connecting
+    desktopSizeCheckbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
+                                                    CHECK_MIN_WIDTH,
+                                                    CHECK_HEIGHT,
+                                                    _("Resize remote session on connect")));
+    desktopSizeCheckbox->callback(handleDesktopSize, this);
+    ty += CHECK_HEIGHT + TIGHT_MARGIN;
+
+    desktopWidthInput = new Fl_Int_Input(tx + INDENT, ty,
+                                         50, INPUT_HEIGHT);
+    desktopWidthInput->align(FL_ALIGN_RIGHT);
+    Fl_Box *xLabel = new Fl_Box(desktopWidthInput->x() + desktopWidthInput->w(), ty,
+                                gui_str_len(" x "), INPUT_HEIGHT, " x ");
+    desktopHeightInput = new Fl_Int_Input(xLabel->x() + xLabel->w(), ty,
+                                          50, INPUT_HEIGHT);
+    desktopHeightInput->align(FL_ALIGN_RIGHT);
+    ty += INPUT_HEIGHT + TIGHT_MARGIN;
+
+    // TRANSLATORS: Dynamically resize the remote desktop when the window size changes
+    remoteResizeCheckbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
+                                                     CHECK_MIN_WIDTH,
+                                                     CHECK_HEIGHT,
+                                                     _("Resize remote session to the local window")));
+    ty += CHECK_HEIGHT + TIGHT_MARGIN;
+  }
+  ty -= TIGHT_MARGIN;
+
+  desktopSizeGroup->end();
+  desktopSizeGroup->resizable(nullptr);
+  desktopSizeGroup->size(desktopSizeGroup->w(),
+                         ty - desktopSizeGroup->y());
+
   group->end();
 }
 
@@ -1198,6 +1277,20 @@ void OptionsDialog::handleSystemKeys(Fl_Widget* /*widget*/, void* data)
 #else
   (void)data;
 #endif
+}
+
+
+void OptionsDialog::handleDesktopSize(Fl_Widget* /*widget*/, void *data)
+{
+  OptionsDialog *dialog = (OptionsDialog*)data;
+
+  if (dialog->desktopSizeCheckbox->value()) {
+    dialog->desktopWidthInput->activate();
+    dialog->desktopHeightInput->activate();
+  } else {
+    dialog->desktopWidthInput->deactivate();
+    dialog->desktopHeightInput->deactivate();
+  }
 }
 
 
