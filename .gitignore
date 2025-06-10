@@ -4,6 +4,7 @@
 *.lo
 .deps
 .libs
+.github
 
 CMakeFiles
 CMakeCache.txt
