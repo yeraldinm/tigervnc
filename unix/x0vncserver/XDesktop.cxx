@@ -548,7 +548,7 @@ void XDesktop::deleteAddedKeysyms() {
 }
 
 KeyCode XDesktop::keysymToKeycode(KeySym keysym) {
-  int keycode = 0;
+  KeyCode keycode = 0;
 
   // XKeysymToKeycode() doesn't respect state, so we have to use
   // something slightly more complex
@@ -557,7 +557,47 @@ KeyCode XDesktop::keysymToKeycode(KeySym keysym) {
   if (keycode != 0)
     return keycode;
 
-  // TODO: try to further guess keycode with all possible mods as Xvnc does
+  XkbDescPtr xkb = XkbGetMap(dpy, XkbAllComponentsMask, XkbUseCoreKbd);
+  if (!xkb)
+    return 0;
+
+  XkbStateRec state;
+  XkbGetState(dpy, XkbUseCoreKbd, &state);
+  unsigned mods = XkbBuildCoreState(XkbStateMods(&state), state.group);
+
+  auto lookup = [&](unsigned m) -> KeyCode {
+    for (unsigned code = xkb->min_key_code; code <= xkb->max_key_code; ++code) {
+      KeySym cursym;
+      unsigned int out_mods;
+      XkbTranslateKeyCode(xkb, code, m, &out_mods, &cursym);
+      if (cursym == keysym)
+        return code;
+    }
+    return 0;
+  };
+
+  keycode = lookup(mods);
+  if (!keycode)
+    keycode = lookup(mods ^ ShiftMask);
+
+  unsigned levelMask = XkbKeysymToModifiers(dpy, XK_ISO_Level3_Shift);
+  if (!levelMask)
+    levelMask = XkbKeysymToModifiers(dpy, XK_Mode_switch);
+
+  if (!keycode && levelMask)
+    keycode = lookup(mods ^ levelMask);
+  if (!keycode && levelMask)
+    keycode = lookup(mods ^ ShiftMask ^ levelMask);
+
+  XkbFreeKeyboard(xkb, XkbAllComponentsMask, True);
+
+  // Shift+Tab is usually ISO_Left_Tab, but RFB hides this fact. Do
+  // another attempt if we failed the initial lookup
+  if (!keycode && keysym == XK_Tab && (mods & ShiftMask))
+    return XkbKeysymToKeycode(XK_ISO_Left_Tab);
+
+  if (keycode != 0)
+    return keycode;
 
   keycode = addKeysym(keysym);
 

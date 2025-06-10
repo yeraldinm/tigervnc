@@ -44,3 +44,7 @@ add_executable(emulatemb emulatemb.cxx ../../vncviewer/EmulateMB.cxx)
 target_include_directories(emulatemb SYSTEM PUBLIC ${GETTEXT_INCLUDE_DIR})
 target_link_libraries(emulatemb core ${GETTEXT_LIBRARIES} GTest::gtest_main)
 gtest_discover_tests(emulatemb)
+
+add_executable(keysym keysym.cxx)
+target_link_libraries(keysym ${X11_LIBRARIES} GTest::gtest_main)
+gtest_discover_tests(keysym)
