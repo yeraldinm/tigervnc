@@ -36,6 +36,11 @@ will be silently accepted.
 A view-only password must be separated from the normal password by a newline
 character.
 
+.TP
+.B \-t
+Write the password to a temporary directory under \fI/tmp\fP. When combined
+with \fB\-f\fR, the password is read from stdin instead of interactively.
+
 
 .SH FILES
 .TP
