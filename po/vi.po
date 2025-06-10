@@ -7,727 +7,1276 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tigervnc 1.8.90\n"
 "Report-Msgid-Bugs-To: tigervnc-devel@googlegroups.com\n"
-"POT-Creation-Date: 2018-06-13 14:22+0000\n"
+"POT-Creation-Date: 2025-06-10 08:06+0000\n"
 "PO-Revision-Date: 2018-07-04 14:52+0700\n"
 "Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
 "Language-Team: Vietnamese <translation-team-vi@lists.sourceforge.net>\n"
 "Language: vi\n"
-"X-Bugs: Report translation errors to the Language-Team address.\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Bugs: Report translation errors to the Language-Team address.\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Gtranslator 2.91.7\n"
 
-#: vncviewer/CConn.cxx:116
+#: vncviewer/CConn.cxx:103
 #, c-format
-msgid "connected to socket %s"
-msgstr "đã kết nối đến ổ cắm mạng %s"
+msgid "Connected to socket %s"
+msgstr ""
 
-#: vncviewer/CConn.cxx:123
+#: vncviewer/CConn.cxx:110
 #, c-format
-msgid "connected to host %s port %d"
-msgstr "đã kết nối đến máy %s cổng %d"
+msgid "Connected to host %s port %d"
+msgstr ""
 
-#: vncviewer/CConn.cxx:184
+#: vncviewer/CConn.cxx:115
+#, c-format
+msgid ""
+"Failed to connect to \"%s\":\n"
+"\n"
+"%s"
+msgstr ""
+
+#: vncviewer/CConn.cxx:152
 #, c-format
 msgid "Desktop name: %.80s"
 msgstr "Tên máy tính: %.80s"
 
-#: vncviewer/CConn.cxx:189
+#: vncviewer/CConn.cxx:155
 #, c-format
 msgid "Host: %.80s port: %d"
 msgstr "Máy: %.80s cổng: %d"
 
-#: vncviewer/CConn.cxx:194
+#: vncviewer/CConn.cxx:159
 #, c-format
 msgid "Size: %d x %d"
 msgstr "Cỡ: %d x %d"
 
-#: vncviewer/CConn.cxx:202
+#: vncviewer/CConn.cxx:166
 #, c-format
 msgid "Pixel format: %s"
 msgstr "Định dạng điểm ảnh: %s"
 
-#: vncviewer/CConn.cxx:209
-#, c-format
-msgid "(server default %s)"
-msgstr "(máy chủ mặc định %s)"
-
-#: vncviewer/CConn.cxx:214
+#: vncviewer/CConn.cxx:169
 #, c-format
 msgid "Requested encoding: %s"
 msgstr "Bộ mã đã yêu cầu: %s"
 
-#: vncviewer/CConn.cxx:219
+#: vncviewer/CConn.cxx:173
 #, c-format
 msgid "Last used encoding: %s"
 msgstr "Bảng mã dùng lần cuối: %s"
 
-#: vncviewer/CConn.cxx:224
+#: vncviewer/CConn.cxx:177
 #, c-format
 msgid "Line speed estimate: %d kbit/s"
 msgstr "Ước tính tốc độ đường dây: %d kbit/s"
 
-#: vncviewer/CConn.cxx:229
+#: vncviewer/CConn.cxx:181
 #, c-format
 msgid "Protocol version: %d.%d"
 msgstr "Phiên bản giao thức: %d.%d"
 
-#: vncviewer/CConn.cxx:234
+#: vncviewer/CConn.cxx:185
 #, c-format
 msgid "Security method: %s"
 msgstr "Phương thức bảo mật: %s"
 
-#: vncviewer/CConn.cxx:358
+#: vncviewer/CConn.cxx:246 vncviewer/CConn.cxx:248
+msgid ""
+"The connection was dropped by the server before the session could be "
+"established."
+msgstr ""
+
+#: vncviewer/CConn.cxx:258
 #, c-format
-msgid "SetDesktopSize failed: %d"
-msgstr "SetDesktopSize gặp lỗi: %d"
+msgid "Authentication failed: %s"
+msgstr ""
 
-#: vncviewer/CConn.cxx:428
-msgid "Invalid SetColourMapEntries from server!"
-msgstr "SetColourMapEntries từ máy phục vụ không hợp lệ!"
+#: vncviewer/CConn.cxx:259
+#, c-format
+msgid ""
+"Failed to authenticate with the server. Reason given by the server:\n"
+"\n"
+"%s"
+msgstr ""
 
-#: vncviewer/CConn.cxx:479
-msgid "Enabling continuous updates"
-msgstr "Đang bật cập nhật liên tục"
-
-#: vncviewer/CConn.cxx:556
+#: vncviewer/CConn.cxx:490
 #, c-format
 msgid "Throughput %d kbit/s - changing to quality %d"
 msgstr "Băng thông %d kbit/s - đổi thành chất lượng %d"
 
-#: vncviewer/CConn.cxx:578
+#: vncviewer/CConn.cxx:521
 #, c-format
-msgid "Throughput %d kbit/s - full color is now %s"
-msgstr "Băng thông %d kbit/s - màu đầy đủ giờ là %s"
+msgid "Throughput %d kbit/s - full color is now enabled"
+msgstr ""
 
-#: vncviewer/CConn.cxx:580
-msgid "disabled"
-msgstr "tắt"
-
-#: vncviewer/CConn.cxx:580
-msgid "enabled"
-msgstr "bật"
-
-#: vncviewer/CConn.cxx:590
+#: vncviewer/CConn.cxx:524
 #, c-format
-msgid "Using %s encoding"
-msgstr "Đang dùng bảng mã %s"
+msgid "Throughput %d kbit/s - full color is now disabled"
+msgstr ""
 
-#: vncviewer/CConn.cxx:637
+#: vncviewer/CConn.cxx:543
 #, c-format
 msgid "Using pixel format %s"
 msgstr "Đang dùng định dạng điểm ảnh %s"
 
-#: vncviewer/DesktopWindow.cxx:122
+#: vncviewer/DesktopWindow.cxx:146
 msgid "Invalid geometry specified!"
 msgstr "Hình dạng đã cho không hợp lệ!"
 
-#: vncviewer/DesktopWindow.cxx:451
-msgid "Adjusting window size to avoid accidental full screen request"
-msgstr "Chỉnh cỡ cửa sổ để tránh yêu cầu toàm màn hình ngẫu nhiên"
+#: vncviewer/DesktopWindow.cxx:167
+msgid "Reducing window size to fit on current monitor"
+msgstr ""
 
-#: vncviewer/DesktopWindow.cxx:495
+#: vncviewer/DesktopWindow.cxx:681
+msgid "Adjusting window size to avoid accidental full-screen request"
+msgstr ""
+
+#: vncviewer/DesktopWindow.cxx:712
 #, c-format
 msgid "Press %s to open the context menu"
 msgstr "Nhấn vào %s to open the context menu để mở trình đơn ngữ cảnh"
 
-#: vncviewer/DesktopWindow.cxx:794 vncviewer/DesktopWindow.cxx:802
-#: vncviewer/DesktopWindow.cxx:822
+#: vncviewer/DesktopWindow.cxx:1119 vncviewer/DesktopWindow.cxx:1127
+#: vncviewer/DesktopWindow.cxx:1142
 msgid "Failure grabbing keyboard"
 msgstr "Gặp lỗi khi điều khiển bàn phím"
 
-#: vncviewer/DesktopWindow.cxx:896
-msgid "Failure grabbing mouse"
-msgstr "Gặp lỗi khi điều khiển chuột"
-
-#: vncviewer/DesktopWindow.cxx:1120
+#: vncviewer/DesktopWindow.cxx:1427
 msgid "Invalid screen layout computed for resize request!"
 msgstr "Bố cục màn hình đã tính toán không hợp lệ cho yêu cầu đổi cỡ!"
 
-#: vncviewer/OptionsDialog.cxx:57
-msgid "VNC Viewer: Connection Options"
-msgstr "Bộ xem VNC: Các tùy chọn kết nối"
-
-#: vncviewer/OptionsDialog.cxx:83 vncviewer/ServerDialog.cxx:91
-#: vncviewer/vncviewer.cxx:282
-msgid "Cancel"
-msgstr "Thôi"
-
-#: vncviewer/OptionsDialog.cxx:88 vncviewer/vncviewer.cxx:281
-msgid "OK"
-msgstr "Đồng ý"
-
-#: vncviewer/OptionsDialog.cxx:423
-msgid "Compression"
-msgstr "Nén"
-
-#: vncviewer/OptionsDialog.cxx:439
-msgid "Auto select"
-msgstr "Chọn tự động"
-
-#: vncviewer/OptionsDialog.cxx:451
-msgid "Preferred encoding"
-msgstr "Bảng mã ưa thích"
-
-#: vncviewer/OptionsDialog.cxx:499
-msgid "Color level"
-msgstr "Mức màu"
-
-#: vncviewer/OptionsDialog.cxx:510
-msgid "Full (all available colors)"
-msgstr "Đầy đủ (mọi màu sẵn có)"
-
-#: vncviewer/OptionsDialog.cxx:517
-msgid "Medium (256 colors)"
-msgstr "Trung bình (256 màu)"
-
-#: vncviewer/OptionsDialog.cxx:524
-msgid "Low (64 colors)"
-msgstr "Thấp (64 màu)"
-
-#: vncviewer/OptionsDialog.cxx:531
-msgid "Very low (8 colors)"
-msgstr "Rất thấp (8 màu)"
-
-#: vncviewer/OptionsDialog.cxx:548
-msgid "Custom compression level:"
-msgstr "Mức nén tự chọn:"
-
-#: vncviewer/OptionsDialog.cxx:554
-msgid "level (1=fast, 6=best [4-6 are rarely useful])"
-msgstr "mức độ (1=nhanh, 6=tốt nhất [4-6 là hữu dụng hơn cả])"
-
-#: vncviewer/OptionsDialog.cxx:561
-msgid "Allow JPEG compression:"
-msgstr "Cho phép nén JPEG:"
-
-#: vncviewer/OptionsDialog.cxx:567
-msgid "quality (0=poor, 9=best)"
-msgstr "Chất lượng (0=kém, 9=tốt nhất)"
-
-#: vncviewer/OptionsDialog.cxx:578
-msgid "Security"
-msgstr "Bảo mật"
-
-#: vncviewer/OptionsDialog.cxx:593
-msgid "Encryption"
-msgstr "Mã hóa"
-
-#: vncviewer/OptionsDialog.cxx:604 vncviewer/OptionsDialog.cxx:657
-#: vncviewer/OptionsDialog.cxx:737
-msgid "None"
-msgstr "Không có gì"
-
-#: vncviewer/OptionsDialog.cxx:610
-msgid "TLS with anonymous certificates"
-msgstr "TLS với chứng nhận nặc danh"
-
-#: vncviewer/OptionsDialog.cxx:616
-msgid "TLS with X509 certificates"
-msgstr "TLS với chứng nhận X509"
-
-#: vncviewer/OptionsDialog.cxx:623
-msgid "Path to X509 CA certificate"
-msgstr "Đường dẫn chứng nhận CA X509"
-
-#: vncviewer/OptionsDialog.cxx:630
-msgid "Path to X509 CRL file"
-msgstr "Đường dẫn đến tập tin CRL X509"
-
-#: vncviewer/OptionsDialog.cxx:646
-msgid "Authentication"
-msgstr "Xác thực"
-
-#: vncviewer/OptionsDialog.cxx:663
-msgid "Standard VNC (insecure without encryption)"
-msgstr "VNC tiêu chuẩn (không bảo mật, không mã hóa)"
-
-#: vncviewer/OptionsDialog.cxx:669
-msgid "Username and password (insecure without encryption)"
-msgstr "Tài khoản và mật khẩu (không bảo mật, không mã hóa)"
-
-#: vncviewer/OptionsDialog.cxx:688
-msgid "Input"
-msgstr "Đầu vào"
-
-#: vncviewer/OptionsDialog.cxx:696
-msgid "View only (ignore mouse and keyboard)"
-msgstr "Chỉ xem (không bắt chuột và bàn phím)"
-
-#: vncviewer/OptionsDialog.cxx:702
-msgid "Accept clipboard from server"
-msgstr "Chấp nhận clipboard từ máy chủ"
-
-#: vncviewer/OptionsDialog.cxx:710
-msgid "Also set primary selection"
-msgstr "Cũng đặt chọn chính"
-
-#: vncviewer/OptionsDialog.cxx:717
-msgid "Send clipboard to server"
-msgstr "Gửi clipboard đến máy chủ"
-
-#: vncviewer/OptionsDialog.cxx:725
-msgid "Send primary selection as clipboard"
-msgstr "Gửi chọn chính là clipboard"
-
-#: vncviewer/OptionsDialog.cxx:732
-msgid "Pass system keys directly to server (full screen)"
-msgstr "Gửi các phím hệ thống trực tiếp đến máy phục vụ (toàn màn hình)"
-
-#: vncviewer/OptionsDialog.cxx:735
-msgid "Menu key"
-msgstr "Phím trình đơn"
-
-#: vncviewer/OptionsDialog.cxx:751
-msgid "Screen"
-msgstr "Màn hình"
-
-#: vncviewer/OptionsDialog.cxx:759
-msgid "Resize remote session on connect"
-msgstr "Đổi cỡ phiên máy từ xa khi kết nối"
-
-#: vncviewer/OptionsDialog.cxx:772
-msgid "Resize remote session to the local window"
-msgstr "Đổi cỡ phiên thành cửa sổ nội bộ"
-
-#: vncviewer/OptionsDialog.cxx:778
-msgid "Full-screen mode"
-msgstr "Chế độ toàn màn hình"
-
-#: vncviewer/OptionsDialog.cxx:784
-msgid "Enable full-screen mode over all monitors"
-msgstr "Bật chế độ toàn màn hình qua tất cả các màn hình"
-
-#: vncviewer/OptionsDialog.cxx:793
-msgid "Misc."
-msgstr "Linh tinh"
-
-#: vncviewer/OptionsDialog.cxx:801
-msgid "Shared (don't disconnect other viewers)"
-msgstr "Đã chia sẻ (đừng ngắt kết nối các bộ xem khác)"
-
-#: vncviewer/OptionsDialog.cxx:807
-msgid "Show dot when no cursor"
-msgstr "Hiển thị chấm khi không có con trỏ"
-
-#: vncviewer/ServerDialog.cxx:42
-msgid "VNC Viewer: Connection Details"
-msgstr "Phần mềm xem VNC: Chi tiết kết nối"
-
-#: vncviewer/ServerDialog.cxx:49 vncviewer/ServerDialog.cxx:54
-msgid "VNC server:"
-msgstr "Máy phục vụ VNC:"
-
-#: vncviewer/ServerDialog.cxx:64
-msgid "Options..."
-msgstr "Tùy chọn…"
-
-#: vncviewer/ServerDialog.cxx:69
-msgid "Load..."
-msgstr "Tải…"
-
-#: vncviewer/ServerDialog.cxx:74
-msgid "Save As..."
-msgstr "Lưu thành…"
-
-#: vncviewer/ServerDialog.cxx:86
-msgid "About..."
-msgstr "Giới thiệu…"
-
-#: vncviewer/ServerDialog.cxx:96
-msgid "Connect"
-msgstr "Kết nối"
-
-#: vncviewer/ServerDialog.cxx:137 vncviewer/ServerDialog.cxx:171
-msgid "TigerVNC configuration (*.tigervnc)"
-msgstr "Cấu hình TigerVNC (*.tigervnc)"
-
-#: vncviewer/ServerDialog.cxx:138
-msgid "Select a TigerVNC configuration file"
-msgstr "Chọn một tập tin cấu hình TigerVNC"
-
-#: vncviewer/ServerDialog.cxx:172
-msgid "Save the TigerVNC configuration to file"
-msgstr "Lưu cấu hình TigerVNC vào tập tin"
-
-#: vncviewer/ServerDialog.cxx:197
-#, c-format
-msgid "%s already exists. Do you want to overwrite?"
-msgstr "%s đã sẵn có. Bạn có muốn ghi đè không?"
-
-#: vncviewer/ServerDialog.cxx:198 vncviewer/vncviewer.cxx:279
-msgid "No"
-msgstr "Không"
-
-#: vncviewer/ServerDialog.cxx:198
-msgid "Overwrite"
-msgstr "Ghi đè"
-
-#: vncviewer/UserDialog.cxx:85
-msgid "Opening password file failed"
-msgstr "Gặp lỗi khi mở tập tin mật khẩu"
-
-#: vncviewer/UserDialog.cxx:105
-msgid "VNC authentication"
-msgstr "Xác thực VNC"
-
-#: vncviewer/UserDialog.cxx:112
-msgid "This connection is secure"
-msgstr "Kết nối này là an toàn"
-
-#: vncviewer/UserDialog.cxx:116
-msgid "This connection is not secure"
-msgstr "Kết nối này là không an toàn"
-
-#: vncviewer/UserDialog.cxx:133
-msgid "Username:"
-msgstr "Tài khoản:"
-
-#: vncviewer/UserDialog.cxx:140
-msgid "Password:"
-msgstr "Mật khẩu:"
-
-#: vncviewer/UserDialog.cxx:179
-msgid "Authentication cancelled"
-msgstr "Xác thực bị hủy bỏ"
-
-#: vncviewer/Viewport.cxx:377
-#, c-format
-msgid "Failed to update keyboard LED state: %lu"
-msgstr "Gặp lỗi khi cập nhật trạng thái LED bàn phím: %lu"
-
-#: vncviewer/Viewport.cxx:383 vncviewer/Viewport.cxx:389
-#, c-format
-msgid "Failed to update keyboard LED state: %d"
-msgstr "Gặp lỗi khi cập nhật trạng thái LED bàn phím: %d"
-
-#: vncviewer/Viewport.cxx:419
-msgid "Failed to update keyboard LED state"
-msgstr "Gặp lỗi khi cập nhật trạng thái LED bàn phím"
-
-#: vncviewer/Viewport.cxx:446 vncviewer/Viewport.cxx:454
-#: vncviewer/Viewport.cxx:471
-#, c-format
-msgid "Failed to get keyboard LED state: %d"
-msgstr "Gặp lỗi khi lấy trạng thái LED bàn phím: %d"
-
-#: vncviewer/Viewport.cxx:817
-msgid "No key code specified on key press"
-msgstr "Không có mã mô tả cho phím bấm"
-
-#: vncviewer/Viewport.cxx:959
+#: vncviewer/EmulateMB.cxx:227 vncviewer/EmulateMB.cxx:290
+msgid "Invalid state for 3 button emulation"
+msgstr ""
+
+#: vncviewer/KeyboardWin32.cxx:243
 #, c-format
 msgid "No scan code for extended virtual key 0x%02x"
 msgstr "Không có mã quét cho phím ảo mở rộng 0x%02x"
 
-#: vncviewer/Viewport.cxx:961
+#: vncviewer/KeyboardWin32.cxx:245
 #, c-format
 msgid "No scan code for virtual key 0x%02x"
 msgstr "Không có mã quét cho phím ảo 0x%02x"
 
-#: vncviewer/Viewport.cxx:967
+#: vncviewer/KeyboardWin32.cxx:251
 #, c-format
 msgid "Invalid scan code 0x%02x"
 msgstr "Mã quét không hợp lệ 0x%02x"
 
-#: vncviewer/Viewport.cxx:997
+#: vncviewer/KeyboardWin32.cxx:263
 #, c-format
 msgid "No symbol for extended virtual key 0x%02x"
 msgstr "Không có ký hiệu cho phím ảo mở rộng 0x%02x"
 
-#: vncviewer/Viewport.cxx:999
+#: vncviewer/KeyboardWin32.cxx:265
 #, c-format
 msgid "No symbol for virtual key 0x%02x"
 msgstr "Không có ký hiệu cho phím ảo 0x%02x"
 
-#: vncviewer/Viewport.cxx:1086
+#: vncviewer/KeyboardWin32.cxx:424
 #, c-format
-msgid "No symbol for key code 0x%02x (in the current state)"
-msgstr "Không có ký hiệu cho mã phím 0x%02x (trong trạng thái hiện tại)"
+msgid "Failed to update keyboard LED state: %lu"
+msgstr "Gặp lỗi khi cập nhật trạng thái LED bàn phím: %lu"
 
-#: vncviewer/Viewport.cxx:1119
+#: vncviewer/KeyboardX11.cxx:123
 #, c-format
 msgid "No symbol for key code %d (in the current state)"
 msgstr "Không có ký hiệu cho mã phím %d (trong trạng thái hiện tại)"
 
-#: vncviewer/Viewport.cxx:1170
-msgctxt "ContextMenu|"
-msgid "E&xit viewer"
-msgstr "T&hoát khỏi bộ xem"
+#: vncviewer/KeyboardX11.cxx:148
+#, c-format
+msgid "Failed to get keyboard LED state: %d"
+msgstr "Gặp lỗi khi lấy trạng thái LED bàn phím: %d"
 
-#: vncviewer/Viewport.cxx:1173
+#: vncviewer/KeyboardX11.cxx:193
+msgid "Failed to update keyboard LED state"
+msgstr "Gặp lỗi khi cập nhật trạng thái LED bàn phím"
+
+#: vncviewer/MonitorIndicesParameter.cxx:53
+#: vncviewer/MonitorIndicesParameter.cxx:85
+msgid "Failed to get system monitor configuration"
+msgstr ""
+
+#: vncviewer/MonitorIndicesParameter.cxx:73
+#, c-format
+msgid "Monitor index %d does not exist"
+msgstr ""
+
+#. TRANSLATORS: Title of the viewer options dialog window
+#: vncviewer/OptionsDialog.cxx:66
+msgid "TigerVNC options"
+msgstr ""
+
+#. TRANSLATORS: Button that dismisses the dialog without saving
+#: vncviewer/OptionsDialog.cxx:100 vncviewer/ServerDialog.cxx:107
+#: vncviewer/vncviewer.cxx:396
+msgid "Cancel"
+msgstr "Thôi"
+
+#. TRANSLATORS: Button that confirms the dialog and applies changes
+#: vncviewer/OptionsDialog.cxx:106 vncviewer/vncviewer.cxx:395
+msgid "OK"
+msgstr "Đồng ý"
+
+#. TRANSLATORS: Tab heading for settings controlling image compression
+#: vncviewer/OptionsDialog.cxx:507
+msgid "Compression"
+msgstr "Nén"
+
+#: vncviewer/OptionsDialog.cxx:524
+msgid "Auto select"
+msgstr "Chọn tự động"
+
+#: vncviewer/OptionsDialog.cxx:536
+msgid "Preferred encoding"
+msgstr "Bảng mã ưa thích"
+
+#. TRANSLATORS: Label for a group of color quality radio buttons
+#: vncviewer/OptionsDialog.cxx:598
+msgid "Color level"
+msgstr "Mức màu"
+
+#: vncviewer/OptionsDialog.cxx:611
+msgid "Full"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:619
+msgid "Medium"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:627
+msgid "Low"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:635
+msgid "Very low"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:658
+msgid "Custom compression level:"
+msgstr "Mức nén tự chọn:"
+
+#: vncviewer/OptionsDialog.cxx:666
+msgid "level (0=fast, 9=best)"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:674
+msgid "Allow JPEG compression:"
+msgstr "Cho phép nén JPEG:"
+
+#: vncviewer/OptionsDialog.cxx:682
+msgid "quality (0=poor, 9=best)"
+msgstr "Chất lượng (0=kém, 9=tốt nhất)"
+
+#. TRANSLATORS: Tab heading for encryption and authentication settings
+#: vncviewer/OptionsDialog.cxx:694
+msgid "Security"
+msgstr "Bảo mật"
+
+#. TRANSLATORS: Label for the encryption options section
+#: vncviewer/OptionsDialog.cxx:709
+msgid "Encryption"
+msgstr "Mã hóa"
+
+#. TRANSLATORS: No menu key configured
+#: vncviewer/OptionsDialog.cxx:722 vncviewer/OptionsDialog.cxx:795
+#: vncviewer/OptionsDialog.cxx:933
+msgid "None"
+msgstr "Không có gì"
+
+#: vncviewer/OptionsDialog.cxx:730
+msgid "TLS with anonymous certificates"
+msgstr "TLS với chứng nhận nặc danh"
+
+#: vncviewer/OptionsDialog.cxx:737
+msgid "TLS with X509 certificates"
+msgstr "TLS với chứng nhận X509"
+
+#: vncviewer/OptionsDialog.cxx:745
+msgid "Path to X509 CA certificate"
+msgstr "Đường dẫn chứng nhận CA X509"
+
+#: vncviewer/OptionsDialog.cxx:753
+msgid "Path to X509 CRL file"
+msgstr "Đường dẫn đến tập tin CRL X509"
+
+#. TRANSLATORS: Label for the authentication options section
+#: vncviewer/OptionsDialog.cxx:782
+msgid "Authentication"
+msgstr "Xác thực"
+
+#: vncviewer/OptionsDialog.cxx:802
+msgid "Standard VNC (insecure without encryption)"
+msgstr "VNC tiêu chuẩn (không bảo mật, không mã hóa)"
+
+#: vncviewer/OptionsDialog.cxx:809
+msgid "Username and password (insecure without encryption)"
+msgstr "Tài khoản và mật khẩu (không bảo mật, không mã hóa)"
+
+#. TRANSLATORS: Tab heading for keyboard and mouse settings
+#: vncviewer/OptionsDialog.cxx:838
+msgid "Input"
+msgstr "Đầu vào"
+
+#: vncviewer/OptionsDialog.cxx:852
+msgid "View only (ignore mouse and keyboard)"
+msgstr "Chỉ xem (không bắt chuột và bàn phím)"
+
+#. TRANSLATORS: Label for mouse related options
+#: vncviewer/OptionsDialog.cxx:860
+msgid "Mouse"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:873
+msgid "Emulate middle mouse button"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:880
+msgid "Show local cursor when not provided by server"
+msgstr ""
+
+#. TRANSLATORS: Choice of cursor appearance used when showing a local cursor
+#: vncviewer/OptionsDialog.cxx:886
+msgid "Cursor type"
+msgstr ""
+
+#. TRANSLATORS: Simple dot shaped cursor
+#: vncviewer/OptionsDialog.cxx:889
+msgid "Dot"
+msgstr ""
+
+#. TRANSLATORS: Use the operating system's default cursor
+#: vncviewer/OptionsDialog.cxx:891
+msgid "System"
+msgstr ""
+
+#. TRANSLATORS: Label for keyboard related options
+#: vncviewer/OptionsDialog.cxx:912
+msgid "Keyboard"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:925
+msgid "Pass system keys directly to server (full screen)"
+msgstr "Gửi các phím hệ thống trực tiếp đến máy phục vụ (toàn màn hình)"
+
+#. TRANSLATORS: Choice of key that will pop up the menu while full screen
+#: vncviewer/OptionsDialog.cxx:930
+msgid "Menu key"
+msgstr "Phím trình đơn"
+
+#. TRANSLATORS: Label for clipboard related settings
+#: vncviewer/OptionsDialog.cxx:955
+msgid "Clipboard"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:968
+msgid "Accept clipboard from server"
+msgstr "Chấp nhận clipboard từ máy chủ"
+
+#: vncviewer/OptionsDialog.cxx:977
+msgid "Also set primary selection"
+msgstr "Cũng đặt chọn chính"
+
+#: vncviewer/OptionsDialog.cxx:985
+msgid "Send clipboard to server"
+msgstr "Gửi clipboard đến máy chủ"
+
+#: vncviewer/OptionsDialog.cxx:994
+msgid "Send primary selection as clipboard"
+msgstr "Gửi chọn chính là clipboard"
+
+#. TRANSLATORS: Tab heading for display related settings
+#: vncviewer/OptionsDialog.cxx:1016
+msgid "Display"
+msgstr ""
+
+#. TRANSLATORS: Label for the screen mode selection section
+#: vncviewer/OptionsDialog.cxx:1031
+msgid "Display mode"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:1045
+msgid "Windowed"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:1054
+msgid "Full screen on current monitor"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:1063
+msgid "Full screen on all monitors"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:1072
+msgid "Full screen on selected monitor(s)"
+msgstr ""
+
+#. TRANSLATORS: Tab heading for various other settings
+#: vncviewer/OptionsDialog.cxx:1102
+msgid "Miscellaneous"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:1111
+msgid "Shared (don't disconnect other viewers)"
+msgstr "Đã chia sẻ (đừng ngắt kết nối các bộ xem khác)"
+
+#: vncviewer/OptionsDialog.cxx:1118
+msgid "Ask to reconnect on connection errors"
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:73
+msgid "VNC server:"
+msgstr "Máy phục vụ VNC:"
+
+#: vncviewer/ServerDialog.cxx:80
+msgid "Options..."
+msgstr "Tùy chọn…"
+
+#: vncviewer/ServerDialog.cxx:84
+msgid "Load..."
+msgstr "Tải…"
+
+#: vncviewer/ServerDialog.cxx:88
+msgid "Save as..."
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:102
+msgid "About..."
+msgstr "Giới thiệu…"
+
+#: vncviewer/ServerDialog.cxx:111
+msgid "Connect"
+msgstr "Kết nối"
+
+#: vncviewer/ServerDialog.cxx:147
+#, c-format
+msgid ""
+"Unable to load the server history:\n"
+"\n"
+"%s"
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:176 vncviewer/ServerDialog.cxx:216
+msgid "TigerVNC configuration (*.tigervnc)"
+msgstr "Cấu hình TigerVNC (*.tigervnc)"
+
+#: vncviewer/ServerDialog.cxx:177
+msgid "Select a TigerVNC configuration file"
+msgstr "Chọn một tập tin cấu hình TigerVNC"
+
+#: vncviewer/ServerDialog.cxx:199 vncviewer/vncviewer.cxx:516
+#, c-format
+msgid ""
+"Unable to load the specified configuration file:\n"
+"\n"
+"%s"
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:217
+msgid "Save the TigerVNC configuration to file"
+msgstr "Lưu cấu hình TigerVNC vào tập tin"
+
+#: vncviewer/ServerDialog.cxx:243
+#, c-format
+msgid "%s already exists. Do you want to overwrite?"
+msgstr "%s đã sẵn có. Bạn có muốn ghi đè không?"
+
+#: vncviewer/ServerDialog.cxx:244 vncviewer/vncviewer.cxx:393
+msgid "No"
+msgstr "Không"
+
+#: vncviewer/ServerDialog.cxx:244
+msgid "Overwrite"
+msgstr "Ghi đè"
+
+#: vncviewer/ServerDialog.cxx:260
+#, c-format
+msgid ""
+"Unable to save the specified configuration file:\n"
+"\n"
+"%s"
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:294
+#, c-format
+msgid ""
+"Unable to save the default configuration:\n"
+"\n"
+"%s"
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:306
+#, c-format
+msgid ""
+"Unable to save the server history:\n"
+"\n"
+"%s"
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:352 vncviewer/ServerDialog.cxx:434
+#: vncviewer/vncviewer.cxx:579
+msgid "Could not determine VNC state directory path"
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:365 vncviewer/ServerDialog.cxx:442
+#: vncviewer/parameters.cxx:757 vncviewer/parameters.cxx:837
+#, c-format
+msgid "Could not open \"%s\""
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:380 vncviewer/ServerDialog.cxx:389
+#: vncviewer/parameters.cxx:851 vncviewer/parameters.cxx:858
+#: vncviewer/parameters.cxx:892 vncviewer/parameters.cxx:928
+#: vncviewer/parameters.cxx:936
+#, c-format
+msgid "Failed to read line %d in file \"%s\""
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:393 vncviewer/parameters.cxx:862
+msgid "Line too long"
+msgstr "Dòng quá dài"
+
+#: vncviewer/UserDialog.cxx:130
+msgid "Opening password file failed"
+msgstr "Gặp lỗi khi mở tập tin mật khẩu"
+
+#: vncviewer/UserDialog.cxx:150
+msgid "VNC authentication"
+msgstr "Xác thực VNC"
+
+#: vncviewer/UserDialog.cxx:157
+msgid "This connection is secure"
+msgstr "Kết nối này là an toàn"
+
+#: vncviewer/UserDialog.cxx:161
+msgid "This connection is not secure"
+msgstr "Kết nối này là không an toàn"
+
+#: vncviewer/UserDialog.cxx:183
+msgid "Username:"
+msgstr "Tài khoản:"
+
+#: vncviewer/UserDialog.cxx:196
+msgid "Password:"
+msgstr "Mật khẩu:"
+
+#: vncviewer/UserDialog.cxx:204
+msgid "Keep password for reconnect"
+msgstr ""
+
+#: vncviewer/Viewport.cxx:749
+msgctxt "ContextMenu|"
+msgid "Disconn&ect"
+msgstr ""
+
+#: vncviewer/Viewport.cxx:752
 msgctxt "ContextMenu|"
 msgid "&Full screen"
 msgstr "T&oàn màn hình"
 
-#: vncviewer/Viewport.cxx:1176
+#: vncviewer/Viewport.cxx:755
 msgctxt "ContextMenu|"
 msgid "Minimi&ze"
 msgstr "Thu &nhỏ"
 
-#: vncviewer/Viewport.cxx:1178
+#: vncviewer/Viewport.cxx:757
 msgctxt "ContextMenu|"
 msgid "Resize &window to session"
 msgstr "Đổi cỡ Cửa &sổ sang phiên"
 
-#: vncviewer/Viewport.cxx:1183
+#: vncviewer/Viewport.cxx:762
 msgctxt "ContextMenu|"
 msgid "&Ctrl"
 msgstr "&Ctrl"
 
-#: vncviewer/Viewport.cxx:1186
+#: vncviewer/Viewport.cxx:765
 msgctxt "ContextMenu|"
 msgid "&Alt"
 msgstr "&Alt"
 
-#: vncviewer/Viewport.cxx:1192
+#: vncviewer/Viewport.cxx:771
 #, c-format
 msgctxt "ContextMenu|"
 msgid "Send %s"
 msgstr "Gửi %s"
 
-#: vncviewer/Viewport.cxx:1198
+#: vncviewer/Viewport.cxx:779
 msgctxt "ContextMenu|"
 msgid "Send Ctrl-Alt-&Del"
 msgstr "Gửi Ctrl-Alt-&Del"
 
-#: vncviewer/Viewport.cxx:1201
+#: vncviewer/Viewport.cxx:782
 msgctxt "ContextMenu|"
 msgid "&Refresh screen"
 msgstr "&Làm mới màn hình"
 
-#: vncviewer/Viewport.cxx:1204
+#: vncviewer/Viewport.cxx:785
 msgctxt "ContextMenu|"
 msgid "&Options..."
 msgstr "Tù&y chọn…"
 
-#: vncviewer/Viewport.cxx:1206
+#: vncviewer/Viewport.cxx:787
 msgctxt "ContextMenu|"
 msgid "Connection &info..."
 msgstr "Thông t&in về kết nối…"
 
-#: vncviewer/Viewport.cxx:1208
+#: vncviewer/Viewport.cxx:789
 msgctxt "ContextMenu|"
-msgid "About &TigerVNC viewer..."
-msgstr "Giới thiệu Bộ xem &TigerVNC…"
+msgid "About &TigerVNC..."
+msgstr ""
 
-#: vncviewer/Viewport.cxx:1211
-msgctxt "ContextMenu|"
-msgid "Dismiss &menu"
-msgstr "Thải bỏ &Trình đơn"
-
-#: vncviewer/Viewport.cxx:1300
+#: vncviewer/Viewport.cxx:885
 msgid "VNC connection info"
 msgstr "Thông tin kết nối VNC"
 
-#: vncviewer/parameters.cxx:279 vncviewer/parameters.cxx:313
-#, c-format
-msgid "The name of the parameter %s was too large to write to the registry"
-msgstr "Tên của tham số %s là quá lớn để ghi vào đăng ký"
-
-#: vncviewer/parameters.cxx:285 vncviewer/parameters.cxx:292
-#, c-format
-msgid "The parameter %s was too large to write to the registry"
-msgstr "Tham số %s là quá lớn để ghi vào đăng ký"
-
-#: vncviewer/parameters.cxx:298 vncviewer/parameters.cxx:319
-#, c-format
-msgid "Failed to write parameter %s of type %s to the registry: %ld"
-msgstr "Gặp lỗi khi ghi tham số %s của kiểu %s vào sổ đăng ký: %ld"
-
-#: vncviewer/parameters.cxx:334 vncviewer/parameters.cxx:373
-#, c-format
-msgid "The name of the parameter %s was too large to read from the registry"
-msgstr "Tên của tham số %s là quá lớn để đọc từ sổ đăng ký"
-
-#: vncviewer/parameters.cxx:343 vncviewer/parameters.cxx:382
-#, c-format
-msgid "Failed to read parameter %s from the registry: %ld"
-msgstr "Gặp lỗi khi đọc tham số %s từ sổ đăng ký: %ld"
-
-#: vncviewer/parameters.cxx:352
-#, c-format
-msgid "The parameter %s was too large to read from the registry"
-msgstr "Tham số %s là quá lớn để đọc từ sổ đăng ký"
-
-#: vncviewer/parameters.cxx:402
-#, c-format
-msgid "Failed to create registry key: %ld"
-msgstr "Gặp lỗi khi tạo khóa đăng ký: %ld"
-
-#: vncviewer/parameters.cxx:416 vncviewer/parameters.cxx:465
-#: vncviewer/parameters.cxx:527 vncviewer/parameters.cxx:660
-#, c-format
-msgid "Unknown parameter type for parameter %s"
-msgstr "Không hiểu kiểu tham số cho đối số %s"
-
-#: vncviewer/parameters.cxx:423 vncviewer/parameters.cxx:472
-#, c-format
-msgid "Failed to close registry key: %ld"
-msgstr "Gặp lỗi khi đóng khóa đăng ký: %ld"
-
-#: vncviewer/parameters.cxx:439
-#, c-format
-msgid "Failed to open registry key: %ld"
-msgstr "Gặp lỗi khi mở khóa đăng ký: %ld"
-
-#: vncviewer/parameters.cxx:496
-msgid "Failed to write configuration file, can't obtain home directory path."
-msgstr "Gặp lỗi khi ghi tập tin cấu hình, không thể lấy đường dẫn thư mục riêng."
-
-#: vncviewer/parameters.cxx:509
-#, c-format
-msgid "Failed to write configuration file, can't open %s: %s"
-msgstr "Gặp lỗi khi ghi tập tin cấu hình, không thể mở %s: %s"
-
-#: vncviewer/parameters.cxx:554
-msgid "Failed to read configuration file, can't obtain home directory path."
-msgstr "Gặp lỗi khi đọc tập tin cấu hình, không thể lấy đường dẫn thư mục riêng."
-
-#: vncviewer/parameters.cxx:567
-#, c-format
-msgid "Failed to read configuration file, can't open %s: %s"
-msgstr "Gặp lỗi khi đọc tập tin cấu hình, không thể mở %s: %s"
-
-#: vncviewer/parameters.cxx:580 vncviewer/parameters.cxx:585
-#: vncviewer/parameters.cxx:610 vncviewer/parameters.cxx:623
-#: vncviewer/parameters.cxx:639
-#, c-format
-msgid "Failed to read line %d in file %s: %s"
-msgstr "Gặp lỗi khi đọc dòng %d trong tập tin %s: %s"
-
-#: vncviewer/parameters.cxx:586
-msgid "Line too long"
-msgstr "Dòng quá dài"
-
-#: vncviewer/parameters.cxx:593
-#, c-format
-msgid "Configuration file %s is in an invalid format"
-msgstr "Tập tin cấu hình %s ở định dạng không hợp lệ"
-
-#: vncviewer/parameters.cxx:611
-msgid "Invalid format"
-msgstr "Định dạng không hợp lệ"
-
-#: vncviewer/parameters.cxx:624 vncviewer/parameters.cxx:640
-msgid "Invalid format or too large value"
-msgstr "Định dạng không hợp lệ hay giá trị quá lớn"
-
-#: vncviewer/parameters.cxx:667
-#, c-format
-msgid "Unknown parameter %s on line %d in file %s"
-msgstr "Không hiểu tham số %s trên dòng %d ở tập tin %s"
-
-#: vncviewer/vncviewer.cxx:100
-#, c-format
-msgid ""
-"TigerVNC Viewer %d-bit v%s\n"
-"Built on: %s\n"
-"Copyright (C) 1999-%d TigerVNC Team and many others (see README.rst)\n"
-"See http://www.tigervnc.org for information on TigerVNC."
+#: vncviewer/Win32TouchHandler.cxx:49
+msgid "Window is registered for touch instead of gestures"
 msgstr ""
-"TigerVNC Viewer %d-bít v%s\n"
-"Biên dịch vào: %s\n"
-"Copyright (C) 1999-%d Nhóm TigerVNC và nhiều người khác (xem README.rst)\n"
-"Truy cập http://www.tigervnc.org để biết thêm thông tin về TigerVNC."
 
-#: vncviewer/vncviewer.cxx:127
-msgid "About TigerVNC Viewer"
-msgstr "Giới thiệu về bộ xem TigerVNC"
-
-#: vncviewer/vncviewer.cxx:140
-msgid "Internal FLTK error. Exiting."
-msgstr "Lỗi bên trong FLTK. Nên thoát."
-
-#: vncviewer/vncviewer.cxx:158 vncviewer/vncviewer.cxx:170
+#: vncviewer/Win32TouchHandler.cxx:84
 #, c-format
-msgid "Error starting new TigerVNC Viewer: %s"
-msgstr "Gặp lỗi khi khởi chạy bộ xem TigerVNC mới: %s"
+msgid "Failed to set gesture configuration (error 0x%x)"
+msgstr ""
 
-#: vncviewer/vncviewer.cxx:179
+#: vncviewer/Win32TouchHandler.cxx:96
 #, c-format
-msgid "Termination signal %d has been received. TigerVNC Viewer will now exit."
-msgstr "Đã nhận được tín hiệu kết thúc %d. Bộ xem TigerVNC bây giờ sẽ thoát."
+msgid "Failed to get gesture information (error 0x%x)"
+msgstr ""
 
-#: vncviewer/vncviewer.cxx:271 vncviewer/vncviewer.desktop.in.in:3
-msgid "TigerVNC Viewer"
-msgstr "Bộ xem TigerVNC"
-
-#: vncviewer/vncviewer.cxx:280
-msgid "Yes"
-msgstr "Có"
-
-#: vncviewer/vncviewer.cxx:283
-msgid "Close"
-msgstr "Đóng"
-
-#: vncviewer/vncviewer.cxx:288
-msgid "About"
-msgstr "Giới thiệu"
-
-#: vncviewer/vncviewer.cxx:291
-msgid "Hide"
-msgstr "Ẩn"
-
-#: vncviewer/vncviewer.cxx:294
-msgid "Quit"
-msgstr "Thoát"
-
-#: vncviewer/vncviewer.cxx:298
-msgid "Services"
-msgstr "Dịch vụ"
-
-#: vncviewer/vncviewer.cxx:299
-msgid "Hide Others"
-msgstr "Ẩn các cái khác"
-
-#: vncviewer/vncviewer.cxx:300
-msgid "Show All"
-msgstr "Hiện tất cả"
-
-#: vncviewer/vncviewer.cxx:309
-msgctxt "SysMenu|"
-msgid "&File"
-msgstr "&Chính"
-
-#: vncviewer/vncviewer.cxx:312
-msgctxt "SysMenu|File|"
-msgid "&New Connection"
-msgstr "Kết nối &mới"
-
-#: vncviewer/vncviewer.cxx:324
-msgid "Could not create VNC home directory: can't obtain home directory path."
-msgstr "Không thể tạo thư mục cá nhân cho VNC: không thể lấy đường dẫn thư mục cá nhân."
-
-#: vncviewer/vncviewer.cxx:329
+#: vncviewer/Win32TouchHandler.cxx:364
 #, c-format
-msgid "Could not create VNC home directory: %s."
-msgstr "Không thể tạo thư mục cá nhân cho VNC: %s."
+msgid "Invalid mouse button %d, must be a number between 1 and 7."
+msgstr ""
 
-#. TRANSLATORS: "Parameters" are command line arguments, or settings
-#. from a file or the Windows registry.
-#: vncviewer/vncviewer.cxx:581 vncviewer/vncviewer.cxx:583
-msgid "Parameters -listen and -via are incompatible"
-msgstr "Các tham số -listen và -via xung khắc nhau"
-
-#: vncviewer/vncviewer.cxx:598
+#: vncviewer/Win32TouchHandler.cxx:429
 #, c-format
-msgid "Listening on port %d"
-msgstr "Đang nghe trên cổng %d"
+msgid "Unhandled key 0x%x - can't generate keyboard event."
+msgstr ""
 
-#: vncviewer/vncviewer.desktop.in.in:4
-msgid "Remote Desktop Viewer"
-msgstr "Trình xem màn hình từ xa"
+#: vncviewer/XInputTouchHandler.cxx:103 vncviewer/touch.cxx:107
+#, c-format
+msgid "Unable to get X Input 2 event mask for window 0x%08lx"
+msgstr ""
 
+#: vncviewer/XInputTouchHandler.cxx:105
+#, c-format
+msgid "Window 0x%08lx has no X Input 2 event mask"
+msgstr ""
+
+#: vncviewer/XInputTouchHandler.cxx:113 vncviewer/touch.cxx:114
+#, c-format
+msgid "Window 0x%08lx has more than one X Input 2 event mask"
+msgstr ""
+
+#: vncviewer/XInputTouchHandler.cxx:144
+#, c-format
+msgid "Failure grabbing device %i"
+msgstr ""
+
+#: vncviewer/org.tigervnc.vncviewer.metainfo.xml.in:13
+#: vncviewer/vncviewer.desktop.in.in:3
+msgid "TigerVNC"
+msgstr ""
+
+#: vncviewer/org.tigervnc.vncviewer.metainfo.xml.in:14
 #: vncviewer/vncviewer.desktop.in.in:5
 msgid "Connect to VNC server and display remote desktop"
 msgstr "Kết nối đến máy phục vụ VNC và hiển thị màn hình từ xa"
 
-#: vncviewer/vncviewer.desktop.in.in:7
-msgid "tigervnc"
-msgstr "tigervnc"
+#: vncviewer/org.tigervnc.vncviewer.metainfo.xml.in:17
+msgid ""
+"Virtual Network Computing (VNC) is a remote display system that allows you "
+"to view and interact with a virtual desktop environment running on another "
+"computer on the network. Using VNC, you can run graphical applications on a "
+"remote machine and send only the display from these applications to your "
+"local device. This package contains a client which will enable you to "
+"connect to other desktops running a VNC server. VNC is platform-independent "
+"and supports various operating systems and architectures as both servers and "
+"clients."
+msgstr ""
+
+#: vncviewer/org.tigervnc.vncviewer.metainfo.xml.in:23
+msgid ""
+"TigerVNC is a high-speed version of VNC based on the RealVNC 4 and X.org "
+"code bases. TigerVNC started as a next-generation development effort for "
+"TightVNC on Unix and Linux platforms, but it split from its parent project "
+"in early 2009 so that TightVNC could focus on Windows platforms. TigerVNC "
+"supports a variant of Tight encoding that is greatly accelerated by the use "
+"of the libjpeg-turbo JPEG codec."
+msgstr ""
+
+#: vncviewer/org.tigervnc.vncviewer.metainfo.xml.in:33
+msgid "TigerVNC connection to a CentOS machine"
+msgstr ""
+
+#: vncviewer/org.tigervnc.vncviewer.metainfo.xml.in:37
+msgid "TigerVNC connection to a macOS machine"
+msgstr ""
+
+#: vncviewer/org.tigervnc.vncviewer.metainfo.xml.in:41
+msgid "TigerVNC connection to a Windows machine"
+msgstr ""
+
+#. developer_name tag deprecated with Appstream 1.0
+#: vncviewer/org.tigervnc.vncviewer.metainfo.xml.in:46
+msgid "The TigerVNC team"
+msgstr ""
+
+#: vncviewer/parameters.cxx:385 vncviewer/parameters.cxx:410
+#: vncviewer/parameters.cxx:427 vncviewer/parameters.cxx:467
+#: vncviewer/parameters.cxx:487
+msgid "The name of the parameter is too large"
+msgstr ""
+
+#: vncviewer/parameters.cxx:389 vncviewer/parameters.cxx:394
+#: vncviewer/parameters.cxx:445
+msgid "The parameter is too large"
+msgstr ""
+
+#: vncviewer/parameters.cxx:452 vncviewer/parameters.cxx:796
+#: vncviewer/parameters.cxx:908
+msgid "Invalid format or too large value"
+msgstr "Định dạng không hợp lệ hay giá trị quá lớn"
+
+#: vncviewer/parameters.cxx:507 vncviewer/parameters.cxx:540
+msgid "Failed to create registry key"
+msgstr ""
+
+#: vncviewer/parameters.cxx:528 vncviewer/parameters.cxx:601
+#: vncviewer/parameters.cxx:645 vncviewer/parameters.cxx:723
+msgid "Failed to close registry key"
+msgstr ""
+
+#: vncviewer/parameters.cxx:547 vncviewer/parameters.cxx:580
+#: vncviewer/parameters.cxx:765 vncviewer/parameters.cxx:777
+#, c-format
+msgid "Failed to save \"%s\": %s"
+msgstr ""
+
+#: vncviewer/parameters.cxx:560 vncviewer/parameters.cxx:594
+#, c-format
+msgid "Failed to remove \"%s\": %s"
+msgstr ""
+
+#: vncviewer/parameters.cxx:618 vncviewer/parameters.cxx:696
+msgid "Failed to open registry key"
+msgstr ""
+
+#: vncviewer/parameters.cxx:635
+#, c-format
+msgid "Failed to read server history entry %d: %s"
+msgstr ""
+
+#: vncviewer/parameters.cxx:677 vncviewer/parameters.cxx:707
+#, c-format
+msgid "Failed to read parameter \"%s\": %s"
+msgstr ""
+
+#: vncviewer/parameters.cxx:746 vncviewer/parameters.cxx:824
+#: vncviewer/vncviewer.cxx:545
+msgid "Could not determine VNC config directory path"
+msgstr ""
+
+#: vncviewer/parameters.cxx:766 vncviewer/parameters.cxx:778
+msgid "Could not encode parameter"
+msgstr ""
+
+#: vncviewer/parameters.cxx:872
+#, c-format
+msgid "Configuration file %s is in an invalid format"
+msgstr "Tập tin cấu hình %s ở định dạng không hợp lệ"
+
+#: vncviewer/parameters.cxx:895
+msgid "Invalid format"
+msgstr "Định dạng không hợp lệ"
+
+#: vncviewer/parameters.cxx:939
+msgid "Unknown parameter"
+msgstr ""
+
+#: vncviewer/touch.cxx:75
+#, c-format
+msgid "Got message (0x%x) for an unhandled window"
+msgstr ""
+
+#: vncviewer/touch.cxx:138 vncviewer/touch.cxx:160
+#, c-format
+msgid "Invalid window 0x%08lx specified for pointer grab"
+msgstr ""
+
+#: vncviewer/touch.cxx:183 vncviewer/touch.cxx:184
+#, c-format
+msgid "Failed to create touch handler: %s"
+msgstr ""
+
+#: vncviewer/touch.cxx:188
+#, c-format
+msgid "Couldn't attach event handler to window (error 0x%x)"
+msgstr ""
+
+#: vncviewer/touch.cxx:215
+msgid "Failed to get event data for X Input event"
+msgstr ""
+
+#: vncviewer/touch.cxx:228
+msgid "X Input event for unknown window"
+msgstr ""
+
+#: vncviewer/touch.cxx:254
+msgid "X Input extension not available."
+msgstr ""
+
+#: vncviewer/touch.cxx:261
+msgid "X Input 2 (or newer) is not available."
+msgstr ""
+
+#: vncviewer/touch.cxx:266
+msgid ""
+"X Input 2.2 (or newer) is not available. Touch gestures will not be "
+"supported."
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:103
+#, c-format
+msgid ""
+"TigerVNC v%s\n"
+"Built on: %s\n"
+"Copyright (C) 1999-%d TigerVNC team and many others (see README.rst)\n"
+"See https://www.tigervnc.org for information on TigerVNC."
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:157
+#, c-format
+msgid ""
+"An unexpected error occurred when communicating with the server:\n"
+"\n"
+"%s"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:173
+msgid "About TigerVNC"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:194
+msgid "Internal FLTK error. Exiting."
+msgstr "Lỗi bên trong FLTK. Nên thoát."
+
+#: vncviewer/vncviewer.cxx:213
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"Attempt to reconnect?"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:244 vncviewer/vncviewer.cxx:256
+#, c-format
+msgid "Error starting new connection: %s"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:265
+#, c-format
+msgid "Termination signal %d has been received. TigerVNC will now exit."
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:394
+msgid "Yes"
+msgstr "Có"
+
+#: vncviewer/vncviewer.cxx:397
+msgid "Close"
+msgstr "Đóng"
+
+#: vncviewer/vncviewer.cxx:402
+msgid "About"
+msgstr "Giới thiệu"
+
+#: vncviewer/vncviewer.cxx:405
+msgid "Hide"
+msgstr "Ẩn"
+
+#: vncviewer/vncviewer.cxx:408
+msgid "Quit"
+msgstr "Thoát"
+
+#: vncviewer/vncviewer.cxx:412
+msgid "Services"
+msgstr "Dịch vụ"
+
+#: vncviewer/vncviewer.cxx:413
+msgid "Hide others"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:414
+msgid "Show all"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:423
+msgctxt "SysMenu|"
+msgid "&File"
+msgstr "&Chính"
+
+#: vncviewer/vncviewer.cxx:426
+msgctxt "SysMenu|File|"
+msgid "&New Connection"
+msgstr "Kết nối &mới"
+
+#: vncviewer/vncviewer.cxx:449
+#, c-format
+msgid ""
+"\n"
+"Usage: %s [parameters] [host][:displayNum]\n"
+"       %s [parameters] [host][::port]\n"
+"       %s [parameters] [unix socket]\n"
+"       %s [parameters] -listen [port]\n"
+"       %s [parameters] [.tigervnc file]\n"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:464
+#, c-format
+msgid ""
+"\n"
+"Options:\n"
+"\n"
+"  -display Xdisplay  - Specifies the X display for the viewer window\n"
+"  -geometry geometry - Initial position of the main TigerVNC window. See "
+"the\n"
+"                       man page for details.\n"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:471
+#, c-format
+msgid ""
+"\n"
+"Parameters can be turned on with -<param> or off with -<param>=0\n"
+"Parameters which take a value can be specified as -<param> <value>\n"
+"Other valid forms are <param>=<value> -<param>=<value> --<param>=<value>\n"
+"Parameter names are case-insensitive.  The parameters are:\n"
+"\n"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:526
+msgid ""
+"FullScreenAllMonitors is deprecated, set FullScreenMode to 'all' instead"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:531
+msgid ""
+"DotWhenNoCursor is deprecated, set AlwaysCursor to 1 and CursorType to 'Dot' "
+"instead"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:552
+msgid ""
+"~/.vnc is deprecated, please consult 'man vncviewer' for paths to migrate to."
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:556
+#, c-format
+msgid ""
+"%%APPDATA%%\\vnc is deprecated, please switch to the %%APPDATA%%\\TigerVNC "
+"location."
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:561
+#, c-format
+msgid "Could not create VNC config directory \"%s\": %s"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:567
+msgid "Could not determine VNC data directory path"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:573
+#, c-format
+msgid "Could not create VNC data directory \"%s\": %s"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:585
+#, c-format
+msgid "Could not create VNC state directory \"%s\": %s"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:704
+#, c-format
+msgid "%s: Unrecognized option '%s'\n"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:706 vncviewer/vncviewer.cxx:714
+#, c-format
+msgid "See '%s --help' for more information.\n"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:713
+#, c-format
+msgid "%s: Extra argument '%s'\n"
+msgstr ""
+
+#. TRANSLATORS: "Parameters" are command line arguments, or settings
+#. from a file or the Windows registry.
+#: vncviewer/vncviewer.cxx:749 vncviewer/vncviewer.cxx:750
+msgid "Parameters -listen and -via are incompatible"
+msgstr "Các tham số -listen và -via xung khắc nhau"
+
+#: vncviewer/vncviewer.cxx:764
+msgid "Unable to listen for incoming connections"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:766
+#, c-format
+msgid "Listening on port %d"
+msgstr "Đang nghe trên cổng %d"
+
+#: vncviewer/vncviewer.cxx:795
+#, c-format
+msgid ""
+"Failure waiting for incoming VNC connection:\n"
+"\n"
+"%s"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:816
+#, c-format
+msgid ""
+"Failure setting up encrypted tunnel:\n"
+"\n"
+"%s"
+msgstr ""
+
+#: vncviewer/vncviewer.desktop.in.in:4
+msgid "Remote desktop viewer"
+msgstr ""
+
+#, c-format
+#~ msgid "connected to socket %s"
+#~ msgstr "đã kết nối đến ổ cắm mạng %s"
+
+#, c-format
+#~ msgid "connected to host %s port %d"
+#~ msgstr "đã kết nối đến máy %s cổng %d"
+
+#, c-format
+#~ msgid "(server default %s)"
+#~ msgstr "(máy chủ mặc định %s)"
+
+#, c-format
+#~ msgid "SetDesktopSize failed: %d"
+#~ msgstr "SetDesktopSize gặp lỗi: %d"
+
+#~ msgid "Invalid SetColourMapEntries from server!"
+#~ msgstr "SetColourMapEntries từ máy phục vụ không hợp lệ!"
+
+#~ msgid "Enabling continuous updates"
+#~ msgstr "Đang bật cập nhật liên tục"
+
+#, c-format
+#~ msgid "Throughput %d kbit/s - full color is now %s"
+#~ msgstr "Băng thông %d kbit/s - màu đầy đủ giờ là %s"
+
+#~ msgid "disabled"
+#~ msgstr "tắt"
+
+#~ msgid "enabled"
+#~ msgstr "bật"
+
+#, c-format
+#~ msgid "Using %s encoding"
+#~ msgstr "Đang dùng bảng mã %s"
+
+#~ msgid "Adjusting window size to avoid accidental full screen request"
+#~ msgstr "Chỉnh cỡ cửa sổ để tránh yêu cầu toàm màn hình ngẫu nhiên"
+
+#~ msgid "Failure grabbing mouse"
+#~ msgstr "Gặp lỗi khi điều khiển chuột"
+
+#~ msgid "VNC Viewer: Connection Options"
+#~ msgstr "Bộ xem VNC: Các tùy chọn kết nối"
+
+#~ msgid "Full (all available colors)"
+#~ msgstr "Đầy đủ (mọi màu sẵn có)"
+
+#~ msgid "Medium (256 colors)"
+#~ msgstr "Trung bình (256 màu)"
+
+#~ msgid "Low (64 colors)"
+#~ msgstr "Thấp (64 màu)"
+
+#~ msgid "Very low (8 colors)"
+#~ msgstr "Rất thấp (8 màu)"
+
+#~ msgid "level (1=fast, 6=best [4-6 are rarely useful])"
+#~ msgstr "mức độ (1=nhanh, 6=tốt nhất [4-6 là hữu dụng hơn cả])"
+
+#~ msgid "Screen"
+#~ msgstr "Màn hình"
+
+#~ msgid "Resize remote session on connect"
+#~ msgstr "Đổi cỡ phiên máy từ xa khi kết nối"
+
+#~ msgid "Resize remote session to the local window"
+#~ msgstr "Đổi cỡ phiên thành cửa sổ nội bộ"
+
+#~ msgid "Full-screen mode"
+#~ msgstr "Chế độ toàn màn hình"
+
+#~ msgid "Enable full-screen mode over all monitors"
+#~ msgstr "Bật chế độ toàn màn hình qua tất cả các màn hình"
+
+#~ msgid "Misc."
+#~ msgstr "Linh tinh"
+
+#~ msgid "Show dot when no cursor"
+#~ msgstr "Hiển thị chấm khi không có con trỏ"
+
+#~ msgid "VNC Viewer: Connection Details"
+#~ msgstr "Phần mềm xem VNC: Chi tiết kết nối"
+
+#~ msgid "Save As..."
+#~ msgstr "Lưu thành…"
+
+#~ msgid "Authentication cancelled"
+#~ msgstr "Xác thực bị hủy bỏ"
+
+#, c-format
+#~ msgid "Failed to update keyboard LED state: %d"
+#~ msgstr "Gặp lỗi khi cập nhật trạng thái LED bàn phím: %d"
+
+#~ msgid "No key code specified on key press"
+#~ msgstr "Không có mã mô tả cho phím bấm"
+
+#, c-format
+#~ msgid "No symbol for key code 0x%02x (in the current state)"
+#~ msgstr "Không có ký hiệu cho mã phím 0x%02x (trong trạng thái hiện tại)"
+
+#~ msgctxt "ContextMenu|"
+#~ msgid "E&xit viewer"
+#~ msgstr "T&hoát khỏi bộ xem"
+
+#~ msgctxt "ContextMenu|"
+#~ msgid "About &TigerVNC viewer..."
+#~ msgstr "Giới thiệu Bộ xem &TigerVNC…"
+
+#~ msgctxt "ContextMenu|"
+#~ msgid "Dismiss &menu"
+#~ msgstr "Thải bỏ &Trình đơn"
+
+#, c-format
+#~ msgid "The name of the parameter %s was too large to write to the registry"
+#~ msgstr "Tên của tham số %s là quá lớn để ghi vào đăng ký"
+
+#, c-format
+#~ msgid "The parameter %s was too large to write to the registry"
+#~ msgstr "Tham số %s là quá lớn để ghi vào đăng ký"
+
+#, c-format
+#~ msgid "Failed to write parameter %s of type %s to the registry: %ld"
+#~ msgstr "Gặp lỗi khi ghi tham số %s của kiểu %s vào sổ đăng ký: %ld"
+
+#, c-format
+#~ msgid "The name of the parameter %s was too large to read from the registry"
+#~ msgstr "Tên của tham số %s là quá lớn để đọc từ sổ đăng ký"
+
+#, c-format
+#~ msgid "Failed to read parameter %s from the registry: %ld"
+#~ msgstr "Gặp lỗi khi đọc tham số %s từ sổ đăng ký: %ld"
+
+#, c-format
+#~ msgid "The parameter %s was too large to read from the registry"
+#~ msgstr "Tham số %s là quá lớn để đọc từ sổ đăng ký"
+
+#, c-format
+#~ msgid "Failed to create registry key: %ld"
+#~ msgstr "Gặp lỗi khi tạo khóa đăng ký: %ld"
+
+#, c-format
+#~ msgid "Unknown parameter type for parameter %s"
+#~ msgstr "Không hiểu kiểu tham số cho đối số %s"
+
+#, c-format
+#~ msgid "Failed to close registry key: %ld"
+#~ msgstr "Gặp lỗi khi đóng khóa đăng ký: %ld"
+
+#, c-format
+#~ msgid "Failed to open registry key: %ld"
+#~ msgstr "Gặp lỗi khi mở khóa đăng ký: %ld"
+
+#~ msgid ""
+#~ "Failed to write configuration file, can't obtain home directory path."
+#~ msgstr ""
+#~ "Gặp lỗi khi ghi tập tin cấu hình, không thể lấy đường dẫn thư mục riêng."
+
+#, c-format
+#~ msgid "Failed to write configuration file, can't open %s: %s"
+#~ msgstr "Gặp lỗi khi ghi tập tin cấu hình, không thể mở %s: %s"
+
+#~ msgid "Failed to read configuration file, can't obtain home directory path."
+#~ msgstr ""
+#~ "Gặp lỗi khi đọc tập tin cấu hình, không thể lấy đường dẫn thư mục riêng."
+
+#, c-format
+#~ msgid "Failed to read configuration file, can't open %s: %s"
+#~ msgstr "Gặp lỗi khi đọc tập tin cấu hình, không thể mở %s: %s"
+
+#, c-format
+#~ msgid "Failed to read line %d in file %s: %s"
+#~ msgstr "Gặp lỗi khi đọc dòng %d trong tập tin %s: %s"
+
+#, c-format
+#~ msgid "Unknown parameter %s on line %d in file %s"
+#~ msgstr "Không hiểu tham số %s trên dòng %d ở tập tin %s"
+
+#, c-format
+#~ msgid ""
+#~ "TigerVNC Viewer %d-bit v%s\n"
+#~ "Built on: %s\n"
+#~ "Copyright (C) 1999-%d TigerVNC Team and many others (see README.rst)\n"
+#~ "See http://www.tigervnc.org for information on TigerVNC."
+#~ msgstr ""
+#~ "TigerVNC Viewer %d-bít v%s\n"
+#~ "Biên dịch vào: %s\n"
+#~ "Copyright (C) 1999-%d Nhóm TigerVNC và nhiều người khác (xem README.rst)\n"
+#~ "Truy cập http://www.tigervnc.org để biết thêm thông tin về TigerVNC."
+
+#~ msgid "About TigerVNC Viewer"
+#~ msgstr "Giới thiệu về bộ xem TigerVNC"
+
+#, c-format
+#~ msgid "Error starting new TigerVNC Viewer: %s"
+#~ msgstr "Gặp lỗi khi khởi chạy bộ xem TigerVNC mới: %s"
+
+#, c-format
+#~ msgid ""
+#~ "Termination signal %d has been received. TigerVNC Viewer will now exit."
+#~ msgstr ""
+#~ "Đã nhận được tín hiệu kết thúc %d. Bộ xem TigerVNC bây giờ sẽ thoát."
+
+#~ msgid "TigerVNC Viewer"
+#~ msgstr "Bộ xem TigerVNC"
+
+#~ msgid "Hide Others"
+#~ msgstr "Ẩn các cái khác"
+
+#~ msgid "Show All"
+#~ msgstr "Hiện tất cả"
+
+#~ msgid ""
+#~ "Could not create VNC home directory: can't obtain home directory path."
+#~ msgstr ""
+#~ "Không thể tạo thư mục cá nhân cho VNC: không thể lấy đường dẫn thư mục cá "
+#~ "nhân."
+
+#, c-format
+#~ msgid "Could not create VNC home directory: %s."
+#~ msgstr "Không thể tạo thư mục cá nhân cho VNC: %s."
+
+#~ msgid "Remote Desktop Viewer"
+#~ msgstr "Trình xem màn hình từ xa"
+
+#~ msgid "tigervnc"
+#~ msgstr "tigervnc"
 
 #~ msgid "Not enough memory for framebuffer"
 #~ msgstr "Không đủ bộ nhớ cho bộ đệm khung"

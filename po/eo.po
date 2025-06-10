@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tigervnc 1.9.90\n"
 "Report-Msgid-Bugs-To: tigervnc-devel@googlegroups.com\n"
-"POT-Creation-Date: 2019-10-18 10:14+0200\n"
+"POT-Creation-Date: 2025-06-10 08:06+0000\n"
 "PO-Revision-Date: 2019-12-25 12:34-0300\n"
 "Last-Translator: Felipe Castro <fefcas@gmail.com>\n"
 "Language-Team: Esperanto <translation-team-eo@lists.sourceforge.net>\n"
@@ -18,703 +18,1242 @@ msgstr ""
 "X-Bugs: Report translation errors to the Language-Team address.\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: vncviewer/CConn.cxx:99
+#: vncviewer/CConn.cxx:103
 #, c-format
 msgid "Connected to socket %s"
 msgstr "Konektita al konektinterfaco %s"
 
-#: vncviewer/CConn.cxx:106
+#: vncviewer/CConn.cxx:110
 #, c-format
 msgid "Connected to host %s port %d"
 msgstr "Konektita al gastiganto %s pordo %d"
 
-#: vncviewer/CConn.cxx:157
+#: vncviewer/CConn.cxx:115
+#, c-format
+msgid ""
+"Failed to connect to \"%s\":\n"
+"\n"
+"%s"
+msgstr ""
+
+#: vncviewer/CConn.cxx:152
 #, c-format
 msgid "Desktop name: %.80s"
 msgstr "Labortabla nomo: %.80s"
 
-#: vncviewer/CConn.cxx:162
+#: vncviewer/CConn.cxx:155
 #, c-format
 msgid "Host: %.80s port: %d"
 msgstr "Gastiganto: %.80s pordo: %d"
 
-#: vncviewer/CConn.cxx:167
+#: vncviewer/CConn.cxx:159
 #, c-format
 msgid "Size: %d x %d"
 msgstr "Grando: %d x %d"
 
-#: vncviewer/CConn.cxx:175
+#: vncviewer/CConn.cxx:166
 #, c-format
 msgid "Pixel format: %s"
 msgstr "Bildero-formo: %s"
 
-#: vncviewer/CConn.cxx:182
-#, c-format
-msgid "(server default %s)"
-msgstr "(servila implicito %s)"
-
-#: vncviewer/CConn.cxx:187
+#: vncviewer/CConn.cxx:169
 #, c-format
 msgid "Requested encoding: %s"
 msgstr "Petata enkodigo: %s"
 
-#: vncviewer/CConn.cxx:192
+#: vncviewer/CConn.cxx:173
 #, c-format
 msgid "Last used encoding: %s"
 msgstr "Lasta uzata enkodigo: %s"
 
-#: vncviewer/CConn.cxx:197
+#: vncviewer/CConn.cxx:177
 #, c-format
 msgid "Line speed estimate: %d kbit/s"
 msgstr "Lini-rapida konjekto: %d kbit/s"
 
-#: vncviewer/CConn.cxx:202
+#: vncviewer/CConn.cxx:181
 #, c-format
 msgid "Protocol version: %d.%d"
 msgstr "Protokola versio: %d.%d"
 
-#: vncviewer/CConn.cxx:207
+#: vncviewer/CConn.cxx:185
 #, c-format
 msgid "Security method: %s"
 msgstr "Sekureca metodo: %s"
 
-#: vncviewer/CConn.cxx:324
+#: vncviewer/CConn.cxx:246 vncviewer/CConn.cxx:248
+msgid ""
+"The connection was dropped by the server before the session could be "
+"established."
+msgstr ""
+
+#: vncviewer/CConn.cxx:258
 #, c-format
-msgid "SetDesktopSize failed: %d"
-msgstr "SetDesktopSize fiaskis: %d"
+msgid "Authentication failed: %s"
+msgstr ""
 
-#: vncviewer/CConn.cxx:372
-msgid "Invalid SetColourMapEntries from server!"
-msgstr "Malvalida SetColourMapEntries el servilo!"
+#: vncviewer/CConn.cxx:259
+#, c-format
+msgid ""
+"Failed to authenticate with the server. Reason given by the server:\n"
+"\n"
+"%s"
+msgstr ""
 
-#: vncviewer/CConn.cxx:480
+#: vncviewer/CConn.cxx:490
 #, c-format
 msgid "Throughput %d kbit/s - changing to quality %d"
 msgstr "Traigo %d kbit/s - ni ŝanĝas al kvalito %d"
 
-#: vncviewer/CConn.cxx:502
+#: vncviewer/CConn.cxx:521
 #, c-format
 msgid "Throughput %d kbit/s - full color is now enabled"
 msgstr "Traigo %d kbit/s - plenkoloro nun estas ebligita"
 
-#: vncviewer/CConn.cxx:505
+#: vncviewer/CConn.cxx:524
 #, c-format
 msgid "Throughput %d kbit/s - full color is now disabled"
 msgstr "Traigo %d kbit/s - plenkoloro nun estas malebligita"
 
-#: vncviewer/CConn.cxx:531
+#: vncviewer/CConn.cxx:543
 #, c-format
 msgid "Using pixel format %s"
 msgstr "Ni uzas bilderformon %s"
 
-#: vncviewer/DesktopWindow.cxx:122
+#: vncviewer/DesktopWindow.cxx:146
 msgid "Invalid geometry specified!"
 msgstr "Malvalida geometrio indikita!"
 
-#: vncviewer/DesktopWindow.cxx:495
-msgid "Adjusting window size to avoid accidental full screen request"
-msgstr "Alĝustigo de fenestra grando por eviti akcidentan plenekranan peton"
+#: vncviewer/DesktopWindow.cxx:167
+msgid "Reducing window size to fit on current monitor"
+msgstr ""
 
-#: vncviewer/DesktopWindow.cxx:539
+#: vncviewer/DesktopWindow.cxx:681
+msgid "Adjusting window size to avoid accidental full-screen request"
+msgstr ""
+
+#: vncviewer/DesktopWindow.cxx:712
 #, c-format
 msgid "Press %s to open the context menu"
 msgstr "Premu %s por malfermi la kuntekstan menuon"
 
-#: vncviewer/DesktopWindow.cxx:836 vncviewer/DesktopWindow.cxx:844
-#: vncviewer/DesktopWindow.cxx:864
+#: vncviewer/DesktopWindow.cxx:1119 vncviewer/DesktopWindow.cxx:1127
+#: vncviewer/DesktopWindow.cxx:1142
 msgid "Failure grabbing keyboard"
 msgstr "Fiasko dum elpreno de klavaro"
 
-#: vncviewer/DesktopWindow.cxx:938
-msgid "Failure grabbing mouse"
-msgstr "Fiasko dum elpreno de muso"
-
-#: vncviewer/DesktopWindow.cxx:1162
+#: vncviewer/DesktopWindow.cxx:1427
 msgid "Invalid screen layout computed for resize request!"
 msgstr "Malvalida ekrana aranĝo komputita por regrandiga peto!"
 
-#: vncviewer/OptionsDialog.cxx:57
-msgid "VNC Viewer: Connection Options"
-msgstr "Rigardilo VNC: konektaj preferoj"
-
-#: vncviewer/OptionsDialog.cxx:83 vncviewer/ServerDialog.cxx:91
-#: vncviewer/vncviewer.cxx:282
-msgid "Cancel"
-msgstr "Nuligi"
-
-#: vncviewer/OptionsDialog.cxx:88 vncviewer/vncviewer.cxx:281
-msgid "OK"
-msgstr "Bone"
-
-#: vncviewer/OptionsDialog.cxx:423
-msgid "Compression"
-msgstr "Densigo"
-
-#: vncviewer/OptionsDialog.cxx:439
-msgid "Auto select"
-msgstr "Aŭtomate elekti"
-
-#: vncviewer/OptionsDialog.cxx:451
-msgid "Preferred encoding"
-msgstr "Preferata enkodigo"
-
-#: vncviewer/OptionsDialog.cxx:499
-msgid "Color level"
-msgstr "Kolora nivelo"
-
-#: vncviewer/OptionsDialog.cxx:510
-msgid "Full (all available colors)"
-msgstr "Kompleta (ĉiuj disponeblaj koloroj)"
-
-#: vncviewer/OptionsDialog.cxx:517
-msgid "Medium (256 colors)"
-msgstr "Meze (256 koloroj)"
-
-#: vncviewer/OptionsDialog.cxx:524
-msgid "Low (64 colors)"
-msgstr "Malalte (64 koloroj)"
-
-#: vncviewer/OptionsDialog.cxx:531
-msgid "Very low (8 colors)"
-msgstr "Tre malalta (8 koloroj)"
-
-#: vncviewer/OptionsDialog.cxx:548
-msgid "Custom compression level:"
-msgstr "Persona densig-nivelo:"
-
-#: vncviewer/OptionsDialog.cxx:554
-msgid "level (1=fast, 6=best [4-6 are rarely useful])"
-msgstr "nivelo (1=rapida, 6=plejbona [4-6 rare utilas])"
-
-#: vncviewer/OptionsDialog.cxx:561
-msgid "Allow JPEG compression:"
-msgstr "Permesi JPEG-densigon:"
-
-#: vncviewer/OptionsDialog.cxx:567
-msgid "quality (0=poor, 9=best)"
-msgstr "kvalito (0=aĉa, 9=plejbona)"
-
-#: vncviewer/OptionsDialog.cxx:578
-msgid "Security"
-msgstr "Sekureco"
-
-#: vncviewer/OptionsDialog.cxx:593
-msgid "Encryption"
-msgstr "Ĉifrado"
-
-#: vncviewer/OptionsDialog.cxx:604 vncviewer/OptionsDialog.cxx:657
-#: vncviewer/OptionsDialog.cxx:737
-msgid "None"
-msgstr "Nenio"
-
-#: vncviewer/OptionsDialog.cxx:610
-msgid "TLS with anonymous certificates"
-msgstr "TLS kun anonimaj atestiloj"
-
-#: vncviewer/OptionsDialog.cxx:616
-msgid "TLS with X509 certificates"
-msgstr "TLS kun atestiloj X509"
-
-#: vncviewer/OptionsDialog.cxx:623
-msgid "Path to X509 CA certificate"
-msgstr "Vojo al atestilo X509 CA"
-
-#: vncviewer/OptionsDialog.cxx:630
-msgid "Path to X509 CRL file"
-msgstr "Vojo al dosiero X509 CRL"
-
-#: vncviewer/OptionsDialog.cxx:646
-msgid "Authentication"
-msgstr "Aŭtentikiĝo"
-
-#: vncviewer/OptionsDialog.cxx:663
-msgid "Standard VNC (insecure without encryption)"
-msgstr "Ordinara VNC (nesekura sen ĉifrado)"
-
-#: vncviewer/OptionsDialog.cxx:669
-msgid "Username and password (insecure without encryption)"
-msgstr "Uzantnomo kaj pasvorto (nesekura sen ĉifrado)"
-
-#: vncviewer/OptionsDialog.cxx:688
-msgid "Input"
-msgstr "Enigo"
-
-#: vncviewer/OptionsDialog.cxx:696
-msgid "View only (ignore mouse and keyboard)"
-msgstr "Nur rigardi (preteratenti muson kaj klavaron)"
-
-#: vncviewer/OptionsDialog.cxx:702
-msgid "Accept clipboard from server"
-msgstr "Akcepti tondaĵon el la servilo"
-
-#: vncviewer/OptionsDialog.cxx:710
-msgid "Also set primary selection"
-msgstr "Difini ankaŭ la ĉefan elekton"
-
-#: vncviewer/OptionsDialog.cxx:717
-msgid "Send clipboard to server"
-msgstr "Sendi tondaĵon al la servilo"
-
-#: vncviewer/OptionsDialog.cxx:725
-msgid "Send primary selection as clipboard"
-msgstr "Sendi ĉefan elekton kiel tondajô"
-
-#: vncviewer/OptionsDialog.cxx:732
-msgid "Pass system keys directly to server (full screen)"
-msgstr "Pasi sistemajn klavojn rekte al la servilo (plenekrane)"
-
-#: vncviewer/OptionsDialog.cxx:735
-msgid "Menu key"
-msgstr "Menu-klavo"
-
-#: vncviewer/OptionsDialog.cxx:751
-msgid "Screen"
-msgstr "Ekrano"
-
-#: vncviewer/OptionsDialog.cxx:759
-msgid "Resize remote session on connect"
-msgstr "Regrandigi foran seancon dum konekto"
-
-#: vncviewer/OptionsDialog.cxx:772
-msgid "Resize remote session to the local window"
-msgstr "Regrandigi foran seancon al la loka fenestro"
-
-#: vncviewer/OptionsDialog.cxx:778
-msgid "Full-screen mode"
-msgstr "Plenekrana reĝimo"
-
-#: vncviewer/OptionsDialog.cxx:784
-msgid "Enable full-screen mode over all monitors"
-msgstr "Ebligi plenekranan reĝimon en ĉiuj ekranoj"
-
-#: vncviewer/OptionsDialog.cxx:793
-msgid "Misc."
-msgstr "Divers."
-
-#: vncviewer/OptionsDialog.cxx:801
-msgid "Shared (don't disconnect other viewers)"
-msgstr "Kunhave (ne malkonekti aliajn rigardilojn)"
-
-#: vncviewer/OptionsDialog.cxx:807
-msgid "Show dot when no cursor"
-msgstr "Montri punkton kiam sen kursoro"
-
-#: vncviewer/ServerDialog.cxx:42
-msgid "VNC Viewer: Connection Details"
-msgstr "Rigardilo VNC: konektaj detaloj"
-
-#: vncviewer/ServerDialog.cxx:49 vncviewer/ServerDialog.cxx:54
-msgid "VNC server:"
-msgstr "Servilo VNC:"
-
-#: vncviewer/ServerDialog.cxx:64
-msgid "Options..."
-msgstr "Modifiloj..."
-
-#: vncviewer/ServerDialog.cxx:69
-msgid "Load..."
-msgstr "Ŝargo..."
-
-#: vncviewer/ServerDialog.cxx:74
-msgid "Save As..."
-msgstr "Konservi kiel..."
-
-#: vncviewer/ServerDialog.cxx:86
-msgid "About..."
-msgstr "Pri..."
-
-#: vncviewer/ServerDialog.cxx:96
-msgid "Connect"
-msgstr "Konekti"
-
-#: vncviewer/ServerDialog.cxx:137 vncviewer/ServerDialog.cxx:171
-msgid "TigerVNC configuration (*.tigervnc)"
-msgstr "Agordo de TigerVNC (*.tigervnc)"
-
-#: vncviewer/ServerDialog.cxx:138
-msgid "Select a TigerVNC configuration file"
-msgstr "Elekti agordo-dosieron de TigerVNC"
-
-#: vncviewer/ServerDialog.cxx:172
-msgid "Save the TigerVNC configuration to file"
-msgstr "Konservi la agordo-dosieron de TigerVNC"
-
-#: vncviewer/ServerDialog.cxx:197
-#, c-format
-msgid "%s already exists. Do you want to overwrite?"
-msgstr "%s jam ekzistas. Ĉu vi volas anstataŭigi?"
-
-#: vncviewer/ServerDialog.cxx:198 vncviewer/vncviewer.cxx:279
-msgid "No"
-msgstr "Ne"
-
-#: vncviewer/ServerDialog.cxx:198
-msgid "Overwrite"
-msgstr "Anstataŭigi"
-
-#: vncviewer/UserDialog.cxx:85
-msgid "Opening password file failed"
-msgstr "Malfermo de pasvorta dosiero fiaskis"
-
-#: vncviewer/UserDialog.cxx:105
-msgid "VNC authentication"
-msgstr "Aŭtentikiĝo de VNC"
-
-#: vncviewer/UserDialog.cxx:112
-msgid "This connection is secure"
-msgstr "Tiu ĉi konekto estas sekura"
-
-#: vncviewer/UserDialog.cxx:116
-msgid "This connection is not secure"
-msgstr "Tiu ĉi konekto ne estas sekora"
-
-#: vncviewer/UserDialog.cxx:133
-msgid "Username:"
-msgstr "Uzantnomo:"
-
-#: vncviewer/UserDialog.cxx:146
-msgid "Password:"
-msgstr "Pasvorto:"
-
-#: vncviewer/UserDialog.cxx:185
-msgid "Authentication cancelled"
-msgstr "Aŭtentikiĝo estas nuligita"
-
-#: vncviewer/Viewport.cxx:389
-#, c-format
-msgid "Failed to update keyboard LED state: %lu"
-msgstr "Fiasko dum ĝisdatigo de stato de klavaro-LED: %lu"
-
-#: vncviewer/Viewport.cxx:395 vncviewer/Viewport.cxx:401
-#, c-format
-msgid "Failed to update keyboard LED state: %d"
-msgstr "Fiasko dum ĝisdatigo de stato de klavaro-LED: %d"
-
-#: vncviewer/Viewport.cxx:431
-msgid "Failed to update keyboard LED state"
-msgstr "Fiasko dum ĝisdatigo de stato de klavaro-LED"
-
-#: vncviewer/Viewport.cxx:458 vncviewer/Viewport.cxx:466
-#: vncviewer/Viewport.cxx:483
-#, c-format
-msgid "Failed to get keyboard LED state: %d"
-msgstr "Fiasko dum kontrolo de stato de klavaro-LED: %d"
-
-#: vncviewer/Viewport.cxx:833
-msgid "No key code specified on key press"
-msgstr "Neniu klavkodo estis specifica por klav-aktivigo"
-
-#: vncviewer/Viewport.cxx:982
+#: vncviewer/EmulateMB.cxx:227 vncviewer/EmulateMB.cxx:290
+msgid "Invalid state for 3 button emulation"
+msgstr ""
+
+#: vncviewer/KeyboardWin32.cxx:243
 #, c-format
 msgid "No scan code for extended virtual key 0x%02x"
 msgstr "Neniu skankodo por kroma virtuala klavo 0x%02x"
 
-#: vncviewer/Viewport.cxx:984
+#: vncviewer/KeyboardWin32.cxx:245
 #, c-format
 msgid "No scan code for virtual key 0x%02x"
 msgstr "Neniu skankodo por virtuala klavo 0x%02x"
 
-#: vncviewer/Viewport.cxx:990
+#: vncviewer/KeyboardWin32.cxx:251
 #, c-format
 msgid "Invalid scan code 0x%02x"
 msgstr "Malvalida skankodo 0x%02x"
 
-#: vncviewer/Viewport.cxx:1020
+#: vncviewer/KeyboardWin32.cxx:263
 #, c-format
 msgid "No symbol for extended virtual key 0x%02x"
 msgstr "Neniu simbolo por kroma virtuala klavo 0x%02x"
 
-#: vncviewer/Viewport.cxx:1022
+#: vncviewer/KeyboardWin32.cxx:265
 #, c-format
 msgid "No symbol for virtual key 0x%02x"
 msgstr "Neniu simbolo por virtuala klavo 0x%02x"
 
-#: vncviewer/Viewport.cxx:1115
+#: vncviewer/KeyboardWin32.cxx:424
 #, c-format
-msgid "No symbol for key code 0x%02x (in the current state)"
-msgstr "Neniu simbolo por klavkodo 0x%02x (en la nuna stato)"
+msgid "Failed to update keyboard LED state: %lu"
+msgstr "Fiasko dum ĝisdatigo de stato de klavaro-LED: %lu"
 
-#: vncviewer/Viewport.cxx:1148
+#: vncviewer/KeyboardX11.cxx:123
 #, c-format
 msgid "No symbol for key code %d (in the current state)"
 msgstr "Neniu simbolo por klavkodo %d (en la nuna stato)"
 
-#: vncviewer/Viewport.cxx:1199
-msgctxt "ContextMenu|"
-msgid "E&xit viewer"
-msgstr "E&liri la rigardilon"
+#: vncviewer/KeyboardX11.cxx:148
+#, c-format
+msgid "Failed to get keyboard LED state: %d"
+msgstr "Fiasko dum kontrolo de stato de klavaro-LED: %d"
 
-#: vncviewer/Viewport.cxx:1202
+#: vncviewer/KeyboardX11.cxx:193
+msgid "Failed to update keyboard LED state"
+msgstr "Fiasko dum ĝisdatigo de stato de klavaro-LED"
+
+#: vncviewer/MonitorIndicesParameter.cxx:53
+#: vncviewer/MonitorIndicesParameter.cxx:85
+msgid "Failed to get system monitor configuration"
+msgstr ""
+
+#: vncviewer/MonitorIndicesParameter.cxx:73
+#, c-format
+msgid "Monitor index %d does not exist"
+msgstr ""
+
+#. TRANSLATORS: Title of the viewer options dialog window
+#: vncviewer/OptionsDialog.cxx:66
+msgid "TigerVNC options"
+msgstr ""
+
+#. TRANSLATORS: Button that dismisses the dialog without saving
+#: vncviewer/OptionsDialog.cxx:100 vncviewer/ServerDialog.cxx:107
+#: vncviewer/vncviewer.cxx:396
+msgid "Cancel"
+msgstr "Nuligi"
+
+#. TRANSLATORS: Button that confirms the dialog and applies changes
+#: vncviewer/OptionsDialog.cxx:106 vncviewer/vncviewer.cxx:395
+msgid "OK"
+msgstr "Bone"
+
+#. TRANSLATORS: Tab heading for settings controlling image compression
+#: vncviewer/OptionsDialog.cxx:507
+msgid "Compression"
+msgstr "Densigo"
+
+#: vncviewer/OptionsDialog.cxx:524
+msgid "Auto select"
+msgstr "Aŭtomate elekti"
+
+#: vncviewer/OptionsDialog.cxx:536
+msgid "Preferred encoding"
+msgstr "Preferata enkodigo"
+
+#. TRANSLATORS: Label for a group of color quality radio buttons
+#: vncviewer/OptionsDialog.cxx:598
+msgid "Color level"
+msgstr "Kolora nivelo"
+
+#: vncviewer/OptionsDialog.cxx:611
+msgid "Full"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:619
+msgid "Medium"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:627
+msgid "Low"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:635
+msgid "Very low"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:658
+msgid "Custom compression level:"
+msgstr "Persona densig-nivelo:"
+
+#: vncviewer/OptionsDialog.cxx:666
+msgid "level (0=fast, 9=best)"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:674
+msgid "Allow JPEG compression:"
+msgstr "Permesi JPEG-densigon:"
+
+#: vncviewer/OptionsDialog.cxx:682
+msgid "quality (0=poor, 9=best)"
+msgstr "kvalito (0=aĉa, 9=plejbona)"
+
+#. TRANSLATORS: Tab heading for encryption and authentication settings
+#: vncviewer/OptionsDialog.cxx:694
+msgid "Security"
+msgstr "Sekureco"
+
+#. TRANSLATORS: Label for the encryption options section
+#: vncviewer/OptionsDialog.cxx:709
+msgid "Encryption"
+msgstr "Ĉifrado"
+
+#. TRANSLATORS: No menu key configured
+#: vncviewer/OptionsDialog.cxx:722 vncviewer/OptionsDialog.cxx:795
+#: vncviewer/OptionsDialog.cxx:933
+msgid "None"
+msgstr "Nenio"
+
+#: vncviewer/OptionsDialog.cxx:730
+msgid "TLS with anonymous certificates"
+msgstr "TLS kun anonimaj atestiloj"
+
+#: vncviewer/OptionsDialog.cxx:737
+msgid "TLS with X509 certificates"
+msgstr "TLS kun atestiloj X509"
+
+#: vncviewer/OptionsDialog.cxx:745
+msgid "Path to X509 CA certificate"
+msgstr "Vojo al atestilo X509 CA"
+
+#: vncviewer/OptionsDialog.cxx:753
+msgid "Path to X509 CRL file"
+msgstr "Vojo al dosiero X509 CRL"
+
+#. TRANSLATORS: Label for the authentication options section
+#: vncviewer/OptionsDialog.cxx:782
+msgid "Authentication"
+msgstr "Aŭtentikiĝo"
+
+#: vncviewer/OptionsDialog.cxx:802
+msgid "Standard VNC (insecure without encryption)"
+msgstr "Ordinara VNC (nesekura sen ĉifrado)"
+
+#: vncviewer/OptionsDialog.cxx:809
+msgid "Username and password (insecure without encryption)"
+msgstr "Uzantnomo kaj pasvorto (nesekura sen ĉifrado)"
+
+#. TRANSLATORS: Tab heading for keyboard and mouse settings
+#: vncviewer/OptionsDialog.cxx:838
+msgid "Input"
+msgstr "Enigo"
+
+#: vncviewer/OptionsDialog.cxx:852
+msgid "View only (ignore mouse and keyboard)"
+msgstr "Nur rigardi (preteratenti muson kaj klavaron)"
+
+#. TRANSLATORS: Label for mouse related options
+#: vncviewer/OptionsDialog.cxx:860
+msgid "Mouse"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:873
+msgid "Emulate middle mouse button"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:880
+msgid "Show local cursor when not provided by server"
+msgstr ""
+
+#. TRANSLATORS: Choice of cursor appearance used when showing a local cursor
+#: vncviewer/OptionsDialog.cxx:886
+msgid "Cursor type"
+msgstr ""
+
+#. TRANSLATORS: Simple dot shaped cursor
+#: vncviewer/OptionsDialog.cxx:889
+msgid "Dot"
+msgstr ""
+
+#. TRANSLATORS: Use the operating system's default cursor
+#: vncviewer/OptionsDialog.cxx:891
+msgid "System"
+msgstr ""
+
+#. TRANSLATORS: Label for keyboard related options
+#: vncviewer/OptionsDialog.cxx:912
+msgid "Keyboard"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:925
+msgid "Pass system keys directly to server (full screen)"
+msgstr "Pasi sistemajn klavojn rekte al la servilo (plenekrane)"
+
+#. TRANSLATORS: Choice of key that will pop up the menu while full screen
+#: vncviewer/OptionsDialog.cxx:930
+msgid "Menu key"
+msgstr "Menu-klavo"
+
+#. TRANSLATORS: Label for clipboard related settings
+#: vncviewer/OptionsDialog.cxx:955
+msgid "Clipboard"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:968
+msgid "Accept clipboard from server"
+msgstr "Akcepti tondaĵon el la servilo"
+
+#: vncviewer/OptionsDialog.cxx:977
+msgid "Also set primary selection"
+msgstr "Difini ankaŭ la ĉefan elekton"
+
+#: vncviewer/OptionsDialog.cxx:985
+msgid "Send clipboard to server"
+msgstr "Sendi tondaĵon al la servilo"
+
+#: vncviewer/OptionsDialog.cxx:994
+msgid "Send primary selection as clipboard"
+msgstr "Sendi ĉefan elekton kiel tondajô"
+
+#. TRANSLATORS: Tab heading for display related settings
+#: vncviewer/OptionsDialog.cxx:1016
+msgid "Display"
+msgstr ""
+
+#. TRANSLATORS: Label for the screen mode selection section
+#: vncviewer/OptionsDialog.cxx:1031
+msgid "Display mode"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:1045
+msgid "Windowed"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:1054
+msgid "Full screen on current monitor"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:1063
+msgid "Full screen on all monitors"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:1072
+msgid "Full screen on selected monitor(s)"
+msgstr ""
+
+#. TRANSLATORS: Tab heading for various other settings
+#: vncviewer/OptionsDialog.cxx:1102
+msgid "Miscellaneous"
+msgstr ""
+
+#: vncviewer/OptionsDialog.cxx:1111
+msgid "Shared (don't disconnect other viewers)"
+msgstr "Kunhave (ne malkonekti aliajn rigardilojn)"
+
+#: vncviewer/OptionsDialog.cxx:1118
+msgid "Ask to reconnect on connection errors"
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:73
+msgid "VNC server:"
+msgstr "Servilo VNC:"
+
+#: vncviewer/ServerDialog.cxx:80
+msgid "Options..."
+msgstr "Modifiloj..."
+
+#: vncviewer/ServerDialog.cxx:84
+msgid "Load..."
+msgstr "Ŝargo..."
+
+#: vncviewer/ServerDialog.cxx:88
+msgid "Save as..."
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:102
+msgid "About..."
+msgstr "Pri..."
+
+#: vncviewer/ServerDialog.cxx:111
+msgid "Connect"
+msgstr "Konekti"
+
+#: vncviewer/ServerDialog.cxx:147
+#, c-format
+msgid ""
+"Unable to load the server history:\n"
+"\n"
+"%s"
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:176 vncviewer/ServerDialog.cxx:216
+msgid "TigerVNC configuration (*.tigervnc)"
+msgstr "Agordo de TigerVNC (*.tigervnc)"
+
+#: vncviewer/ServerDialog.cxx:177
+msgid "Select a TigerVNC configuration file"
+msgstr "Elekti agordo-dosieron de TigerVNC"
+
+#: vncviewer/ServerDialog.cxx:199 vncviewer/vncviewer.cxx:516
+#, c-format
+msgid ""
+"Unable to load the specified configuration file:\n"
+"\n"
+"%s"
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:217
+msgid "Save the TigerVNC configuration to file"
+msgstr "Konservi la agordo-dosieron de TigerVNC"
+
+#: vncviewer/ServerDialog.cxx:243
+#, c-format
+msgid "%s already exists. Do you want to overwrite?"
+msgstr "%s jam ekzistas. Ĉu vi volas anstataŭigi?"
+
+#: vncviewer/ServerDialog.cxx:244 vncviewer/vncviewer.cxx:393
+msgid "No"
+msgstr "Ne"
+
+#: vncviewer/ServerDialog.cxx:244
+msgid "Overwrite"
+msgstr "Anstataŭigi"
+
+#: vncviewer/ServerDialog.cxx:260
+#, c-format
+msgid ""
+"Unable to save the specified configuration file:\n"
+"\n"
+"%s"
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:294
+#, c-format
+msgid ""
+"Unable to save the default configuration:\n"
+"\n"
+"%s"
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:306
+#, c-format
+msgid ""
+"Unable to save the server history:\n"
+"\n"
+"%s"
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:352 vncviewer/ServerDialog.cxx:434
+#: vncviewer/vncviewer.cxx:579
+msgid "Could not determine VNC state directory path"
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:365 vncviewer/ServerDialog.cxx:442
+#: vncviewer/parameters.cxx:757 vncviewer/parameters.cxx:837
+#, c-format
+msgid "Could not open \"%s\""
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:380 vncviewer/ServerDialog.cxx:389
+#: vncviewer/parameters.cxx:851 vncviewer/parameters.cxx:858
+#: vncviewer/parameters.cxx:892 vncviewer/parameters.cxx:928
+#: vncviewer/parameters.cxx:936
+#, c-format
+msgid "Failed to read line %d in file \"%s\""
+msgstr ""
+
+#: vncviewer/ServerDialog.cxx:393 vncviewer/parameters.cxx:862
+msgid "Line too long"
+msgstr "Linio tro longas"
+
+#: vncviewer/UserDialog.cxx:130
+msgid "Opening password file failed"
+msgstr "Malfermo de pasvorta dosiero fiaskis"
+
+#: vncviewer/UserDialog.cxx:150
+msgid "VNC authentication"
+msgstr "Aŭtentikiĝo de VNC"
+
+#: vncviewer/UserDialog.cxx:157
+msgid "This connection is secure"
+msgstr "Tiu ĉi konekto estas sekura"
+
+#: vncviewer/UserDialog.cxx:161
+msgid "This connection is not secure"
+msgstr "Tiu ĉi konekto ne estas sekora"
+
+#: vncviewer/UserDialog.cxx:183
+msgid "Username:"
+msgstr "Uzantnomo:"
+
+#: vncviewer/UserDialog.cxx:196
+msgid "Password:"
+msgstr "Pasvorto:"
+
+#: vncviewer/UserDialog.cxx:204
+msgid "Keep password for reconnect"
+msgstr ""
+
+#: vncviewer/Viewport.cxx:749
+msgctxt "ContextMenu|"
+msgid "Disconn&ect"
+msgstr ""
+
+#: vncviewer/Viewport.cxx:752
 msgctxt "ContextMenu|"
 msgid "&Full screen"
 msgstr "&Plena ekrano"
 
-#: vncviewer/Viewport.cxx:1205
+#: vncviewer/Viewport.cxx:755
 msgctxt "ContextMenu|"
 msgid "Minimi&ze"
 msgstr "Mal&grandigi"
 
-#: vncviewer/Viewport.cxx:1207
+#: vncviewer/Viewport.cxx:757
 msgctxt "ContextMenu|"
 msgid "Resize &window to session"
 msgstr "Regrandigi &fenestron al seanco"
 
-#: vncviewer/Viewport.cxx:1212
+#: vncviewer/Viewport.cxx:762
 msgctxt "ContextMenu|"
 msgid "&Ctrl"
 msgstr "&Stirklavo"
 
-#: vncviewer/Viewport.cxx:1215
+#: vncviewer/Viewport.cxx:765
 msgctxt "ContextMenu|"
 msgid "&Alt"
 msgstr "&Alt"
 
-#: vncviewer/Viewport.cxx:1221
+#: vncviewer/Viewport.cxx:771
 #, c-format
 msgctxt "ContextMenu|"
 msgid "Send %s"
 msgstr "Sendi %s"
 
-#: vncviewer/Viewport.cxx:1227
+#: vncviewer/Viewport.cxx:779
 msgctxt "ContextMenu|"
 msgid "Send Ctrl-Alt-&Del"
 msgstr "Sendi Ctrl-Alt-&Del"
 
-#: vncviewer/Viewport.cxx:1230
+#: vncviewer/Viewport.cxx:782
 msgctxt "ContextMenu|"
 msgid "&Refresh screen"
 msgstr "A&ktualigi ekranon"
 
-#: vncviewer/Viewport.cxx:1233
+#: vncviewer/Viewport.cxx:785
 msgctxt "ContextMenu|"
 msgid "&Options..."
 msgstr "&Modifiloj..."
 
-#: vncviewer/Viewport.cxx:1235
+#: vncviewer/Viewport.cxx:787
 msgctxt "ContextMenu|"
 msgid "Connection &info..."
 msgstr "&Informo pri konekto..."
 
-#: vncviewer/Viewport.cxx:1237
+#: vncviewer/Viewport.cxx:789
 msgctxt "ContextMenu|"
-msgid "About &TigerVNC viewer..."
-msgstr "Pri la rigardilo &TigerVNC..."
+msgid "About &TigerVNC..."
+msgstr ""
 
-#: vncviewer/Viewport.cxx:1240
-msgctxt "ContextMenu|"
-msgid "Dismiss &menu"
-msgstr "Forlasi la me&nuon"
-
-#: vncviewer/Viewport.cxx:1329
+#: vncviewer/Viewport.cxx:885
 msgid "VNC connection info"
 msgstr "Konekta informo de VNC"
 
-#: vncviewer/parameters.cxx:278 vncviewer/parameters.cxx:312
-#, c-format
-msgid "The name of the parameter %s was too large to write to the registry"
-msgstr "La nomo de la parametro %s estis tro granda por skribi al la registrujo"
-
-#: vncviewer/parameters.cxx:284 vncviewer/parameters.cxx:291
-#, c-format
-msgid "The parameter %s was too large to write to the registry"
-msgstr "La parametro %s estis tro granda por skribi al la registrujo"
-
-#: vncviewer/parameters.cxx:297 vncviewer/parameters.cxx:318
-#, c-format
-msgid "Failed to write parameter %s of type %s to the registry: %ld"
-msgstr "Fiasko dum skribo de la parametro %s el tipo %s al la registrujo: %ld"
-
-#: vncviewer/parameters.cxx:334 vncviewer/parameters.cxx:377
-#, c-format
-msgid "The name of the parameter %s was too large to read from the registry"
-msgstr "La nomo de la parametro %s estis tro longa por legi el la registrujo"
-
-#: vncviewer/parameters.cxx:346 vncviewer/parameters.cxx:386
-#, c-format
-msgid "Failed to read parameter %s from the registry: %ld"
-msgstr "Fiasko dum lego de parametro %s el la registrujo: %ld"
-
-#: vncviewer/parameters.cxx:357
-#, c-format
-msgid "The parameter %s was too large to read from the registry"
-msgstr "La parametro %s estis tro longa por legi el la registrujo"
-
-#: vncviewer/parameters.cxx:406
-#, c-format
-msgid "Failed to create registry key: %ld"
-msgstr "Fiasko dum kreo de registruja ŝlosilo: %ld"
-
-#: vncviewer/parameters.cxx:420 vncviewer/parameters.cxx:469
-#: vncviewer/parameters.cxx:532 vncviewer/parameters.cxx:666
-#, c-format
-msgid "Unknown parameter type for parameter %s"
-msgstr "Nekonata parametra tipo por parametro %s"
-
-#: vncviewer/parameters.cxx:427 vncviewer/parameters.cxx:476
-#, c-format
-msgid "Failed to close registry key: %ld"
-msgstr "Fiasko dum fermo de registruja ŝlosilo: %ld"
-
-#: vncviewer/parameters.cxx:443
-#, c-format
-msgid "Failed to open registry key: %ld"
-msgstr "Fiasko dum malfermo  de registruja ŝlosilo: %ld"
-
-#: vncviewer/parameters.cxx:500
-msgid "Failed to write configuration file, can't obtain home directory path."
-msgstr "Fiasko dum skribo de agorda dosiero, ne eblas preni la hejman dosierujan vojon."
-
-#: vncviewer/parameters.cxx:514
-#, c-format
-msgid "Failed to write configuration file, can't open %s: %s"
-msgstr "Fiasko dum skribo de la agorda dosiero, ne eblas malfermi %s: %s"
-
-#: vncviewer/parameters.cxx:559
-msgid "Failed to read configuration file, can't obtain home directory path."
-msgstr "Fiasko dum lego de agorda dosiero, ne eblas preni la hejman dosierujan vojon."
-
-#: vncviewer/parameters.cxx:573
-#, c-format
-msgid "Failed to read configuration file, can't open %s: %s"
-msgstr "Fiasko dum lego de agorda dosiero, ne eblas malfermi %s: %s"
-
-#: vncviewer/parameters.cxx:586 vncviewer/parameters.cxx:591
-#: vncviewer/parameters.cxx:616 vncviewer/parameters.cxx:629
-#: vncviewer/parameters.cxx:645
-#, c-format
-msgid "Failed to read line %d in file %s: %s"
-msgstr "Fiasko dum lego de linio %d en la dosiero %s: %s"
-
-#: vncviewer/parameters.cxx:592
-msgid "Line too long"
-msgstr "Linio tro longas"
-
-#: vncviewer/parameters.cxx:599
-#, c-format
-msgid "Configuration file %s is in an invalid format"
-msgstr "Agorda dosiero %s estas en nevalida formo"
-
-#: vncviewer/parameters.cxx:617
-msgid "Invalid format"
-msgstr "Nevalida formo"
-
-#: vncviewer/parameters.cxx:630 vncviewer/parameters.cxx:646
-msgid "Invalid format or too large value"
-msgstr "Nevalida formo aŭ tro granda valoro"
-
-#: vncviewer/parameters.cxx:673
-#, c-format
-msgid "Unknown parameter %s on line %d in file %s"
-msgstr "Nekonata parametro %s en linio %d en dosiero %s"
-
-#: vncviewer/vncviewer.cxx:100
-#, c-format
-msgid ""
-"TigerVNC Viewer %d-bit v%s\n"
-"Built on: %s\n"
-"Copyright (C) 1999-%d TigerVNC Team and many others (see README.rst)\n"
-"See https://www.tigervnc.org for information on TigerVNC."
+#: vncviewer/Win32TouchHandler.cxx:49
+msgid "Window is registered for touch instead of gestures"
 msgstr ""
-"Rigardilo TigerVNC %d-bit v%s\n"
-"Konstruita en: %s\n"
-"Kopirajto (C) 1999-%d teamo de TigerVNC kaj multaj aliaj (konsultu README.rst)\n"
-"Konsultu https://www.tigervnc.org por informoj pri TigerVNC."
 
-#: vncviewer/vncviewer.cxx:127
-msgid "About TigerVNC Viewer"
-msgstr "Pri la rigardilo TigerVNC"
-
-#: vncviewer/vncviewer.cxx:140
-msgid "Internal FLTK error. Exiting."
-msgstr "Interna eraro de FLTK. Ni ĉesas."
-
-#: vncviewer/vncviewer.cxx:158 vncviewer/vncviewer.cxx:170
+#: vncviewer/Win32TouchHandler.cxx:84
 #, c-format
-msgid "Error starting new TigerVNC Viewer: %s"
-msgstr "Eraro dum ekigo de nova Rigardilo TigerVNC: %s"
+msgid "Failed to set gesture configuration (error 0x%x)"
+msgstr ""
 
-#: vncviewer/vncviewer.cxx:179
+#: vncviewer/Win32TouchHandler.cxx:96
 #, c-format
-msgid "Termination signal %d has been received. TigerVNC Viewer will now exit."
-msgstr "Finiga signalo %d estis ricevata. La Rigardilo TigerVNC ĉesos nun."
+msgid "Failed to get gesture information (error 0x%x)"
+msgstr ""
 
-#: vncviewer/vncviewer.cxx:271 vncviewer/vncviewer.desktop.in.in:3
-msgid "TigerVNC Viewer"
-msgstr "Rigardilo TigerVNC"
-
-#: vncviewer/vncviewer.cxx:280
-msgid "Yes"
-msgstr "Jes"
-
-#: vncviewer/vncviewer.cxx:283
-msgid "Close"
-msgstr "Fermi"
-
-#: vncviewer/vncviewer.cxx:288
-msgid "About"
-msgstr "Pri"
-
-#: vncviewer/vncviewer.cxx:291
-msgid "Hide"
-msgstr "Kaŝi"
-
-#: vncviewer/vncviewer.cxx:294
-msgid "Quit"
-msgstr "Eliri"
-
-#: vncviewer/vncviewer.cxx:298
-msgid "Services"
-msgstr "Servoj"
-
-#: vncviewer/vncviewer.cxx:299
-msgid "Hide Others"
-msgstr "Kaŝi aliajn"
-
-#: vncviewer/vncviewer.cxx:300
-msgid "Show All"
-msgstr "Montri ĉiujn"
-
-#: vncviewer/vncviewer.cxx:309
-msgctxt "SysMenu|"
-msgid "&File"
-msgstr "&Dosiero"
-
-#: vncviewer/vncviewer.cxx:312
-msgctxt "SysMenu|File|"
-msgid "&New Connection"
-msgstr "&Nova konekto"
-
-#: vncviewer/vncviewer.cxx:324
-msgid "Could not create VNC home directory: can't obtain home directory path."
-msgstr "Ne eblis krei hejman dosierujon de VNC: ne eblas havi tiun vojon."
-
-#: vncviewer/vncviewer.cxx:329
+#: vncviewer/Win32TouchHandler.cxx:364
 #, c-format
-msgid "Could not create VNC home directory: %s."
-msgstr "Ne eblis krei hejman dosierujon de VNC: %s."
+msgid "Invalid mouse button %d, must be a number between 1 and 7."
+msgstr ""
 
-#. TRANSLATORS: "Parameters" are command line arguments, or settings
-#. from a file or the Windows registry.
-#: vncviewer/vncviewer.cxx:602 vncviewer/vncviewer.cxx:604
-msgid "Parameters -listen and -via are incompatible"
-msgstr "Parametroj -listen kaj -via estas malkongruaj"
-
-#: vncviewer/vncviewer.cxx:619
+#: vncviewer/Win32TouchHandler.cxx:429
 #, c-format
-msgid "Listening on port %d"
-msgstr "Ni aŭskultas pordon %d"
+msgid "Unhandled key 0x%x - can't generate keyboard event."
+msgstr ""
 
-#: vncviewer/vncviewer.desktop.in.in:4
-msgid "Remote Desktop Viewer"
-msgstr "Defora Labortabla Rigardilo"
+#: vncviewer/XInputTouchHandler.cxx:103 vncviewer/touch.cxx:107
+#, c-format
+msgid "Unable to get X Input 2 event mask for window 0x%08lx"
+msgstr ""
 
+#: vncviewer/XInputTouchHandler.cxx:105
+#, c-format
+msgid "Window 0x%08lx has no X Input 2 event mask"
+msgstr ""
+
+#: vncviewer/XInputTouchHandler.cxx:113 vncviewer/touch.cxx:114
+#, c-format
+msgid "Window 0x%08lx has more than one X Input 2 event mask"
+msgstr ""
+
+#: vncviewer/XInputTouchHandler.cxx:144
+#, c-format
+msgid "Failure grabbing device %i"
+msgstr ""
+
+#: vncviewer/org.tigervnc.vncviewer.metainfo.xml.in:13
+#: vncviewer/vncviewer.desktop.in.in:3
+msgid "TigerVNC"
+msgstr ""
+
+#: vncviewer/org.tigervnc.vncviewer.metainfo.xml.in:14
 #: vncviewer/vncviewer.desktop.in.in:5
 msgid "Connect to VNC server and display remote desktop"
 msgstr "Konekti al servilo VNC kaj montrigi deforan labortablon"
 
-#: vncviewer/vncviewer.desktop.in.in:7
-msgid "tigervnc"
-msgstr "tigervnc"
+#: vncviewer/org.tigervnc.vncviewer.metainfo.xml.in:17
+msgid ""
+"Virtual Network Computing (VNC) is a remote display system that allows you "
+"to view and interact with a virtual desktop environment running on another "
+"computer on the network. Using VNC, you can run graphical applications on a "
+"remote machine and send only the display from these applications to your "
+"local device. This package contains a client which will enable you to "
+"connect to other desktops running a VNC server. VNC is platform-independent "
+"and supports various operating systems and architectures as both servers and "
+"clients."
+msgstr ""
+
+#: vncviewer/org.tigervnc.vncviewer.metainfo.xml.in:23
+msgid ""
+"TigerVNC is a high-speed version of VNC based on the RealVNC 4 and X.org "
+"code bases. TigerVNC started as a next-generation development effort for "
+"TightVNC on Unix and Linux platforms, but it split from its parent project "
+"in early 2009 so that TightVNC could focus on Windows platforms. TigerVNC "
+"supports a variant of Tight encoding that is greatly accelerated by the use "
+"of the libjpeg-turbo JPEG codec."
+msgstr ""
+
+#: vncviewer/org.tigervnc.vncviewer.metainfo.xml.in:33
+msgid "TigerVNC connection to a CentOS machine"
+msgstr ""
+
+#: vncviewer/org.tigervnc.vncviewer.metainfo.xml.in:37
+msgid "TigerVNC connection to a macOS machine"
+msgstr ""
+
+#: vncviewer/org.tigervnc.vncviewer.metainfo.xml.in:41
+msgid "TigerVNC connection to a Windows machine"
+msgstr ""
+
+#. developer_name tag deprecated with Appstream 1.0
+#: vncviewer/org.tigervnc.vncviewer.metainfo.xml.in:46
+msgid "The TigerVNC team"
+msgstr ""
+
+#: vncviewer/parameters.cxx:385 vncviewer/parameters.cxx:410
+#: vncviewer/parameters.cxx:427 vncviewer/parameters.cxx:467
+#: vncviewer/parameters.cxx:487
+msgid "The name of the parameter is too large"
+msgstr ""
+
+#: vncviewer/parameters.cxx:389 vncviewer/parameters.cxx:394
+#: vncviewer/parameters.cxx:445
+msgid "The parameter is too large"
+msgstr ""
+
+#: vncviewer/parameters.cxx:452 vncviewer/parameters.cxx:796
+#: vncviewer/parameters.cxx:908
+msgid "Invalid format or too large value"
+msgstr "Nevalida formo aŭ tro granda valoro"
+
+#: vncviewer/parameters.cxx:507 vncviewer/parameters.cxx:540
+msgid "Failed to create registry key"
+msgstr ""
+
+#: vncviewer/parameters.cxx:528 vncviewer/parameters.cxx:601
+#: vncviewer/parameters.cxx:645 vncviewer/parameters.cxx:723
+msgid "Failed to close registry key"
+msgstr ""
+
+#: vncviewer/parameters.cxx:547 vncviewer/parameters.cxx:580
+#: vncviewer/parameters.cxx:765 vncviewer/parameters.cxx:777
+#, c-format
+msgid "Failed to save \"%s\": %s"
+msgstr ""
+
+#: vncviewer/parameters.cxx:560 vncviewer/parameters.cxx:594
+#, c-format
+msgid "Failed to remove \"%s\": %s"
+msgstr ""
+
+#: vncviewer/parameters.cxx:618 vncviewer/parameters.cxx:696
+msgid "Failed to open registry key"
+msgstr ""
+
+#: vncviewer/parameters.cxx:635
+#, c-format
+msgid "Failed to read server history entry %d: %s"
+msgstr ""
+
+#: vncviewer/parameters.cxx:677 vncviewer/parameters.cxx:707
+#, c-format
+msgid "Failed to read parameter \"%s\": %s"
+msgstr ""
+
+#: vncviewer/parameters.cxx:746 vncviewer/parameters.cxx:824
+#: vncviewer/vncviewer.cxx:545
+msgid "Could not determine VNC config directory path"
+msgstr ""
+
+#: vncviewer/parameters.cxx:766 vncviewer/parameters.cxx:778
+msgid "Could not encode parameter"
+msgstr ""
+
+#: vncviewer/parameters.cxx:872
+#, c-format
+msgid "Configuration file %s is in an invalid format"
+msgstr "Agorda dosiero %s estas en nevalida formo"
+
+#: vncviewer/parameters.cxx:895
+msgid "Invalid format"
+msgstr "Nevalida formo"
+
+#: vncviewer/parameters.cxx:939
+msgid "Unknown parameter"
+msgstr ""
+
+#: vncviewer/touch.cxx:75
+#, c-format
+msgid "Got message (0x%x) for an unhandled window"
+msgstr ""
+
+#: vncviewer/touch.cxx:138 vncviewer/touch.cxx:160
+#, c-format
+msgid "Invalid window 0x%08lx specified for pointer grab"
+msgstr ""
+
+#: vncviewer/touch.cxx:183 vncviewer/touch.cxx:184
+#, c-format
+msgid "Failed to create touch handler: %s"
+msgstr ""
+
+#: vncviewer/touch.cxx:188
+#, c-format
+msgid "Couldn't attach event handler to window (error 0x%x)"
+msgstr ""
+
+#: vncviewer/touch.cxx:215
+msgid "Failed to get event data for X Input event"
+msgstr ""
+
+#: vncviewer/touch.cxx:228
+msgid "X Input event for unknown window"
+msgstr ""
+
+#: vncviewer/touch.cxx:254
+msgid "X Input extension not available."
+msgstr ""
+
+#: vncviewer/touch.cxx:261
+msgid "X Input 2 (or newer) is not available."
+msgstr ""
+
+#: vncviewer/touch.cxx:266
+msgid ""
+"X Input 2.2 (or newer) is not available. Touch gestures will not be "
+"supported."
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:103
+#, c-format
+msgid ""
+"TigerVNC v%s\n"
+"Built on: %s\n"
+"Copyright (C) 1999-%d TigerVNC team and many others (see README.rst)\n"
+"See https://www.tigervnc.org for information on TigerVNC."
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:157
+#, c-format
+msgid ""
+"An unexpected error occurred when communicating with the server:\n"
+"\n"
+"%s"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:173
+msgid "About TigerVNC"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:194
+msgid "Internal FLTK error. Exiting."
+msgstr "Interna eraro de FLTK. Ni ĉesas."
+
+#: vncviewer/vncviewer.cxx:213
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"Attempt to reconnect?"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:244 vncviewer/vncviewer.cxx:256
+#, c-format
+msgid "Error starting new connection: %s"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:265
+#, c-format
+msgid "Termination signal %d has been received. TigerVNC will now exit."
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:394
+msgid "Yes"
+msgstr "Jes"
+
+#: vncviewer/vncviewer.cxx:397
+msgid "Close"
+msgstr "Fermi"
+
+#: vncviewer/vncviewer.cxx:402
+msgid "About"
+msgstr "Pri"
+
+#: vncviewer/vncviewer.cxx:405
+msgid "Hide"
+msgstr "Kaŝi"
+
+#: vncviewer/vncviewer.cxx:408
+msgid "Quit"
+msgstr "Eliri"
+
+#: vncviewer/vncviewer.cxx:412
+msgid "Services"
+msgstr "Servoj"
+
+#: vncviewer/vncviewer.cxx:413
+msgid "Hide others"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:414
+msgid "Show all"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:423
+msgctxt "SysMenu|"
+msgid "&File"
+msgstr "&Dosiero"
+
+#: vncviewer/vncviewer.cxx:426
+msgctxt "SysMenu|File|"
+msgid "&New Connection"
+msgstr "&Nova konekto"
+
+#: vncviewer/vncviewer.cxx:449
+#, c-format
+msgid ""
+"\n"
+"Usage: %s [parameters] [host][:displayNum]\n"
+"       %s [parameters] [host][::port]\n"
+"       %s [parameters] [unix socket]\n"
+"       %s [parameters] -listen [port]\n"
+"       %s [parameters] [.tigervnc file]\n"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:464
+#, c-format
+msgid ""
+"\n"
+"Options:\n"
+"\n"
+"  -display Xdisplay  - Specifies the X display for the viewer window\n"
+"  -geometry geometry - Initial position of the main TigerVNC window. See "
+"the\n"
+"                       man page for details.\n"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:471
+#, c-format
+msgid ""
+"\n"
+"Parameters can be turned on with -<param> or off with -<param>=0\n"
+"Parameters which take a value can be specified as -<param> <value>\n"
+"Other valid forms are <param>=<value> -<param>=<value> --<param>=<value>\n"
+"Parameter names are case-insensitive.  The parameters are:\n"
+"\n"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:526
+msgid ""
+"FullScreenAllMonitors is deprecated, set FullScreenMode to 'all' instead"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:531
+msgid ""
+"DotWhenNoCursor is deprecated, set AlwaysCursor to 1 and CursorType to 'Dot' "
+"instead"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:552
+msgid ""
+"~/.vnc is deprecated, please consult 'man vncviewer' for paths to migrate to."
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:556
+#, c-format
+msgid ""
+"%%APPDATA%%\\vnc is deprecated, please switch to the %%APPDATA%%\\TigerVNC "
+"location."
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:561
+#, c-format
+msgid "Could not create VNC config directory \"%s\": %s"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:567
+msgid "Could not determine VNC data directory path"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:573
+#, c-format
+msgid "Could not create VNC data directory \"%s\": %s"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:585
+#, c-format
+msgid "Could not create VNC state directory \"%s\": %s"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:704
+#, c-format
+msgid "%s: Unrecognized option '%s'\n"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:706 vncviewer/vncviewer.cxx:714
+#, c-format
+msgid "See '%s --help' for more information.\n"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:713
+#, c-format
+msgid "%s: Extra argument '%s'\n"
+msgstr ""
+
+#. TRANSLATORS: "Parameters" are command line arguments, or settings
+#. from a file or the Windows registry.
+#: vncviewer/vncviewer.cxx:749 vncviewer/vncviewer.cxx:750
+msgid "Parameters -listen and -via are incompatible"
+msgstr "Parametroj -listen kaj -via estas malkongruaj"
+
+#: vncviewer/vncviewer.cxx:764
+msgid "Unable to listen for incoming connections"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:766
+#, c-format
+msgid "Listening on port %d"
+msgstr "Ni aŭskultas pordon %d"
+
+#: vncviewer/vncviewer.cxx:795
+#, c-format
+msgid ""
+"Failure waiting for incoming VNC connection:\n"
+"\n"
+"%s"
+msgstr ""
+
+#: vncviewer/vncviewer.cxx:816
+#, c-format
+msgid ""
+"Failure setting up encrypted tunnel:\n"
+"\n"
+"%s"
+msgstr ""
+
+#: vncviewer/vncviewer.desktop.in.in:4
+msgid "Remote desktop viewer"
+msgstr ""
+
+#, c-format
+#~ msgid "(server default %s)"
+#~ msgstr "(servila implicito %s)"
+
+#, c-format
+#~ msgid "SetDesktopSize failed: %d"
+#~ msgstr "SetDesktopSize fiaskis: %d"
+
+#~ msgid "Invalid SetColourMapEntries from server!"
+#~ msgstr "Malvalida SetColourMapEntries el servilo!"
+
+#~ msgid "Adjusting window size to avoid accidental full screen request"
+#~ msgstr "Alĝustigo de fenestra grando por eviti akcidentan plenekranan peton"
+
+#~ msgid "Failure grabbing mouse"
+#~ msgstr "Fiasko dum elpreno de muso"
+
+#~ msgid "VNC Viewer: Connection Options"
+#~ msgstr "Rigardilo VNC: konektaj preferoj"
+
+#~ msgid "Full (all available colors)"
+#~ msgstr "Kompleta (ĉiuj disponeblaj koloroj)"
+
+#~ msgid "Medium (256 colors)"
+#~ msgstr "Meze (256 koloroj)"
+
+#~ msgid "Low (64 colors)"
+#~ msgstr "Malalte (64 koloroj)"
+
+#~ msgid "Very low (8 colors)"
+#~ msgstr "Tre malalta (8 koloroj)"
+
+#~ msgid "level (1=fast, 6=best [4-6 are rarely useful])"
+#~ msgstr "nivelo (1=rapida, 6=plejbona [4-6 rare utilas])"
+
+#~ msgid "Screen"
+#~ msgstr "Ekrano"
+
+#~ msgid "Resize remote session on connect"
+#~ msgstr "Regrandigi foran seancon dum konekto"
+
+#~ msgid "Resize remote session to the local window"
+#~ msgstr "Regrandigi foran seancon al la loka fenestro"
+
+#~ msgid "Full-screen mode"
+#~ msgstr "Plenekrana reĝimo"
+
+#~ msgid "Enable full-screen mode over all monitors"
+#~ msgstr "Ebligi plenekranan reĝimon en ĉiuj ekranoj"
+
+#~ msgid "Misc."
+#~ msgstr "Divers."
+
+#~ msgid "Show dot when no cursor"
+#~ msgstr "Montri punkton kiam sen kursoro"
+
+#~ msgid "VNC Viewer: Connection Details"
+#~ msgstr "Rigardilo VNC: konektaj detaloj"
+
+#~ msgid "Save As..."
+#~ msgstr "Konservi kiel..."
+
+#~ msgid "Authentication cancelled"
+#~ msgstr "Aŭtentikiĝo estas nuligita"
+
+#, c-format
+#~ msgid "Failed to update keyboard LED state: %d"
+#~ msgstr "Fiasko dum ĝisdatigo de stato de klavaro-LED: %d"
+
+#~ msgid "No key code specified on key press"
+#~ msgstr "Neniu klavkodo estis specifica por klav-aktivigo"
+
+#, c-format
+#~ msgid "No symbol for key code 0x%02x (in the current state)"
+#~ msgstr "Neniu simbolo por klavkodo 0x%02x (en la nuna stato)"
+
+#~ msgctxt "ContextMenu|"
+#~ msgid "E&xit viewer"
+#~ msgstr "E&liri la rigardilon"
+
+#~ msgctxt "ContextMenu|"
+#~ msgid "About &TigerVNC viewer..."
+#~ msgstr "Pri la rigardilo &TigerVNC..."
+
+#~ msgctxt "ContextMenu|"
+#~ msgid "Dismiss &menu"
+#~ msgstr "Forlasi la me&nuon"
+
+#, c-format
+#~ msgid "The name of the parameter %s was too large to write to the registry"
+#~ msgstr ""
+#~ "La nomo de la parametro %s estis tro granda por skribi al la registrujo"
+
+#, c-format
+#~ msgid "The parameter %s was too large to write to the registry"
+#~ msgstr "La parametro %s estis tro granda por skribi al la registrujo"
+
+#, c-format
+#~ msgid "Failed to write parameter %s of type %s to the registry: %ld"
+#~ msgstr ""
+#~ "Fiasko dum skribo de la parametro %s el tipo %s al la registrujo: %ld"
+
+#, c-format
+#~ msgid "The name of the parameter %s was too large to read from the registry"
+#~ msgstr ""
+#~ "La nomo de la parametro %s estis tro longa por legi el la registrujo"
+
+#, c-format
+#~ msgid "Failed to read parameter %s from the registry: %ld"
+#~ msgstr "Fiasko dum lego de parametro %s el la registrujo: %ld"
+
+#, c-format
+#~ msgid "The parameter %s was too large to read from the registry"
+#~ msgstr "La parametro %s estis tro longa por legi el la registrujo"
+
+#, c-format
+#~ msgid "Failed to create registry key: %ld"
+#~ msgstr "Fiasko dum kreo de registruja ŝlosilo: %ld"
+
+#, c-format
+#~ msgid "Unknown parameter type for parameter %s"
+#~ msgstr "Nekonata parametra tipo por parametro %s"
+
+#, c-format
+#~ msgid "Failed to close registry key: %ld"
+#~ msgstr "Fiasko dum fermo de registruja ŝlosilo: %ld"
+
+#, c-format
+#~ msgid "Failed to open registry key: %ld"
+#~ msgstr "Fiasko dum malfermo  de registruja ŝlosilo: %ld"
+
+#~ msgid ""
+#~ "Failed to write configuration file, can't obtain home directory path."
+#~ msgstr ""
+#~ "Fiasko dum skribo de agorda dosiero, ne eblas preni la hejman dosierujan "
+#~ "vojon."
+
+#, c-format
+#~ msgid "Failed to write configuration file, can't open %s: %s"
+#~ msgstr "Fiasko dum skribo de la agorda dosiero, ne eblas malfermi %s: %s"
+
+#~ msgid "Failed to read configuration file, can't obtain home directory path."
+#~ msgstr ""
+#~ "Fiasko dum lego de agorda dosiero, ne eblas preni la hejman dosierujan "
+#~ "vojon."
+
+#, c-format
+#~ msgid "Failed to read configuration file, can't open %s: %s"
+#~ msgstr "Fiasko dum lego de agorda dosiero, ne eblas malfermi %s: %s"
+
+#, c-format
+#~ msgid "Failed to read line %d in file %s: %s"
+#~ msgstr "Fiasko dum lego de linio %d en la dosiero %s: %s"
+
+#, c-format
+#~ msgid "Unknown parameter %s on line %d in file %s"
+#~ msgstr "Nekonata parametro %s en linio %d en dosiero %s"
+
+#, c-format
+#~ msgid ""
+#~ "TigerVNC Viewer %d-bit v%s\n"
+#~ "Built on: %s\n"
+#~ "Copyright (C) 1999-%d TigerVNC Team and many others (see README.rst)\n"
+#~ "See https://www.tigervnc.org for information on TigerVNC."
+#~ msgstr ""
+#~ "Rigardilo TigerVNC %d-bit v%s\n"
+#~ "Konstruita en: %s\n"
+#~ "Kopirajto (C) 1999-%d teamo de TigerVNC kaj multaj aliaj (konsultu README."
+#~ "rst)\n"
+#~ "Konsultu https://www.tigervnc.org por informoj pri TigerVNC."
+
+#~ msgid "About TigerVNC Viewer"
+#~ msgstr "Pri la rigardilo TigerVNC"
+
+#, c-format
+#~ msgid "Error starting new TigerVNC Viewer: %s"
+#~ msgstr "Eraro dum ekigo de nova Rigardilo TigerVNC: %s"
+
+#, c-format
+#~ msgid ""
+#~ "Termination signal %d has been received. TigerVNC Viewer will now exit."
+#~ msgstr "Finiga signalo %d estis ricevata. La Rigardilo TigerVNC ĉesos nun."
+
+#~ msgid "TigerVNC Viewer"
+#~ msgstr "Rigardilo TigerVNC"
+
+#~ msgid "Hide Others"
+#~ msgstr "Kaŝi aliajn"
+
+#~ msgid "Show All"
+#~ msgstr "Montri ĉiujn"
+
+#~ msgid ""
+#~ "Could not create VNC home directory: can't obtain home directory path."
+#~ msgstr "Ne eblis krei hejman dosierujon de VNC: ne eblas havi tiun vojon."
+
+#, c-format
+#~ msgid "Could not create VNC home directory: %s."
+#~ msgstr "Ne eblis krei hejman dosierujon de VNC: %s."
+
+#~ msgid "Remote Desktop Viewer"
+#~ msgstr "Defora Labortabla Rigardilo"
+
+#~ msgid "tigervnc"
+#~ msgstr "tigervnc"
 
 #~ msgid "Enabling continuous updates"
 #~ msgstr "Ebligo de daŭrigaj ĝisdatigoj"
@@ -779,32 +1318,68 @@ msgstr "tigervnc"
 #~ msgid "CleanupSignalHandler called"
 #~ msgstr "CleanupSignalHandler estas vokita"
 
-#~ msgid "Could not convert the parameter-name %s to wchar_t* when reading from the Registry, the buffersize is to small."
-#~ msgstr "Ne eblis konverti la parametro-nomo %s al wchar_t* dum lego el la Registrujo, la bufrogrando tro malgrandas."
+#~ msgid ""
+#~ "Could not convert the parameter-name %s to wchar_t* when reading from the "
+#~ "Registry, the buffersize is to small."
+#~ msgstr ""
+#~ "Ne eblis konverti la parametro-nomo %s al wchar_t* dum lego el la "
+#~ "Registrujo, la bufrogrando tro malgrandas."
 
-#~ msgid "Could not convert the parameter-name %s to wchar_t* when writing to the Registry, the buffersize is to small."
-#~ msgstr "Ne eblis konverti la parametro-nomo %s al wchar_t* dum skribo al la Registrujo, la bufrogrando tro malgrandas."
+#~ msgid ""
+#~ "Could not convert the parameter-name %s to wchar_t* when writing to the "
+#~ "Registry, the buffersize is to small."
+#~ msgstr ""
+#~ "Ne eblis konverti la parametro-nomo %s al wchar_t* dum skribo al la "
+#~ "Registrujo, la bufrogrando tro malgrandas."
 
-#~ msgid "Could not convert the parameter-value %s to wchar_t* when writing to the Registry, the buffersize is to small."
-#~ msgstr "Ne eblis konverti la parametro-valoro %s al wchar_t* dum skribo al la Registrujo, la bufrogrando tro malgrandas."
+#~ msgid ""
+#~ "Could not convert the parameter-value %s to wchar_t* when writing to the "
+#~ "Registry, the buffersize is to small."
+#~ msgstr ""
+#~ "Ne eblis konverti la parametro-valoro %s al wchar_t* dum skribo al la "
+#~ "Registrujo, la bufrogrando tro malgrandas."
 
-#~ msgid "Could not convert the parameter-value for %s to utf8 char* when reading from the Registry, the buffer dest is to small."
-#~ msgstr "Ne eblis konverti la parametro-valoro %s al utf8 char* dum lego el la Registrujo, la bufra celo tro malgrandas."
+#~ msgid ""
+#~ "Could not convert the parameter-value for %s to utf8 char* when reading "
+#~ "from the Registry, the buffer dest is to small."
+#~ msgstr ""
+#~ "Ne eblis konverti la parametro-valoro %s al utf8 char* dum lego el la "
+#~ "Registrujo, la bufra celo tro malgrandas."
 
-#~ msgid "Could not read the line(%d) in the configuration file,the buffersize is to small."
-#~ msgstr "Ne eblis legi la linion(%d) en la agorda dosiero, la bufrogrando tro malgrandas."
+#~ msgid ""
+#~ "Could not read the line(%d) in the configuration file,the buffersize is "
+#~ "to small."
+#~ msgstr ""
+#~ "Ne eblis legi la linion(%d) en la agorda dosiero, la bufrogrando tro "
+#~ "malgrandas."
 
-#~ msgid "Decoding: The size of the buffer dest is to small, it needs to be 1 byte bigger."
-#~ msgstr "Dekodigo: la grando de la bufra celo tro etas, ĝi bezonas esti 1 bajto pli granda."
+#~ msgid ""
+#~ "Decoding: The size of the buffer dest is to small, it needs to be 1 byte "
+#~ "bigger."
+#~ msgstr ""
+#~ "Dekodigo: la grando de la bufra celo tro etas, ĝi bezonas esti 1 bajto "
+#~ "pli granda."
 
-#~ msgid "Encoding backslash: The size of the buffer dest is to small, it needs to be more than %d bytes bigger."
-#~ msgstr "Enkodigo de retroklino: la grando de la bufra celo tro etas, ĝi bezonas esti pli ol %d bajtoj pli granda."
+#~ msgid ""
+#~ "Encoding backslash: The size of the buffer dest is to small, it needs to "
+#~ "be more than %d bytes bigger."
+#~ msgstr ""
+#~ "Enkodigo de retroklino: la grando de la bufra celo tro etas, ĝi bezonas "
+#~ "esti pli ol %d bajtoj pli granda."
 
-#~ msgid "Encoding escape sequence: The size of the buffer dest is to small, it needs to be more than %d bytes bigger."
-#~ msgstr "Enkodigo de skapsekvo: la grando de la bufra celo tro etas, ĝi bezonas esti pli ol %d bajtoj pli granda."
+#~ msgid ""
+#~ "Encoding escape sequence: The size of the buffer dest is to small, it "
+#~ "needs to be more than %d bytes bigger."
+#~ msgstr ""
+#~ "Enkodigo de skapsekvo: la grando de la bufra celo tro etas, ĝi bezonas "
+#~ "esti pli ol %d bajtoj pli granda."
 
-#~ msgid "Encoding normal character: The size of the buffer dest is to small, it needs to be more than %d bytes bigger."
-#~ msgstr "Enkodigo de ordinara signo: la grando de la bufra celo tro etas, ĝi bezonas esti pli ol %d bajtoj pli granda."
+#~ msgid ""
+#~ "Encoding normal character: The size of the buffer dest is to small, it "
+#~ "needs to be more than %d bytes bigger."
+#~ msgstr ""
+#~ "Enkodigo de ordinara signo: la grando de la bufra celo tro etas, ĝi "
+#~ "bezonas esti pli ol %d bajtoj pli granda."
 
 #~ msgid "Error(%d) closing key:  Software\\TigerVNC\\vncviewer"
 #~ msgstr "Eraro(%d) dum fermo de ŝlosilo:  Software\\TigerVNC\\vncviewer"

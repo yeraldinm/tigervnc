@@ -62,6 +62,7 @@ std::map<OptionsCallback*, void*> OptionsDialog::callbacks;
 static std::set<OptionsDialog *> instances;
 
 OptionsDialog::OptionsDialog()
+  // TRANSLATORS: Title of the viewer options dialog window
   : Fl_Window(580, 420, _("TigerVNC options"))
 {
   int x, y;
@@ -95,11 +96,13 @@ OptionsDialog::OptionsDialog()
   x = w() - BUTTON_WIDTH * 2 - INNER_MARGIN - OUTER_MARGIN;
   y = h() - BUTTON_HEIGHT - OUTER_MARGIN;
 
+  // TRANSLATORS: Button that dismisses the dialog without saving
   button = new Fl_Button(x, y, BUTTON_WIDTH, BUTTON_HEIGHT, _("Cancel"));
   button->callback(this->handleCancel, this);
 
   x += BUTTON_WIDTH + INNER_MARGIN;
 
+  // TRANSLATORS: Button that confirms the dialog and applies changes
   button = new Fl_Return_Button(x, y, BUTTON_WIDTH, BUTTON_HEIGHT, _("OK"));
   button->callback(this->handleOK, this);
 
@@ -500,6 +503,7 @@ void OptionsDialog::storeOptions(void)
 
 void OptionsDialog::createCompressionPage(int tx, int ty, int tw, int th)
 {
+  // TRANSLATORS: Tab heading for settings controlling image compression
   Fl_Group *group = new Fl_Group(tx, ty, tw, th, _("Compression"));
 
   int orig_tx, orig_ty;
@@ -513,6 +517,7 @@ void OptionsDialog::createCompressionPage(int tx, int ty, int tw, int th)
   half_width = (full_width - INNER_MARGIN) / 2;
 
   /* AutoSelect checkbox */
+  // TRANSLATORS: Option to automatically pick the best compression settings
   autoselectCheckbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
                                                      CHECK_MIN_WIDTH,
                                                      CHECK_HEIGHT,
@@ -526,6 +531,7 @@ void OptionsDialog::createCompressionPage(int tx, int ty, int tw, int th)
 
   /* VNC encoding box */
   ty += GROUP_LABEL_OFFSET;
+  // TRANSLATORS: Label for a group of encoding method radio buttons
   encodingGroup = new Fl_Group(tx, ty, half_width, 0,
                                 _("Preferred encoding"));
   encodingGroup->box(FL_FLAT_BOX);
@@ -588,6 +594,7 @@ void OptionsDialog::createCompressionPage(int tx, int ty, int tw, int th)
 
   /* Color box */
   ty += GROUP_LABEL_OFFSET;
+  // TRANSLATORS: Label for a group of color quality radio buttons
   colorlevelGroup = new Fl_Group(tx, ty, half_width, 0, _("Color level"));
   colorlevelGroup->labelfont(FL_BOLD);
   colorlevelGroup->box(FL_FLAT_BOX);
@@ -597,6 +604,7 @@ void OptionsDialog::createCompressionPage(int tx, int ty, int tw, int th)
     tx += INDENT;
     ty += TIGHT_MARGIN;
 
+    // TRANSLATORS: Highest color quality
     fullcolorCheckbox = new Fl_Round_Button(LBLRIGHT(tx, ty,
                                                      RADIO_MIN_WIDTH,
                                                      RADIO_HEIGHT,
@@ -604,6 +612,7 @@ void OptionsDialog::createCompressionPage(int tx, int ty, int tw, int th)
     fullcolorCheckbox->type(FL_RADIO_BUTTON);
     ty += RADIO_HEIGHT + TIGHT_MARGIN;
 
+    // TRANSLATORS: Medium color quality
     mediumcolorCheckbox = new Fl_Round_Button(LBLRIGHT(tx, ty,
                                                        RADIO_MIN_WIDTH,
                                                        RADIO_HEIGHT,
@@ -611,6 +620,7 @@ void OptionsDialog::createCompressionPage(int tx, int ty, int tw, int th)
     mediumcolorCheckbox->type(FL_RADIO_BUTTON);
     ty += RADIO_HEIGHT + TIGHT_MARGIN;
 
+    // TRANSLATORS: Low color quality
     lowcolorCheckbox = new Fl_Round_Button(LBLRIGHT(tx, ty,
                                                     RADIO_MIN_WIDTH,
                                                     RADIO_HEIGHT,
@@ -618,6 +628,7 @@ void OptionsDialog::createCompressionPage(int tx, int ty, int tw, int th)
     lowcolorCheckbox->type(FL_RADIO_BUTTON);
     ty += RADIO_HEIGHT + TIGHT_MARGIN;
 
+    // TRANSLATORS: Very low color quality
     verylowcolorCheckbox = new Fl_Round_Button(LBLRIGHT(tx, ty,
                                                         RADIO_MIN_WIDTH,
                                                         RADIO_HEIGHT,
@@ -640,6 +651,7 @@ void OptionsDialog::createCompressionPage(int tx, int ty, int tw, int th)
   ty = (col1_ty > col2_ty ? col1_ty : col2_ty) + INNER_MARGIN;
 
   /* Checkboxes */
+  // TRANSLATORS: Enable manual entry of a compression level
   compressionCheckbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
                                                      CHECK_MIN_WIDTH,
                                                      CHECK_HEIGHT,
@@ -648,12 +660,14 @@ void OptionsDialog::createCompressionPage(int tx, int ty, int tw, int th)
   compressionCheckbox->callback(handleCompression, this);
   ty += CHECK_HEIGHT + TIGHT_MARGIN;
 
+  // TRANSLATORS: Label for the numeric compression level input field
   compressionInput = new Fl_Int_Input(tx + INDENT, ty,
                                       INPUT_HEIGHT, INPUT_HEIGHT,
                                       _("level (0=fast, 9=best)"));
   compressionInput->align(FL_ALIGN_RIGHT);
   ty += INPUT_HEIGHT + INNER_MARGIN;
 
+  // TRANSLATORS: Enable use of JPEG compression
   jpegCheckbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
                                               CHECK_MIN_WIDTH,
                                               CHECK_HEIGHT,
@@ -662,6 +676,7 @@ void OptionsDialog::createCompressionPage(int tx, int ty, int tw, int th)
   jpegCheckbox->callback(handleJpeg, this);
   ty += CHECK_HEIGHT + TIGHT_MARGIN;
 
+  // TRANSLATORS: Label for JPEG quality numeric input field
   jpegInput = new Fl_Int_Input(tx + INDENT, ty,
                                INPUT_HEIGHT, INPUT_HEIGHT,
                                _("quality (0=poor, 9=best)"));
@@ -675,6 +690,7 @@ void OptionsDialog::createCompressionPage(int tx, int ty, int tw, int th)
 void OptionsDialog::createSecurityPage(int tx, int ty, int tw, int th)
 {
 #if defined(HAVE_GNUTLS) || defined(HAVE_NETTLE)
+  // TRANSLATORS: Tab heading for encryption and authentication settings
   Fl_Group *group = new Fl_Group(tx, ty, tw, th, _("Security"));
 
   int orig_tx;
@@ -689,6 +705,7 @@ void OptionsDialog::createSecurityPage(int tx, int ty, int tw, int th)
 
   /* Encryption */
   ty += GROUP_LABEL_OFFSET;
+  // TRANSLATORS: Label for the encryption options section
   encryptionGroup = new Fl_Group(tx, ty, width, 0, _("Encryption"));
   encryptionGroup->labelfont(FL_BOLD);
   encryptionGroup->box(FL_FLAT_BOX);
@@ -698,6 +715,7 @@ void OptionsDialog::createSecurityPage(int tx, int ty, int tw, int th)
     tx += INDENT;
     ty += TIGHT_MARGIN;
 
+    // TRANSLATORS: No encryption will be used
     encNoneCheckbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
                                                    CHECK_MIN_WIDTH,
                                                    CHECK_HEIGHT,
@@ -705,12 +723,14 @@ void OptionsDialog::createSecurityPage(int tx, int ty, int tw, int th)
     ty += CHECK_HEIGHT + TIGHT_MARGIN;
 
 #ifdef HAVE_GNUTLS
+    // TRANSLATORS: Use TLS encryption without verifying the server
     encTLSCheckbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
                                                   CHECK_MIN_WIDTH,
                                                   CHECK_HEIGHT,
                                                   _("TLS with anonymous certificates")));
     ty += CHECK_HEIGHT + TIGHT_MARGIN;
 
+    // TRANSLATORS: Use TLS encryption with X509 certificates
     encX509Checkbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
                                                    CHECK_MIN_WIDTH,
                                                    CHECK_HEIGHT,
@@ -719,13 +739,15 @@ void OptionsDialog::createSecurityPage(int tx, int ty, int tw, int th)
     ty += CHECK_HEIGHT + TIGHT_MARGIN;
 
     ty += INPUT_LABEL_OFFSET;
-    caInput = new Fl_Input(tx + INDENT, ty, 
+    // TRANSLATORS: Field for specifying the CA certificate file
+    caInput = new Fl_Input(tx + INDENT, ty,
                            width - INDENT * 2, INPUT_HEIGHT,
                            _("Path to X509 CA certificate"));
     caInput->align(FL_ALIGN_LEFT | FL_ALIGN_TOP);
     ty += INPUT_HEIGHT + TIGHT_MARGIN;
 
     ty += INPUT_LABEL_OFFSET;
+    // TRANSLATORS: Field for specifying the certificate revocation list
     crlInput = new Fl_Input(tx + INDENT, ty,
                             width - INDENT * 2, INPUT_HEIGHT,
                             _("Path to X509 CRL file"));
@@ -756,6 +778,7 @@ void OptionsDialog::createSecurityPage(int tx, int ty, int tw, int th)
 
   /* Authentication */
   ty += GROUP_LABEL_OFFSET;
+  // TRANSLATORS: Label for the authentication options section
   authenticationGroup = new Fl_Group(tx, ty, width, 0, _("Authentication"));
   authenticationGroup->labelfont(FL_BOLD);
   authenticationGroup->box(FL_FLAT_BOX);
@@ -765,18 +788,21 @@ void OptionsDialog::createSecurityPage(int tx, int ty, int tw, int th)
     tx += INDENT;
     ty += TIGHT_MARGIN;
 
+    // TRANSLATORS: No authentication required
     authNoneCheckbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
                                                     CHECK_MIN_WIDTH,
                                                     CHECK_HEIGHT,
                                                     _("None")));
     ty += CHECK_HEIGHT + TIGHT_MARGIN;
 
+    // TRANSLATORS: Traditional VNC password authentication
     authVncCheckbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
                                                    CHECK_MIN_WIDTH,
                                                    CHECK_HEIGHT,
                                                    _("Standard VNC (insecure without encryption)")));
     ty += CHECK_HEIGHT + TIGHT_MARGIN;
 
+    // TRANSLATORS: Authenticate using username and password
     authPlainCheckbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
                                                      CHECK_MIN_WIDTH,
                                                      CHECK_HEIGHT,
@@ -808,6 +834,7 @@ void OptionsDialog::createSecurityPage(int tx, int ty, int tw, int th)
 
 void OptionsDialog::createInputPage(int tx, int ty, int tw, int th)
 {
+  // TRANSLATORS: Tab heading for keyboard and mouse settings
   Fl_Group *group = new Fl_Group(tx, ty, tw, th, _("Input"));
 
   int orig_tx;
@@ -818,6 +845,7 @@ void OptionsDialog::createInputPage(int tx, int ty, int tw, int th)
 
   width = tw - OUTER_MARGIN * 2;
 
+  // TRANSLATORS: Disable sending mouse and keyboard events to the server
   viewOnlyCheckbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
                                                   CHECK_MIN_WIDTH,
                                                   CHECK_HEIGHT,
@@ -828,6 +856,7 @@ void OptionsDialog::createInputPage(int tx, int ty, int tw, int th)
 
   /* Mouse */
   ty += GROUP_LABEL_OFFSET;
+  // TRANSLATORS: Label for mouse related options
   mouseGroup = new Fl_Group(tx, ty, width, 0, _("Mouse"));
   mouseGroup->labelfont(FL_BOLD);
   mouseGroup->box(FL_FLAT_BOX);
@@ -837,12 +866,14 @@ void OptionsDialog::createInputPage(int tx, int ty, int tw, int th)
     tx += INDENT;
     ty += TIGHT_MARGIN;
 
+    // TRANSLATORS: Option to emulate a middle mouse button
     emulateMBCheckbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
                                                      CHECK_MIN_WIDTH,
                                                      CHECK_HEIGHT,
                                                      _("Emulate middle mouse button")));
     ty += CHECK_HEIGHT + TIGHT_MARGIN;
 
+    // TRANSLATORS: Show a local mouse cursor when the server does not provide one
     alwaysCursorCheckbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
                                                        CHECK_MIN_WIDTH,
                                                        CHECK_HEIGHT,
@@ -851,9 +882,12 @@ void OptionsDialog::createInputPage(int tx, int ty, int tw, int th)
     ty += CHECK_HEIGHT + TIGHT_MARGIN;
 
     /* Cursor type */
+    // TRANSLATORS: Choice of cursor appearance used when showing a local cursor
     cursorTypeChoice = new Fl_Choice(LBLLEFT(tx, ty, 150, CHOICE_HEIGHT, _("Cursor type")));
 
+    // TRANSLATORS: Simple dot shaped cursor
     fltk_menu_add(cursorTypeChoice, _("Dot"), 0, nullptr, nullptr, 0);
+    // TRANSLATORS: Use the operating system's default cursor
     fltk_menu_add(cursorTypeChoice, _("System"), 0, nullptr, nullptr, 0);
 
     fltk_adjust_choice(cursorTypeChoice);
@@ -874,6 +908,7 @@ void OptionsDialog::createInputPage(int tx, int ty, int tw, int th)
 
   /* Keyboard */
   ty += GROUP_LABEL_OFFSET;
+  // TRANSLATORS: Label for keyboard related options
   keyboardGroup = new Fl_Group(tx, ty, width, 0, _("Keyboard"));
   keyboardGroup->labelfont(FL_BOLD);
   keyboardGroup->box(FL_FLAT_BOX);
@@ -883,6 +918,7 @@ void OptionsDialog::createInputPage(int tx, int ty, int tw, int th)
     tx += INDENT;
     ty += TIGHT_MARGIN;
 
+    // TRANSLATORS: Pass keys like Alt-Tab directly to the server when in full screen
     systemKeysCheckbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
                                                       CHECK_MIN_WIDTH,
                                                       CHECK_HEIGHT,
@@ -890,8 +926,10 @@ void OptionsDialog::createInputPage(int tx, int ty, int tw, int th)
     systemKeysCheckbox->callback(handleSystemKeys, this);
     ty += CHECK_HEIGHT + TIGHT_MARGIN;
 
+    // TRANSLATORS: Choice of key that will pop up the menu while full screen
     menuKeyChoice = new Fl_Choice(LBLLEFT(tx, ty, 150, CHOICE_HEIGHT, _("Menu key")));
 
+    // TRANSLATORS: No menu key configured
     fltk_menu_add(menuKeyChoice, _("None"), 0, nullptr, nullptr, FL_MENU_DIVIDER);
     for (int idx = 0; idx < getMenuKeySymbolCount(); idx++)
       fltk_menu_add(menuKeyChoice, getMenuKeySymbols()[idx].name, 0, nullptr, nullptr, 0);
@@ -913,6 +951,7 @@ void OptionsDialog::createInputPage(int tx, int ty, int tw, int th)
 
   /* Clipboard */
   ty += GROUP_LABEL_OFFSET;
+  // TRANSLATORS: Label for clipboard related settings
   clipboardGroup = new Fl_Group(tx, ty, width, 0, _("Clipboard"));
   clipboardGroup->labelfont(FL_BOLD);
   clipboardGroup->box(FL_FLAT_BOX);
@@ -922,6 +961,7 @@ void OptionsDialog::createInputPage(int tx, int ty, int tw, int th)
     tx += INDENT;
     ty += TIGHT_MARGIN;
 
+    // TRANSLATORS: Allow the server to update the local clipboard
     acceptClipboardCheckbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
                                                            CHECK_MIN_WIDTH,
                                                            CHECK_HEIGHT,
@@ -930,6 +970,7 @@ void OptionsDialog::createInputPage(int tx, int ty, int tw, int th)
     ty += CHECK_HEIGHT + TIGHT_MARGIN;
 
 #if !defined(WIN32) && !defined(__APPLE__)
+    // TRANSLATORS: Also update the primary selection on X11 systems
     setPrimaryCheckbox = new Fl_Check_Button(LBLRIGHT(tx + INDENT, ty,
                                                       CHECK_MIN_WIDTH,
                                                       CHECK_HEIGHT,
@@ -937,6 +978,7 @@ void OptionsDialog::createInputPage(int tx, int ty, int tw, int th)
     ty += CHECK_HEIGHT + TIGHT_MARGIN;
 #endif
 
+    // TRANSLATORS: Send clipboard contents to the server
     sendClipboardCheckbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
                                                          CHECK_MIN_WIDTH,
                                                          CHECK_HEIGHT,
@@ -945,6 +987,7 @@ void OptionsDialog::createInputPage(int tx, int ty, int tw, int th)
     ty += CHECK_HEIGHT + TIGHT_MARGIN;
 
 #if !defined(WIN32) && !defined(__APPLE__)
+    // TRANSLATORS: Send the primary X11 selection as clipboard data
     sendPrimaryCheckbox = new Fl_Check_Button(LBLRIGHT(tx + INDENT, ty,
                                                        CHECK_MIN_WIDTH,
                                                        CHECK_HEIGHT,
@@ -969,6 +1012,7 @@ void OptionsDialog::createInputPage(int tx, int ty, int tw, int th)
 
 void OptionsDialog::createDisplayPage(int tx, int ty, int tw, int th)
 {
+  // TRANSLATORS: Tab heading for display related settings
   Fl_Group *group = new Fl_Group(tx, ty, tw, th, _("Display"));
 
   int orig_tx;
@@ -983,6 +1027,7 @@ void OptionsDialog::createDisplayPage(int tx, int ty, int tw, int th)
 
   /* Display mode */
   ty += GROUP_LABEL_OFFSET;
+  // TRANSLATORS: Label for the screen mode selection section
   displayModeGroup = new Fl_Group(tx, ty, width, 0, _("Display mode"));
   displayModeGroup->labelfont(FL_BOLD);
   displayModeGroup->box(FL_FLAT_BOX);
@@ -993,6 +1038,7 @@ void OptionsDialog::createDisplayPage(int tx, int ty, int tw, int th)
     ty += TIGHT_MARGIN;
     width -= INDENT;
 
+    // TRANSLATORS: Run the viewer in a window
     windowedButton = new Fl_Round_Button(LBLRIGHT(tx, ty,
                                                   RADIO_MIN_WIDTH,
                                                   RADIO_HEIGHT,
@@ -1001,6 +1047,7 @@ void OptionsDialog::createDisplayPage(int tx, int ty, int tw, int th)
     windowedButton->callback(handleFullScreenMode, this);
     ty += RADIO_HEIGHT + TIGHT_MARGIN;
 
+    // TRANSLATORS: Full screen on the monitor currently displaying the window
     currentMonitorButton = new Fl_Round_Button(LBLRIGHT(tx, ty,
                                                         RADIO_MIN_WIDTH,
                                                         RADIO_HEIGHT,
@@ -1009,6 +1056,7 @@ void OptionsDialog::createDisplayPage(int tx, int ty, int tw, int th)
     currentMonitorButton->callback(handleFullScreenMode, this);
     ty += RADIO_HEIGHT + TIGHT_MARGIN;
 
+    // TRANSLATORS: Full screen spanning all monitors
     allMonitorsButton = new Fl_Round_Button(LBLRIGHT(tx, ty,
                                             RADIO_MIN_WIDTH,
                                             RADIO_HEIGHT,
@@ -1017,6 +1065,7 @@ void OptionsDialog::createDisplayPage(int tx, int ty, int tw, int th)
     allMonitorsButton->callback(handleFullScreenMode, this);
     ty += RADIO_HEIGHT + TIGHT_MARGIN;
 
+    // TRANSLATORS: Full screen only on the monitors chosen below
     selectedMonitorsButton = new Fl_Round_Button(LBLRIGHT(tx, ty,
                                                  RADIO_MIN_WIDTH,
                                                  RADIO_HEIGHT,
@@ -1049,17 +1098,20 @@ void OptionsDialog::createDisplayPage(int tx, int ty, int tw, int th)
 
 void OptionsDialog::createMiscPage(int tx, int ty, int tw, int th)
 {
+  // TRANSLATORS: Tab heading for various other settings
   Fl_Group *group = new Fl_Group(tx, ty, tw, th, _("Miscellaneous"));
 
   tx += OUTER_MARGIN;
   ty += OUTER_MARGIN;
 
+  // TRANSLATORS: Allow multiple viewers to be connected simultaneously
   sharedCheckbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
                                                   CHECK_MIN_WIDTH,
                                                   CHECK_HEIGHT,
                                                   _("Shared (don't disconnect other viewers)")));
   ty += CHECK_HEIGHT + TIGHT_MARGIN;
 
+  // TRANSLATORS: Ask whether to reconnect if the connection drops
   reconnectCheckbox = new Fl_Check_Button(LBLRIGHT(tx, ty,
                                                   CHECK_MIN_WIDTH,
                                                   CHECK_HEIGHT,
