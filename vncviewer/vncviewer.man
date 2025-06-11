@@ -271,12 +271,16 @@ Time in milliseconds to rate-limit successive pointer events. Default is
 .TP
 .B \-PreferredEncoding \fIencoding\fP
 This option specifies the preferred encoding to use from one of "Tight",
-"ZRLE", "Hextile", "H.264", or "Raw".
+"ZRLE", "Hextile", "H.264", "H.265", or "Raw".
 .
 .TP
 .B \-QualityLevel \fIlevel\fP
 JPEG quality level. 0 = Low, 9 = High. May be adjusted automatically if
 \fB-AutoSelect\fP is turned on. Default is 8.
+.
+.TP
+.B \-Record \fIfile\fP
+Record the session to the specified video file using FFmpeg.
 .
 .TP
 .B \-ReconnectOnError
@@ -301,6 +305,10 @@ every supported scheme.
 .TP
 .B \-SendClipboard
 Send clipboard changes to the server. Default is on.
+.
+.TP
+.B \-EnableAudio
+Play audio sent from the server. Disabled by default.
 .
 .TP
 .B \-SendPrimary

@@ -78,7 +78,8 @@ static core::LogWriter vlog("Viewport");
 
 enum { ID_DISCONNECT, ID_FULLSCREEN, ID_MINIMIZE, ID_RESIZE,
        ID_CTRL, ID_ALT, ID_MENUKEY, ID_CTRLALTDEL,
-       ID_REFRESH, ID_OPTIONS, ID_INFO, ID_ABOUT };
+       ID_REFRESH, ID_RECORD_START, ID_RECORD_STOP,
+       ID_OPTIONS, ID_INFO, ID_ABOUT };
 
 // Used for fake key presses from the menu
 static const int FAKE_CTRL_KEY_CODE = 0x10001;
@@ -782,6 +783,14 @@ void Viewport::initContextMenu()
   fltk_menu_add(contextMenu, p_("ContextMenu|", "&Refresh screen"),
                 0, nullptr, (void*)ID_REFRESH, FL_MENU_DIVIDER);
 
+  DesktopWindow *dw = (DesktopWindow*)window();
+  fltk_menu_add(contextMenu, p_("ContextMenu|", "Start recording"),
+                0, nullptr, (void*)ID_RECORD_START,
+                dw->isRecording()?FL_MENU_INVISIBLE:0);
+  fltk_menu_add(contextMenu, p_("ContextMenu|", "Stop recording"),
+                0, nullptr, (void*)ID_RECORD_STOP,
+                dw->isRecording()?0:FL_MENU_INVISIBLE);
+
   fltk_menu_add(contextMenu, p_("ContextMenu|", "&Options..."),
                 0, nullptr, (void*)ID_OPTIONS, 0);
   fltk_menu_add(contextMenu, p_("ContextMenu|", "Connection &info..."),
@@ -875,6 +884,12 @@ void Viewport::popupContextMenu()
     break;
   case ID_REFRESH:
     cc->refreshFramebuffer();
+    break;
+  case ID_RECORD_START:
+    ((DesktopWindow*)window())->startRecording();
+    break;
+  case ID_RECORD_STOP:
+    ((DesktopWindow*)window())->stopRecording();
     break;
   case ID_OPTIONS:
     OptionsDialog::showDialog();

@@ -33,6 +33,7 @@
 #include <vector>
 
 #include <core/LogWriter.h>
+#include <core/string.h>
 
 #define XK_MISCELLANY
 #define XK_XKB_KEYS

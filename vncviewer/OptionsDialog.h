@@ -88,6 +88,9 @@ protected:
 #ifdef HAVE_H264
   Fl_Round_Button *h264Button;
 #endif
+#ifdef HAVE_H265
+  Fl_Round_Button *h265Button;
+#endif
   Fl_Round_Button *rawButton;
 
   Fl_Group *colorlevelGroup;
@@ -151,6 +154,7 @@ protected:
   /* Misc. */
   Fl_Check_Button *sharedCheckbox;
   Fl_Check_Button *reconnectCheckbox;
+  Fl_Input *recordInput;
 
 private:
   static int fltk_event_handler(int event);

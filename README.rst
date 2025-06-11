@@ -53,9 +53,14 @@ All versions of TigerVNC contain the following programs:
 * vncviewer - the cross-platform TigerVNC Viewer, written using FLTK.
               vncviewer connects to a VNC server and allows you to interact
               with the remote desktop being displayed by the VNC server.  The
-              VNC server can be running on a Windows or a Unix/Linux machine.
-              The viewer can also connect through WebSocket proxies using the
+
+               VNC server can be running on a Windows or a Unix/Linux machine.
+         The viewer can also connect through WebSocket proxies using the
               new ``-WebSocket`` option.
+
+              When started with the ``-EnableAudio`` parameter, vncviewer will
+              also play any audio frames sent by the server.
+
 
 
 Windows-specific

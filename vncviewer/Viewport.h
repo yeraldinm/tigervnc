@@ -45,6 +45,8 @@ public:
   // Most efficient format (from Viewport's point of view)
   const rfb::PixelFormat &getPreferredPF();
 
+  PlatformPixelBuffer* getFrameBuffer() { return frameBuffer; }
+
   // Flush updates to screen
   void updateWindow();
 

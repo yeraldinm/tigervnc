@@ -116,6 +116,9 @@ bool CMsgReader::readMsg()
     case msgTypeServerCutText:
       ret = readServerCutText();
       break;
+    case msgTypeAudio:
+      ret = readAudioData();
+      break;
     case msgTypeFramebufferUpdate:
       ret = readFramebufferUpdate();
       break;
@@ -299,6 +302,25 @@ bool CMsgReader::readServerCutText()
   std::string filtered(core::convertLF(utf8.data(), utf8.size()));
 
   handler->serverCutText(filtered.c_str());
+
+  return true;
+}
+
+bool CMsgReader::readAudioData()
+{
+  if (!is->hasData(3 + 4))
+    return false;
+
+  is->setRestorePoint();
+  is->skip(3);
+  uint32_t len = is->readU32();
+  if (!is->hasDataOrRestore(len))
+    return false;
+  is->clearRestorePoint();
+
+  std::vector<uint8_t> buf(len);
+  is->readBytes(buf.data(), len);
+  handler->audioData(buf.data(), len);
 
   return true;
 }

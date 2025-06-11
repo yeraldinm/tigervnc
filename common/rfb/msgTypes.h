@@ -25,6 +25,7 @@ namespace rfb {
   const int msgTypeSetColourMapEntries = 1;
   const int msgTypeBell = 2;
   const int msgTypeServerCutText = 3;
+  const int msgTypeAudio = 4;
 
   const int msgTypeEndOfContinuousUpdates = 150;
 

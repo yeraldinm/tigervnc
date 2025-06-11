@@ -84,6 +84,8 @@ namespace rfb {
                                         const size_t* lengths,
                                         const uint8_t* const* data) = 0;
 
+    virtual void audioData(const uint8_t* data, size_t len) = 0;
+
     ServerParams server;
   };
 }

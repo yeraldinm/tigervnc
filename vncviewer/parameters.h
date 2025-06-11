@@ -69,6 +69,7 @@ extern core::BoolParameter shared;
 extern core::BoolParameter acceptClipboard;
 extern core::BoolParameter setPrimary;
 extern core::BoolParameter sendClipboard;
+extern core::BoolParameter enableAudio;
 #if !defined(WIN32) && !defined(__APPLE__)
 extern core::BoolParameter sendPrimary;
 extern core::StringParameter display;
@@ -83,6 +84,8 @@ extern core::BoolParameter reconnectOnError;
 #ifndef WIN32
 extern core::StringParameter via;
 #endif
+
+extern core::StringParameter recordFile;
 
 void saveViewerParameters(const char *filename, const char *servername=nullptr);
 char* loadViewerParameters(const char *filename);

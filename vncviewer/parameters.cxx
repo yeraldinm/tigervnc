@@ -96,6 +96,11 @@ core::StringParameter
 core::AliasParameter
   passwd("passwd", "Alias for PasswordFile", &passwordFile);
 
+core::StringParameter
+  recordFile("Record",
+             "Record session to video file",
+             "");
+
 core::BoolParameter
   autoSelect("AutoSelect",
              "Auto select pixel format and encoding. Default if "
@@ -119,10 +124,16 @@ core::EnumParameter
 #ifdef HAVE_H264
                     "H.264, "
 #endif
+#ifdef HAVE_H265
+                    "H.265, "
+#endif
                     "or Raw)",
                     {"Tight", "ZRLE", "Hextile",
 #ifdef HAVE_H264
                      "H.264",
+#endif
+#ifdef HAVE_H265
+                     "H.265",
 #endif
                      "Raw"},
                     "Tight");
@@ -209,6 +220,10 @@ core::BoolParameter
   sendClipboard("SendClipboard",
                 "Send clipboard changes to the server",
                 true);
+core::BoolParameter
+  enableAudio("EnableAudio",
+              "Play audio sent from the server",
+              false);
 #if !defined(WIN32) && !defined(__APPLE__)
 core::BoolParameter
   setPrimary("SetPrimary",
@@ -263,6 +278,7 @@ static core::VoidParameter* parameterArray[] = {
   /* Misc. */
   &reconnectOnError,
   &shared,
+  &recordFile,
   /* Compression */
   &autoSelect,
   &fullColour,
@@ -283,6 +299,7 @@ static core::VoidParameter* parameterArray[] = {
   &cursorType,
   &acceptClipboard,
   &sendClipboard,
+  &enableAudio,
 #if !defined(WIN32) && !defined(__APPLE__)
   &sendPrimary,
   &setPrimary,
