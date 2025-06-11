@@ -43,6 +43,7 @@
 #include "CConn.h"
 #include "Surface.h"
 #include "Viewport.h"
+#include "PlatformPixelBuffer.h"
 #include "touch.h"
 #include "VideoRecorder.h"
 

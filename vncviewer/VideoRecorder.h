@@ -1,6 +1,8 @@
 #ifndef __VIDEORECORDER_H__
 #define __VIDEORECORDER_H__
 
+#include <cstdint>
+
 #if defined(HAVE_H264) && defined(H264_LIBAV)
 extern "C" {
 #include <libavformat/avformat.h>
