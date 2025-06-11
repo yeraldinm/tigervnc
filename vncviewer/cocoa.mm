@@ -21,7 +21,6 @@
 #endif
 
 #include <assert.h>
-#include <dlfcn.h>
 
 #include <FL/Fl_Window.H>
 #include <FL/x.H>
@@ -52,27 +51,6 @@ bool cocoa_is_trusted(bool prompt)
 
   Boolean trusted;
 
-#if !defined(MAC_OS_X_VERSION_10_9) || MAC_OS_X_VERSION_MAX_ALLOWED < MAC_OS_X_VERSION_10_9
-  // FIXME: Raise system requirements so this isn't needed
-  void *lib;
-  typedef Boolean (*AXIsProcessTrustedWithOptionsRef)(CFDictionaryRef);
-  AXIsProcessTrustedWithOptionsRef AXIsProcessTrustedWithOptions;
-  CFStringRef kAXTrustedCheckOptionPrompt;
-
-  lib = dlopen(nullptr, 0);
-  if (lib == nullptr)
-    return false;
-
-  AXIsProcessTrustedWithOptions =
-    (AXIsProcessTrustedWithOptionsRef)dlsym(lib, "AXIsProcessTrustedWithOptions");
-
-  dlclose(lib);
-
-  if (AXIsProcessTrustedWithOptions == nullptr)
-    return false;
-
-  kAXTrustedCheckOptionPrompt = CFSTR("AXTrustedCheckOptionPrompt");
-#endif
 
   keys[0] = kAXTrustedCheckOptionPrompt;
   values[0] = prompt ? kCFBooleanTrue : kCFBooleanFalse;
