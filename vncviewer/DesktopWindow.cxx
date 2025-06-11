@@ -1037,7 +1037,8 @@ int DesktopWindow::fltkHandle(int event)
     // not be resized to cover the new screen. A timer makes sense
     // also on other systems, to make sure that whatever desktop
     // environment has a chance to deal with things before we do.
-    updateMonitors();
+    for (auto *dw : instances)
+      dw->updateMonitors();
     Fl::remove_timeout(reconfigureFullscreen);
     Fl::add_timeout(0.5, reconfigureFullscreen);
   }
