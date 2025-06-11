@@ -58,6 +58,7 @@ target_link_libraries(vncviewer ${FLTK_LIBRARIES} ${GETTEXT_LIBRARIES})
 
 if(WIN32)
   target_link_libraries(vncviewer msimg32)
+  target_link_libraries(vncviewer winmm)
 elseif(APPLE)
   target_link_libraries(vncviewer "-framework Cocoa")
   target_link_libraries(vncviewer "-framework Carbon")
