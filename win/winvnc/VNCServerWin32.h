@@ -27,6 +27,7 @@
 #include <rfb_win32/SocketManager.h>
 #include <winvnc/QueryConnectDialog.h>
 #include <winvnc/ManagedListener.h>
+#include <memory>
 
 namespace core {
     class Mutex;
@@ -106,15 +107,15 @@ namespace winvnc {
     Command command;
     const void* commandData;
     int commandDataLen;
-    core::Mutex* commandLock;
-    core::Condition* commandSig;
+    std::unique_ptr<core::Mutex> commandLock;
+    std::unique_ptr<core::Condition> commandSig;
     rfb::win32::Handle commandEvent;
     rfb::win32::Handle sessionEvent;
 
     // VNCServerWin32 Server-internal state
     rfb::win32::SDisplay desktop;
     rfb::VNCServerST vncServer;
-    core::Mutex* runLock;
+    std::unique_ptr<core::Mutex> runLock;
     DWORD thread_id;
     bool runServer;
     bool isDesktopStarted;

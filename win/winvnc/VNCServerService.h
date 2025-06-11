@@ -27,6 +27,7 @@ namespace winvnc {
   class VNCServerService : public rfb::win32::Service {
   public:
     VNCServerService();
+    virtual ~VNCServerService();
 
     DWORD serviceMain(int argc, char* argv[]) override;
     void stop() override;
