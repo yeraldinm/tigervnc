@@ -29,6 +29,8 @@
 
 #include <core/LogWriter.h>
 #include <core/Mutex.h>
+#include <core/Exception.h>
+#include <memory>
 
 #include <network/TcpSocket.h>
 
@@ -65,18 +67,28 @@ static BoolParameter showTrayIcon("ShowTrayIcon",
 
 VNCServerWin32::VNCServerWin32()
   : command(NoCommand),
-    commandEvent(CreateEvent(nullptr, TRUE, FALSE, nullptr)),
-    sessionEvent(isServiceProcess() ?
-      CreateEvent(nullptr, FALSE, FALSE, "Global\\SessionEventTigerVNC") : nullptr),
+    commandEvent(),
+    sessionEvent(),
     vncServer(ComputerName().buf, &desktop),
     thread_id(-1), runServer(false), isDesktopStarted(false),
     config(&sockMgr), rfbSock(&sockMgr), trayIcon(nullptr),
     queryConnectDialog(nullptr)
 {
-  commandLock = new Mutex;
-  commandSig = new Condition(commandLock);
+  commandEvent.h = CreateEvent(nullptr, TRUE, FALSE, nullptr);
+  if (!commandEvent.h)
+    throw core::win32_error("CreateEvent", GetLastError());
 
-  runLock = new Mutex;
+  if (isServiceProcess()) {
+    sessionEvent.h = CreateEvent(nullptr, FALSE, FALSE,
+                                 "Global\\SessionEventTigerVNC");
+    if (!sessionEvent.h)
+      throw core::win32_error("CreateEvent", GetLastError());
+  }
+
+  commandLock = std::make_unique<Mutex>();
+  commandSig = std::make_unique<Condition>(commandLock.get());
+
+  runLock = std::make_unique<Mutex>();
 
   // Initialise the desktop
   desktop.setStatusLocation(&isDesktopStarted);
@@ -104,10 +116,6 @@ VNCServerWin32::~VNCServerWin32() {
     delete queryConnectDialog;
   }
 
-  delete runLock;
-
-  delete commandSig;
-  delete commandLock;
 }
 
 
@@ -162,7 +170,7 @@ void VNCServerWin32::regConfigChanged() {
 
 int VNCServerWin32::run() {
   {
-    AutoMutex a(runLock);
+    AutoMutex a(runLock.get());
     thread_id = GetCurrentThreadId();
     runServer = true;
   }
@@ -208,7 +216,7 @@ int VNCServerWin32::run() {
   }
 
   {
-    AutoMutex a(runLock);
+    AutoMutex a(runLock.get());
     runServer = false;
     thread_id = (DWORD)-1;
   }
@@ -217,7 +225,7 @@ int VNCServerWin32::run() {
 }
 
 void VNCServerWin32::stop() {
-  AutoMutex a(runLock);
+  AutoMutex a(runLock.get());
   runServer = false;
   if (thread_id != (DWORD)-1)
     PostThreadMessage(thread_id, WM_QUIT, 0, 0);
@@ -274,7 +282,7 @@ void VNCServerWin32::queryConnectionComplete() {
 
 
 bool VNCServerWin32::queueCommand(Command cmd, const void* data, int len, bool wait) {
-  AutoMutex a(commandLock);
+  AutoMutex a(commandLock.get());
   while (command != NoCommand)
     commandSig->wait();
   command = cmd;
@@ -295,7 +303,7 @@ void VNCServerWin32::processEvent(HANDLE event_) {
   if (event_ == commandEvent.h) {
     // If there is no command queued then return immediately
     {
-      AutoMutex a(commandLock);
+      AutoMutex a(commandLock.get());
       if (command == NoCommand)
         return;
     }
@@ -336,7 +344,7 @@ void VNCServerWin32::processEvent(HANDLE event_) {
 
     // Clear the command and signal completion
     {
-      AutoMutex a(commandLock);
+      AutoMutex a(commandLock.get());
       command = NoCommand;
       commandSig->signal();
     }

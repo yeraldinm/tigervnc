@@ -86,9 +86,7 @@ void QueryConnectDialog::initDialog() {
 }
 
 void QueryConnectDialog::setCountdownLabel() {
-  char buf[16];
-  sprintf(buf, "%d", countdown);
-  setItemString(IDC_QUERY_COUNTDOWN, buf);
+  setItemString(IDC_QUERY_COUNTDOWN, std::to_string(countdown).c_str());
 }
 
 BOOL QueryConnectDialog::dialogProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {

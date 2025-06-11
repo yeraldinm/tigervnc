@@ -62,6 +62,14 @@ VNCServerService::VNCServerService()
   logParams.setParam("*:EventLog:0,Connections:EventLog:100");
 }
 
+VNCServerService::~VNCServerService() {
+  if (sasLibrary != nullptr) {
+    FreeLibrary(sasLibrary);
+    sasLibrary = nullptr;
+    _SendSAS = nullptr;
+  }
+}
+
 
 //////////////////////////////////////////////////////////////////////////////
 
