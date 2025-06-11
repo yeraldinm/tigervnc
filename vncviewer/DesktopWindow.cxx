@@ -408,6 +408,12 @@ void DesktopWindow::setDesktopSizeDone(unsigned result)
   remoteResize();
 }
 
+void DesktopWindow::setServerSize(int width, int height, const rfb::ScreenSet& layout)
+{
+  cc->server.setDimensions(width, height, layout);
+  resizeFramebuffer(width, height);
+}
+
 
 void DesktopWindow::setCursor()
 {
@@ -1001,6 +1007,7 @@ int DesktopWindow::fltkHandle(int event)
     // not be resized to cover the new screen. A timer makes sense
     // also on other systems, to make sure that whatever desktop
     // environment has a chance to deal with things before we do.
+    updateMonitors();
     Fl::remove_timeout(reconfigureFullscreen);
     Fl::add_timeout(0.5, reconfigureFullscreen);
   }
@@ -1010,6 +1017,8 @@ int DesktopWindow::fltkHandle(int event)
 
 void DesktopWindow::fullscreen_on()
 {
+  updateMonitors();
+
   bool allMonitors = fullScreenMode == "all";
   bool selectedMonitors = fullScreenMode == "selected";
   int top, bottom, left, right;
@@ -1349,6 +1358,8 @@ void DesktopWindow::remoteResize()
     int sx, sy, sw, sh;
     core::Rect viewport_rect, screen_rect;
 
+    updateMonitors();
+
     // In full screen we report all screens that are fully covered.
 
     viewport_rect.setXYWH(x() + (w() - width)/2, y() + (h() - height)/2,
@@ -1554,6 +1565,39 @@ void DesktopWindow::handleFullscreenTimeout(void *data)
 
   self->delayedFullscreen = false;
   self->remoteResize();
+}
+
+void DesktopWindow::updateMonitors()
+{
+  monitors.clear();
+
+  for (int i = 0; i < Fl::screen_count(); i++) {
+    int sx, sy, sw, sh;
+    bool match = false;
+
+    Fl::screen_xywh(sx, sy, sw, sh, i);
+
+    for (const auto& m : monitors) {
+      if (m.tl.x == sx && m.tl.y == sy &&
+          m.width() == sw && m.height() == sh) {
+        match = true;
+        break;
+      }
+    }
+
+    if (!match) {
+      core::Rect r;
+      r.setXYWH(sx, sy, sw, sh);
+      monitors.push_back(r);
+    }
+  }
+
+  std::sort(monitors.begin(), monitors.end(),
+             [](const core::Rect& a, const core::Rect& b) {
+               if (a.tl.x != b.tl.x)
+                 return a.tl.x < b.tl.x;
+               return a.tl.y < b.tl.y;
+             });
 }
 
 void DesktopWindow::scrollTo(int x, int y)

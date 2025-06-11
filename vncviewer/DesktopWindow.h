@@ -21,12 +21,15 @@
 #define __DESKTOPWINDOW_H__
 
 #include <map>
+#include <vector>
 
 #include <sys/time.h>
 
+#include <core/Rect.h>
+
 #include <FL/Fl_Window.H>
 
-namespace rfb { class ModifiablePixelBuffer; }
+namespace rfb { struct ScreenSet; class ModifiablePixelBuffer; }
 
 class CConn;
 class Surface;
@@ -54,6 +57,9 @@ public:
 
   // A previous call to writeSetDesktopSize() has completed
   void setDesktopSizeDone(unsigned result);
+
+  // Update local server parameters
+  void setServerSize(int width, int height, const rfb::ScreenSet& layout);
 
   // New image for the locally rendered cursor
   void setCursor();
@@ -104,6 +110,8 @@ private:
   static void reconfigureFullscreen(void *data);
   void remoteResize();
 
+  void updateMonitors();
+
   void repositionWidgets();
 
   static void handleClose(Fl_Widget *wnd, void *data);
@@ -126,6 +134,8 @@ private:
   Surface *overlay;
   unsigned char overlayAlpha;
   struct timeval overlayStart;
+
+  std::vector<core::Rect> monitors;
 
   bool firstUpdate;
   bool delayedFullscreen;
