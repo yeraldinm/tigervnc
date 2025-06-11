@@ -22,6 +22,7 @@
 #endif
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "vncHooks.h"
 #include "vncExtInit.h"
@@ -828,36 +829,30 @@ static void vncHooksTrapezoids(CARD8 op, PicturePtr pSrc, PicturePtr pDst,
   RENDER_PROLOGUE(pDst->pDrawable->pScreen, Trapezoids);
 
   if (is_visible(pDst->pDrawable)) {
+    BoxPtr boxes = malloc(sizeof(BoxRec) * ntrap);
     BoxRec box;
     RegionRec fbreg;
 
-    // FIXME: We do a very crude bounding box around everything.
-    //        Might not be worth optimizing since this call is rarely
-    //        used.
-    box.x1 = SHRT_MAX;
-    box.y1 = SHRT_MAX;
-    box.x2 = 0;
-    box.y2 = 0;
-    for (int i = 0;i < ntrap;i++) {
-      if (FixedToShort(traps[i].left.p1.x) < box.x1)
-        box.x1 = FixedToShort(traps[i].left.p1.x);
-      if (FixedToShort(traps[i].left.p2.x) < box.x1)
-        box.x1 = FixedToShort(traps[i].left.p2.x);
-      if (FixedToShort(traps[i].top) < box.y1)
-        box.y1 = FixedToShort(traps[i].top);
-      if (FixedToShort(traps[i].right.p1.x) > box.x2)
-        box.x2 = FixedToShort(traps[i].right.p1.x);
-      if (FixedToShort(traps[i].right.p2.x) > box.x2)
-        box.x2 = FixedToShort(traps[i].right.p2.x);
-      if (FixedToShort(traps[i].bottom) > box.y2)
-        box.y2 = FixedToShort(traps[i].bottom);
-    }
+    if (!boxes) {
+      RegionNull(&changed);
+    } else {
+      for (int i = 0; i < ntrap; i++) {
+        boxes[i].x1 = min(FixedToShort(traps[i].left.p1.x),
+                         FixedToShort(traps[i].left.p2.x));
+        boxes[i].y1 = FixedToShort(traps[i].top);
+        boxes[i].x2 = max(FixedToShort(traps[i].right.p1.x),
+                         FixedToShort(traps[i].right.p2.x));
+        boxes[i].y2 = FixedToShort(traps[i].bottom);
 
-    box.x1 += pDst->pDrawable->x;
-    box.y1 += pDst->pDrawable->y;
-    box.x2 += pDst->pDrawable->x;
-    box.y2 += pDst->pDrawable->y;
-    RegionInitBoxes(&changed, &box, 1);
+        boxes[i].x1 += pDst->pDrawable->x;
+        boxes[i].y1 += pDst->pDrawable->y;
+        boxes[i].x2 += pDst->pDrawable->x;
+        boxes[i].y2 += pDst->pDrawable->y;
+      }
+
+      RegionInitBoxes(&changed, boxes, ntrap);
+      free(boxes);
+    }
 
     box.x1 = 0;
     box.y1 = 0;
@@ -890,39 +885,30 @@ static void vncHooksTriangles(CARD8 op, PicturePtr pSrc, PicturePtr pDst,
   RENDER_PROLOGUE(pDst->pDrawable->pScreen, Triangles);
 
   if (is_visible(pDst->pDrawable)) {
+    BoxPtr boxes = malloc(sizeof(BoxRec) * ntri);
     BoxRec box;
     RegionRec fbreg;
 
-    // FIXME: We do a very crude bounding box around everything.
-    //        Might not be worth optimizing since this call is rarely
-    //        used.
-    box.x1 = SHRT_MAX;
-    box.y1 = SHRT_MAX;
-    box.x2 = 0;
-    box.y2 = 0;
-    for (int i = 0;i < ntri;i++) {
-      xFixed left, right, top, bottom;
+    if (!boxes) {
+      RegionNull(&changed);
+    } else {
+      for (int i = 0; i < ntri; i++) {
+        xFixed left, right, top, bottom;
 
-      left = min(min(tris[i].p1.x, tris[i].p2.x), tris[i].p3.x);
-      right = max(max(tris[i].p1.x, tris[i].p2.x), tris[i].p3.x);
-      top = min(min(tris[i].p1.y, tris[i].p2.y), tris[i].p3.y);
-      bottom = max(max(tris[i].p1.y, tris[i].p2.y), tris[i].p3.y);
+        left = min(min(tris[i].p1.x, tris[i].p2.x), tris[i].p3.x);
+        right = max(max(tris[i].p1.x, tris[i].p2.x), tris[i].p3.x);
+        top = min(min(tris[i].p1.y, tris[i].p2.y), tris[i].p3.y);
+        bottom = max(max(tris[i].p1.y, tris[i].p2.y), tris[i].p3.y);
 
-      if (FixedToShort(left) < box.x1)
-        box.x1 = FixedToShort(left);
-      if (FixedToShort(top) < box.y1)
-        box.y1 = FixedToShort(top);
-      if (FixedToShort(right) > box.x2)
-        box.x2 = FixedToShort(right);
-      if (FixedToShort(bottom) > box.y2)
-        box.y2 = FixedToShort(bottom);
+        boxes[i].x1 = FixedToShort(left) + pDst->pDrawable->x;
+        boxes[i].y1 = FixedToShort(top) + pDst->pDrawable->y;
+        boxes[i].x2 = FixedToShort(right) + pDst->pDrawable->x;
+        boxes[i].y2 = FixedToShort(bottom) + pDst->pDrawable->y;
+      }
+
+      RegionInitBoxes(&changed, boxes, ntri);
+      free(boxes);
     }
-
-    box.x1 += pDst->pDrawable->x;
-    box.y1 += pDst->pDrawable->y;
-    box.x2 += pDst->pDrawable->x;
-    box.y2 += pDst->pDrawable->y;
-    RegionInitBoxes(&changed, &box, 1);
 
     box.x1 = 0;
     box.y1 = 0;
@@ -955,32 +941,30 @@ static void vncHooksTriStrip(CARD8 op, PicturePtr pSrc, PicturePtr pDst,
   RENDER_PROLOGUE(pDst->pDrawable->pScreen, TriStrip);
 
   if (is_visible(pDst->pDrawable)) {
+    BoxPtr boxes = malloc(sizeof(BoxRec) * (npoint - 2));
     BoxRec box;
     RegionRec fbreg;
 
-    // FIXME: We do a very crude bounding box around everything.
-    //        Might not be worth optimizing since this call is rarely
-    //        used.
-    box.x1 = SHRT_MAX;
-    box.y1 = SHRT_MAX;
-    box.x2 = 0;
-    box.y2 = 0;
-    for (int i = 0;i < npoint;i++) {
-      if (FixedToShort(points[i].x) < box.x1)
-        box.x1 = FixedToShort(points[i].x);
-      if (FixedToShort(points[i].y) < box.y1)
-        box.y1 = FixedToShort(points[i].y);
-      if (FixedToShort(points[i].x) > box.x2)
-        box.x2 = FixedToShort(points[i].x);
-      if (FixedToShort(points[i].y) > box.y2)
-        box.y2 = FixedToShort(points[i].y);
-    }
+    if (!boxes) {
+      RegionNull(&changed);
+    } else {
+      for (int i = 0; i < npoint - 2; i++) {
+        xFixed left, right, top, bottom;
 
-    box.x1 += pDst->pDrawable->x;
-    box.y1 += pDst->pDrawable->y;
-    box.x2 += pDst->pDrawable->x;
-    box.y2 += pDst->pDrawable->y;
-    RegionInitBoxes(&changed, &box, 1);
+        left = min(min(points[i].x, points[i+1].x), points[i+2].x);
+        right = max(max(points[i].x, points[i+1].x), points[i+2].x);
+        top = min(min(points[i].y, points[i+1].y), points[i+2].y);
+        bottom = max(max(points[i].y, points[i+1].y), points[i+2].y);
+
+        boxes[i].x1 = FixedToShort(left) + pDst->pDrawable->x;
+        boxes[i].y1 = FixedToShort(top) + pDst->pDrawable->y;
+        boxes[i].x2 = FixedToShort(right) + pDst->pDrawable->x;
+        boxes[i].y2 = FixedToShort(bottom) + pDst->pDrawable->y;
+      }
+
+      RegionInitBoxes(&changed, boxes, npoint - 2);
+      free(boxes);
+    }
 
     box.x1 = 0;
     box.y1 = 0;
