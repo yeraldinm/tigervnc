@@ -210,6 +210,10 @@ core::BoolParameter
   sendClipboard("SendClipboard",
                 "Send clipboard changes to the server",
                 true);
+core::BoolParameter
+  enableAudio("EnableAudio",
+              "Play audio sent from the server",
+              false);
 #if !defined(WIN32) && !defined(__APPLE__)
 core::BoolParameter
   setPrimary("SetPrimary",
@@ -284,6 +288,7 @@ static core::VoidParameter* parameterArray[] = {
   &cursorType,
   &acceptClipboard,
   &sendClipboard,
+  &enableAudio,
 #if !defined(WIN32) && !defined(__APPLE__)
   &sendPrimary,
   &setPrimary,

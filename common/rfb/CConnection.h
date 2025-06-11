@@ -152,6 +152,9 @@ namespace rfb {
     // is active.
     void setPF(const PixelFormat& pf);
 
+    void setEnableAudio(bool enable) { enableAudio = enable; }
+    bool getEnableAudio() const { return enableAudio; }
+
     CMsgReader* reader() { return reader_; }
     CMsgWriter* writer() { return writer_; }
 
@@ -276,6 +279,8 @@ namespace rfb {
     // server received the request.
     virtual void handleClipboardData(const char* data);
 
+    virtual void audioData(const uint8_t* data, size_t len);
+
   protected:
     CSecurity *csecurity;
     SecurityClient security;
@@ -343,6 +348,8 @@ namespace rfb {
     bool hasRemoteClipboard;
     bool hasLocalClipboard;
     bool unsolicitedClipboardAttempt;
+
+    bool enableAudio;
 
     struct DownKey {
         uint32_t keyCode;
