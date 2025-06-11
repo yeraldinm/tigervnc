@@ -61,6 +61,7 @@ extern core::StringParameter geometry;
 extern core::BoolParameter remoteResize;
 
 extern core::BoolParameter listenMode;
+extern core::BoolParameter useWebSocket;
 
 extern core::BoolParameter viewOnly;
 extern core::BoolParameter shared;

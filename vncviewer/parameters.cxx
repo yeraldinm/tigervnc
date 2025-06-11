@@ -191,6 +191,11 @@ core::BoolParameter
              false);
 
 core::BoolParameter
+  useWebSocket("WebSocket",
+               "Connect using WebSocket protocol",
+               false);
+
+core::BoolParameter
   remoteResize("RemoteResize",
                "Dynamically resize the remote desktop size as the size "
                "of the local client window changes. (Does not work "

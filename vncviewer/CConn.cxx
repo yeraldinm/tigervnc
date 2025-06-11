@@ -44,6 +44,7 @@
 #include <stdexcept>
 
 #include <network/TcpSocket.h>
+#include <network/WebSocketSocket.h>
 #ifndef WIN32
 #include <network/UnixSocket.h>
 #endif
@@ -128,9 +129,15 @@ CConn::CConn(const char* vncServerName, network::Socket* socket=nullptr)
       {
         network::getHostAndPort(vncServerName, &serverHost, &serverPort);
 
-        sock = new network::TcpSocket(serverHost.c_str(), serverPort);
-        vlog.info(_("Connected to host %s port %d"),
-                  serverHost.c_str(), serverPort);
+        if (useWebSocket) {
+          sock = new network::WebSocketSocket(serverHost.c_str(), serverPort);
+          vlog.info(_("Connected to host %s port %d via WebSocket"),
+                    serverHost.c_str(), serverPort);
+        } else {
+          sock = new network::TcpSocket(serverHost.c_str(), serverPort);
+          vlog.info(_("Connected to host %s port %d"),
+                    serverHost.c_str(), serverPort);
+        }
       }
     } catch (std::exception& e) {
       vlog.error("%s", e.what());
@@ -143,7 +150,12 @@ CConn::CConn(const char* vncServerName, network::Socket* socket=nullptr)
   Fl::add_fd(sock->getFd(), FL_READ | FL_EXCEPT, socketEvent, this);
 
   setServerName(serverHost.c_str());
-  setStreams(&sock->inStream(), &sock->outStream());
+  if (useWebSocket) {
+    auto *ws = dynamic_cast<network::WebSocketSocket*>(sock);
+    setStreams(&ws->wsInStream(), &ws->wsOutStream());
+  } else {
+    setStreams(&sock->inStream(), &sock->outStream());
+  }
 
   initialiseProtocol();
 
