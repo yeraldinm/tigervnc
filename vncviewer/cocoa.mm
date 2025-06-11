@@ -111,9 +111,26 @@ bool cocoa_is_trusted(bool prompt)
         if (owner == nullptr)
           continue;
 
-        // FIXME: Unknown how stable this identifier is
-        CFStringRef authOwner = CFSTR("universalAccessAuthWarn");
-        if (CFStringCompare(owner, authOwner, 0) != kCFCompareEqualTo)
+        // According to Apple's documentation for
+        // AXIsProcessTrustedWithOptions(), the accessibility consent
+        // dialog is implemented by the helper application
+        // "universalAccessAuthWarn".
+        // macOS 13+ instead uses the System Preferences helper process
+        // "com.apple.preferences.security.remoteservice".
+        // Check for both names as a fallback in case Apple renames the
+        // dialog again in the future.
+        CFStringRef authOwners[] = {
+          CFSTR("universalAccessAuthWarn"),
+          CFSTR("com.apple.preferences.security.remoteservice")
+        };
+        bool match = false;
+        for (size_t j = 0; j < sizeof(authOwners)/sizeof(authOwners[0]); j++) {
+          if (CFStringCompare(owner, authOwners[j], 0) == kCFCompareEqualTo) {
+            match = true;
+            break;
+          }
+        }
+        if (!match)
           continue;
 
         cfpid = (CFNumberRef)CFDictionaryGetValue(window,
