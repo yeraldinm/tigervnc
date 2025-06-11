@@ -4,7 +4,7 @@
 
 #include "VideoRecorder.h"
 
-#ifdef HAVE_H264
+#if defined(HAVE_H264) && defined(H264_LIBAV)
 #include <stdexcept>
 
 VideoRecorder::VideoRecorder()
@@ -132,4 +132,4 @@ void VideoRecorder::stop()
   frameCounter = 0;
 }
 
-#endif // HAVE_H264
+#endif // HAVE_H264 && H264_LIBAV

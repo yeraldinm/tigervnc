@@ -102,7 +102,7 @@ CConn::CConn(const char* vncServerName, network::Socket* socket=nullptr)
   if (!noJpeg)
     setQualityLevel(::qualityLevel);
 
-  if (enableAudio) {
+  if (::enableAudio) {
 #ifdef HAVE_PULSEAUDIO
     pa_sample_spec ss = { PA_SAMPLE_S16LE, 2, 44100 };
     int err;
@@ -115,7 +115,7 @@ CConn::CConn(const char* vncServerName, network::Socket* socket=nullptr)
 #endif
   }
 
-  setEnableAudio(enableAudio);
+  setEnableAudio(::enableAudio);
 
   if(sock == nullptr) {
     try {

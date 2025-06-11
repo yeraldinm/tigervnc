@@ -1,7 +1,7 @@
 #ifndef __VIDEORECORDER_H__
 #define __VIDEORECORDER_H__
 
-#ifdef HAVE_H264
+#if defined(HAVE_H264) && defined(H264_LIBAV)
 extern "C" {
 #include <libavformat/avformat.h>
 #include <libavcodec/avcodec.h>
@@ -33,6 +33,7 @@ public:
   void addFrame(const uint8_t *, int, int, int) {}
   void stop() {}
 };
+
 #endif
 
 #endif
