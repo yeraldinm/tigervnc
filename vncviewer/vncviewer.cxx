@@ -100,10 +100,10 @@ static const char *about_text()
   // encodings, so we need to make sure we get a fresh string every
   // time.
   snprintf(buffer, sizeof(buffer),
-           _("TigerVNC v%s\n"
+           _("YVNC v%s\n"
              "Built on: %s\n"
              "Copyright (C) 1999-%d TigerVNC team and many others (see README.rst)\n"
-             "See https://www.tigervnc.org for information on TigerVNC."),
+             "See https://www.tigervnc.org for information on YVNC."),
            PACKAGE_VERSION, BUILD_TIMESTAMP, 2025);
 
   return buffer;
@@ -170,7 +170,7 @@ bool should_disconnect()
 
 void about_vncviewer()
 {
-  fl_message_title(_("About TigerVNC"));
+  fl_message_title(_("About YVNC"));
   fl_message("%s", about_text());
 }
 
@@ -262,7 +262,7 @@ static void CleanupSignalHandler(int sig)
 {
   // CleanupSignalHandler allows C++ object cleanup to happen because it calls
   // exit() rather than the default which is to abort.
-  vlog.info(_("Termination signal %d has been received. TigerVNC will now exit."), sig);
+  vlog.info(_("Termination signal %d has been received. YVNC will now exit."), sig);
   exit(1);
 }
 
@@ -387,7 +387,7 @@ static void init_fltk()
   fl_message_hotspot(false);
 
   // Avoid empty titles for popups
-  fl_message_title_default("TigerVNC");
+  fl_message_title_default("YVNC");
 
   // FLTK exposes these so that we can translate them.
   fl_no     = _("No");
