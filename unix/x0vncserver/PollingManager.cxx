@@ -237,21 +237,29 @@ int PollingManager::checkRow(int x, int y, int w)
 
 int PollingManager::checkColumn(int x, int y, int h, bool *pChangeFlags)
 {
+  // Grab the column of pixels that we want to compare.
   getColumn(x, y, h);
 
   int nTilesChanged = 0;
+  const int old_stride = m_image->xim->bytes_per_line;
+  const int new_stride = m_columnImage->xim->bytes_per_line;
+
   for (int nTile = 0; nTile < (h + 31) / 32; nTile++) {
     if (!*pChangeFlags) {
-      int tile_h = (h - nTile * 32 >= 32) ? 32 : h - nTile * 32;
+      const int tile_h = (h - nTile * 32 >= 32) ? 32 : h - nTile * 32;
+
+      char *ptr_old = m_image->locatePixel(x, y + nTile * 32);
+      char *ptr_new = m_columnImage->locatePixel(0, nTile * 32);
+
       for (int i = 0; i < tile_h; i++) {
-        // FIXME: Do not compute these pointers in the inner cycle.
-        char *ptr_old = m_image->locatePixel(x, y + nTile * 32 + i);
-        char *ptr_new = m_columnImage->locatePixel(0, nTile * 32 + i);
         if (memcmp(ptr_old, ptr_new, m_bytesPerPixel)) {
           *pChangeFlags = true;
           nTilesChanged++;
           break;
         }
+
+        ptr_old += old_stride;
+        ptr_new += new_stride;
       }
     }
     pChangeFlags += m_widthTiles;
@@ -296,39 +304,91 @@ PollingManager::checkNeighbors()
 {
   int x, y;
 
-  // Check neighboring pixels above and below changed tiles.
-  // FIXME: Fast skip to the first changed tile (and to the last, too).
-  // FIXME: Check the full-width line above the first changed tile?
-  for (y = 0; y < m_heightTiles; y++) {
-    bool doneAbove = false;
-    bool doneBelow = false;
+  // Fast skip to the first and last changed tiles so that we don't
+  // iterate unnecessarily over untouched rows.
+  int firstY = 0;
+  while (firstY < m_heightTiles) {
+    bool rowChanged = false;
     for (x = 0; x < m_widthTiles; x++) {
-      if (!doneAbove && y > 0 &&
-          m_changeFlags[y * m_widthTiles + x] &&
+      if (m_changeFlags[firstY * m_widthTiles + x]) {
+        rowChanged = true;
+        break;
+      }
+    }
+    if (rowChanged)
+      break;
+    firstY++;
+  }
+
+  if (firstY == m_heightTiles)
+    return; // no changed tiles
+
+  int lastY = m_heightTiles - 1;
+  while (lastY > firstY) {
+    bool rowChanged = false;
+    for (x = 0; x < m_widthTiles; x++) {
+      if (m_changeFlags[lastY * m_widthTiles + x]) {
+        rowChanged = true;
+        break;
+      }
+    }
+    if (rowChanged)
+      break;
+    lastY--;
+  }
+
+  // Check neighboring pixels above and below changed tiles.
+  for (y = firstY; y <= lastY; y++) {
+    bool doneAbove = (y == 0);
+    bool doneBelow = (y == m_heightTiles - 1);
+    for (x = 0; x < m_widthTiles && (!doneAbove || !doneBelow); x++) {
+      if (!doneAbove && m_changeFlags[y * m_widthTiles + x] &&
           !m_changeFlags[(y - 1) * m_widthTiles + x]) {
-        // FIXME: Check m_changeFlags[] to decrease height of the row.
-        checkRow(x * 32, y * 32 - 1, m_width - x * 32);
+
+        int tiles = 1;
+        while (x + tiles < m_widthTiles &&
+               !m_changeFlags[(y - 1) * m_widthTiles + x + tiles])
+          tiles++;
+
+        int width = tiles * 32;
+        if (x * 32 + width > m_width)
+          width = m_width - x * 32;
+        checkRow(x * 32, y * 32 - 1, width);
         doneAbove = true;
       }
-      if (!doneBelow && y < m_heightTiles - 1 &&
-          m_changeFlags[y * m_widthTiles + x] &&
+
+      if (!doneBelow && m_changeFlags[y * m_widthTiles + x] &&
           !m_changeFlags[(y + 1) * m_widthTiles + x]) {
-        // FIXME: Check m_changeFlags[] to decrease height of the row.
-        checkRow(x * 32, (y + 1) * 32, m_width - x * 32);
+
+        int tiles = 1;
+        while (x + tiles < m_widthTiles &&
+               !m_changeFlags[(y + 1) * m_widthTiles + x + tiles])
+          tiles++;
+
+        int width = tiles * 32;
+        if (x * 32 + width > m_width)
+          width = m_width - x * 32;
+        checkRow(x * 32, (y + 1) * 32, width);
         doneBelow = true;
       }
-      if (doneBelow && doneAbove)
-        break;
     }
   }
 
   // Check neighboring pixels at the right side of changed tiles.
   for (x = 0; x < m_widthTiles - 1; x++) {
-    for (y = 0; y < m_heightTiles; y++) {
+    for (y = firstY; y <= lastY; y++) {
       if (m_changeFlags[y * m_widthTiles + x] &&
           !m_changeFlags[y * m_widthTiles + x + 1]) {
-        // FIXME: Check m_changeFlags[] to decrease height of the column.
-        checkColumn((x + 1) * 32, y * 32, m_height - y * 32,
+
+        int tiles = 1;
+        while (y + tiles < m_heightTiles &&
+               !m_changeFlags[(y + tiles) * m_widthTiles + x + 1])
+          tiles++;
+
+        int height = tiles * 32;
+        if (y * 32 + height > m_height)
+          height = m_height - y * 32;
+        checkColumn((x + 1) * 32, y * 32, height,
                     &m_changeFlags[y * m_widthTiles + x + 1]);
         break;
       }
@@ -337,11 +397,19 @@ PollingManager::checkNeighbors()
 
   // Check neighboring pixels at the left side of changed tiles.
   for (x = m_widthTiles - 1; x > 0; x--) {
-    for (y = 0; y < m_heightTiles; y++) {
+    for (y = firstY; y <= lastY; y++) {
       if (m_changeFlags[y * m_widthTiles + x] &&
           !m_changeFlags[y * m_widthTiles + x - 1]) {
-        // FIXME: Check m_changeFlags[] to decrease height of the column.
-        checkColumn(x * 32 - 1, y * 32, m_height - y * 32,
+
+        int tiles = 1;
+        while (y + tiles < m_heightTiles &&
+               !m_changeFlags[(y + tiles) * m_widthTiles + x - 1])
+          tiles++;
+
+        int height = tiles * 32;
+        if (y * 32 + height > m_height)
+          height = m_height - y * 32;
+        checkColumn(x * 32 - 1, y * 32, height,
                     &m_changeFlags[y * m_widthTiles + x - 1]);
         break;
       }
