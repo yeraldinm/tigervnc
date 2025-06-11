@@ -54,6 +54,8 @@ All versions of TigerVNC contain the following programs:
               vncviewer connects to a VNC server and allows you to interact
               with the remote desktop being displayed by the VNC server.  The
               VNC server can be running on a Windows or a Unix/Linux machine.
+              The viewer can also connect through WebSocket proxies using the
+              new ``-WebSocket`` option.
 
 
 Windows-specific

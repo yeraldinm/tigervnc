@@ -2,6 +2,8 @@ add_library(network STATIC
   Socket.cxx
   TcpSocket.cxx)
 
+target_sources(network PRIVATE WebSocketSocket.cxx)
+
 if(NOT WIN32)
   target_sources(network PRIVATE UnixSocket.cxx)
 endif()
