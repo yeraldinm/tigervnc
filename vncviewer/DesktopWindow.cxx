@@ -79,6 +79,39 @@ static core::LogWriter vlog("DesktopWindow");
 // issue for Fl::event_dispatch.
 static std::set<DesktopWindow *> instances;
 
+static std::u32string utf8ToU32(const std::string& utf8)
+{
+  std::u32string out;
+  const char *in = utf8.c_str();
+  size_t len = utf8.size();
+
+  while ((len > 0) && (*in != '\0')) {
+    unsigned ucs;
+    size_t consumed;
+
+    consumed = core::utf8ToUCS4(in, len, &ucs);
+    in += consumed;
+    len -= consumed;
+
+    out.push_back(static_cast<char32_t>(ucs));
+  }
+
+  return out;
+}
+
+static std::string u32ToUtf8(const std::u32string& u32)
+{
+  std::string out;
+
+  for (char32_t c : u32) {
+    char buf[5];
+    core::ucs4ToUTF8(static_cast<unsigned>(c), buf);
+    out += buf;
+  }
+
+  return out;
+}
+
 DesktopWindow::DesktopWindow(int w, int h, CConn* cc_)
   : Fl_Window(w, h), cc(cc_), offscreen(nullptr), overlay(nullptr),
     firstUpdate(true),
@@ -288,9 +321,7 @@ void DesktopWindow::setName()
   std::string windowName;
   const char *labelFormat;
   size_t maxNameSize;
-  std::string name;
-
-  // FIXME: All of this consideres bytes, not characters
+  std::u32string name;
 
   labelFormat = "%s - YVNC";
 
@@ -298,7 +329,7 @@ void DesktopWindow::setName()
   // a format marker which won't take up space
   maxNameSize = maxLen - strlen(labelFormat) + 2;
 
-  name = cc->server.name();
+  name = utf8ToU32(cc->server.name());
 
   if (name.size() > maxNameSize) {
     if (maxNameSize <= strlen("...")) {
@@ -306,19 +337,20 @@ void DesktopWindow::setName()
       name.clear();
     }
     else {
-      int offset;
+      size_t offset;
 
       // We need to truncate, add an ellipsis
       offset = maxNameSize - strlen("...");
       name.resize(offset);
-      name += "...";
+      name.push_back('.');
+      name.push_back('.');
+      name.push_back('.');
     }
   }
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wformat-nonliteral"
-
-  windowName = core::format(labelFormat, name.c_str());
+  windowName = core::format(labelFormat, u32ToUtf8(name).c_str());
 
 #pragma GCC diagnostic pop
 
