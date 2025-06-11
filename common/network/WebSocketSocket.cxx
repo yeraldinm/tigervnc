@@ -1,4 +1,6 @@
 #include "WebSocketSocket.h"
+#include <rdr/FdInStream.h>
+#include <rdr/FdOutStream.h>
 #include <openssl/sha.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -85,8 +87,9 @@ bool WebSocketSocket::WSInStream::fillBuffer()
   ensureSpace(len);
   p = in->getptr(pos + len);
   const uint8_t *data = p + pos;
+  uint8_t *dst = const_cast<uint8_t*>(end);
   for (size_t i = 0; i < len; i++)
-    end[i] = data[i] ^ (masked ? mask[i % 4] : 0);
+    dst[i] = data[i] ^ (masked ? mask[i % 4] : 0);
   in->setptr(pos + len);
   end += len;
   (void)b1; // ignore opcode
