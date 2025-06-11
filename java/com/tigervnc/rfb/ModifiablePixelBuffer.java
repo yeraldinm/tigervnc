@@ -211,7 +211,39 @@ public abstract class ModifiablePixelBuffer extends PixelBuffer
   //   pixel is the Pixel value to be used where mask_ is set
   public void maskRect(Rect r, int pixel, byte[] mask)
   {
-    // FIXME
+    Rect cr = getRect().intersect(r);
+    if (cr.is_empty()) return;
+
+    WritableRaster data = getBufferRW(cr);
+
+    ByteBuffer buf = ByteBuffer.allocate(format.bpp/8).order(format.getByteOrder());
+    format.bufferFromPixel(buf, pixel);
+    Raster pixRaster = format.rasterFromBuffer(new Rect(0, 0, 1, 1),
+                                               (ByteBuffer)buf.rewind());
+    Object pixData = pixRaster.getDataElements(0, 0, null);
+
+    int w = cr.width();
+    int h = cr.height();
+
+    Point offset = new Point(cr.tl.x - r.tl.x, cr.tl.y - r.tl.y);
+
+    int maskBytesPerRow = (w + 7) / 8;
+
+    synchronized(image) {
+      for (int y = 0; y < h; y++) {
+        int cy = offset.y + y;
+        for (int x = 0; x < w; x++) {
+          int cx = offset.x + x;
+          int byte_ = cy * maskBytesPerRow + cx / 8;
+          int bit = 7 - cx % 8;
+
+          if ((mask[byte_] & (1 << bit)) != 0)
+            data.setDataElements(x, y, pixData);
+        }
+      }
+    }
+
+    commitBufferRW(r);
   }
 
   // Render in a specific format
