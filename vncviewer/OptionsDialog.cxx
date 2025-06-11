@@ -55,6 +55,7 @@
 #include <FL/Fl_Return_Button.H>
 #include <FL/Fl_Round_Button.H>
 #include <FL/Fl_Int_Input.H>
+#include <FL/Fl_Input.H>
 #include <FL/Fl_Choice.H>
 #include <FL/Fl_Box.H>
 
@@ -365,6 +366,7 @@ void OptionsDialog::loadOptions(void)
   /* Misc. */
   sharedCheckbox->value(shared);
   reconnectCheckbox->value(reconnectOnError);
+  recordInput->value(recordFile.getValueStr().c_str());
   alwaysCursorCheckbox->value(alwaysCursor);
   if (cursorType == "system") {
     cursorTypeChoice->value(1);
@@ -519,6 +521,7 @@ void OptionsDialog::storeOptions(void)
   /* Misc. */
   shared.setParam(sharedCheckbox->value());
   reconnectOnError.setParam(reconnectCheckbox->value());
+  recordFile.setParam(recordInput->value());
   alwaysCursor.setParam(alwaysCursorCheckbox->value());
 
   if (cursorTypeChoice->value() == 1) {
@@ -1195,6 +1198,13 @@ void OptionsDialog::createMiscPage(int tx, int ty, int tw, int th)
                                                   CHECK_MIN_WIDTH,
                                                   CHECK_HEIGHT,
                                                   _("Ask to reconnect on connection errors")));
+  ty += CHECK_HEIGHT + TIGHT_MARGIN;
+
+  // TRANSLATORS: File to record the session to
+  recordInput = new Fl_Input(LBLRIGHT(tx, ty,
+                                          CHECK_MIN_WIDTH,
+                                          CHECK_HEIGHT,
+                                          _("Record file")));
   ty += CHECK_HEIGHT + TIGHT_MARGIN;
 
   group->end();

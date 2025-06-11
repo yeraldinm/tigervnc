@@ -279,6 +279,10 @@ JPEG quality level. 0 = Low, 9 = High. May be adjusted automatically if
 \fB-AutoSelect\fP is turned on. Default is 8.
 .
 .TP
+.B \-Record \fIfile\fP
+Record the session to the specified video file using FFmpeg.
+.
+.TP
 .B \-ReconnectOnError
 Display a dialog with any error and offer the possibility to retry
 establishing the connection. In case this is off no dialog to

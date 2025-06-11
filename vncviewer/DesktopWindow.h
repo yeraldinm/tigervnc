@@ -36,6 +36,7 @@ class Surface;
 class Viewport;
 
 class Fl_Scrollbar;
+class VideoRecorder;
 
 class DesktopWindow : public Fl_Window {
 public:
@@ -83,6 +84,11 @@ public:
   int handle(int event) override;
 
   void fullscreen_on();
+
+  void startRecording();
+  void stopRecording();
+  void recordFrame();
+  bool isRecording() const { return recorder != nullptr; }
 
 private:
   static void menuOverlay(void *data);
@@ -160,6 +166,8 @@ private:
   unsigned statsLastPosition;
 
   Surface *statsGraph;
+
+  VideoRecorder *recorder;
 };
 
 #endif
