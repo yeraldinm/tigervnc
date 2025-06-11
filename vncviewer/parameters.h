@@ -84,6 +84,8 @@ extern core::BoolParameter reconnectOnError;
 extern core::StringParameter via;
 #endif
 
+extern core::StringParameter recordFile;
+
 void saveViewerParameters(const char *filename, const char *servername=nullptr);
 char* loadViewerParameters(const char *filename);
 

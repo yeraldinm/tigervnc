@@ -44,6 +44,7 @@
 #include "Surface.h"
 #include "Viewport.h"
 #include "touch.h"
+#include "VideoRecorder.h"
 
 #include <FL/Fl.H>
 #include <FL/Fl_Image_Surface.H>
@@ -117,7 +118,7 @@ DesktopWindow::DesktopWindow(int w, int h, CConn* cc_)
     pendingRemoteResize(false), lastResize({0, 0}),
     keyboardGrabbed(false), mouseGrabbed(false),
     statsLastUpdates(0), statsLastPixels(0), statsLastPosition(0),
-    statsGraph(nullptr)
+    statsGraph(nullptr), recorder(nullptr)
 {
   Fl_Group* group;
 
@@ -142,6 +143,9 @@ DesktopWindow::DesktopWindow(int w, int h, CConn* cc_)
   setName();
 
   OptionsDialog::addCallback(handleOptions, this);
+
+  if (recordFile.getValueStr() != "")
+    startRecording();
 
   // Some events need to be caught globally
   if (instances.size() == 0)
@@ -290,6 +294,8 @@ DesktopWindow::~DesktopWindow()
 
   OptionsDialog::removeCallback(handleOptions);
 
+  stopRecording();
+
   delete overlay;
   delete offscreen;
 
@@ -367,6 +373,8 @@ void DesktopWindow::updateWindow()
   }
 
   viewport->updateWindow();
+
+  recordFrame();
 }
 
 
@@ -1796,4 +1804,45 @@ void DesktopWindow::handleStatsTimeout(void *data)
                statsWidth, statsHeight);
 
   Fl::repeat_timeout(0.5, handleStatsTimeout, data);
+}
+
+void DesktopWindow::startRecording()
+{
+#ifdef HAVE_H264
+  if (!recorder)
+  {
+    recorder = new VideoRecorder();
+    PlatformPixelBuffer *fb = viewport->getFrameBuffer();
+    core::Rect r = fb->getRect();
+    if (!recorder->start(recordFile.getValueStr().c_str(), r.width(), r.height())) {
+      delete recorder;
+      recorder = nullptr;
+    }
+  }
+#endif
+}
+
+void DesktopWindow::stopRecording()
+{
+#ifdef HAVE_H264
+  if (recorder) {
+    recorder->stop();
+    delete recorder;
+    recorder = nullptr;
+  }
+#endif
+}
+
+void DesktopWindow::recordFrame()
+{
+#ifdef HAVE_H264
+  if (!recorder)
+    return;
+
+  PlatformPixelBuffer *fb = viewport->getFrameBuffer();
+  core::Rect r = fb->getRect();
+  int stride;
+  const uint8_t *ptr = fb->getBuffer(r, &stride);
+  recorder->addFrame(ptr, r.width(), r.height(), stride * (fb->getPF().bpp/8));
+#endif
 }

@@ -96,6 +96,11 @@ core::StringParameter
 core::AliasParameter
   passwd("passwd", "Alias for PasswordFile", &passwordFile);
 
+core::StringParameter
+  recordFile("Record",
+             "Record session to video file",
+             "");
+
 core::BoolParameter
   autoSelect("AutoSelect",
              "Auto select pixel format and encoding. Default if "
@@ -268,6 +273,7 @@ static core::VoidParameter* parameterArray[] = {
   /* Misc. */
   &reconnectOnError,
   &shared,
+  &recordFile,
   /* Compression */
   &autoSelect,
   &fullColour,
