@@ -80,6 +80,7 @@ protected:
   void handleClipboardRequest() override;
   void handleClipboardAnnounce(bool available) override;
   void handleClipboardData(const char* data) override;
+  void audioData(const uint8_t* data, size_t len) override;
 
 private:
 
@@ -100,6 +101,13 @@ private:
   network::Socket* sock;
 
   DesktopWindow *desktop;
+
+#ifdef HAVE_PULSEAUDIO
+  pa_simple* audioHandle;
+#endif
+#ifdef _WIN32
+  HWAVEOUT audioHandle;
+#endif
 
   unsigned updateCount;
   unsigned pixelCount;

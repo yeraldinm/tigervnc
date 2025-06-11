@@ -52,6 +52,7 @@ namespace rfb {
     bool readSetColourMapEntries();
     bool readBell();
     bool readServerCutText();
+    bool readAudioData();
     bool readExtendedClipboard(int32_t len);
     bool readFence();
     bool readEndOfContinuousUpdates();

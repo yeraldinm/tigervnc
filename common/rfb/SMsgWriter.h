@@ -58,6 +58,7 @@ namespace rfb {
     void writeBell();
 
     void writeServerCutText(const char* str);
+    void writeAudioData(const uint8_t* data, size_t len);
 
     void writeClipboardCaps(uint32_t caps, const uint32_t* lengths);
     void writeClipboardRequest(uint32_t flags);

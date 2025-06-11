@@ -81,6 +81,11 @@ static const unsigned bpsEstimateWindow = 1000;
 CConn::CConn(const char* vncServerName, network::Socket* socket=nullptr)
   : serverPort(0), desktop(nullptr), updateCount(0), pixelCount(0),
     lastServerEncoding((unsigned int)-1), bpsEstimate(20000000)
+#ifdef HAVE_PULSEAUDIO
+    , audioHandle(nullptr)
+#elif defined(_WIN32)
+    , audioHandle(nullptr)
+#endif
 {
   setShared(::shared);
   sock = socket;
@@ -95,6 +100,21 @@ CConn::CConn(const char* vncServerName, network::Socket* socket=nullptr)
 
   if (!noJpeg)
     setQualityLevel(::qualityLevel);
+
+  if (enableAudio) {
+#ifdef HAVE_PULSEAUDIO
+    pa_sample_spec ss = { PA_SAMPLE_S16LE, 2, 44100 };
+    int err;
+    audioHandle = pa_simple_new(nullptr, "TigerVNC Viewer", PA_STREAM_PLAYBACK,
+                                nullptr, "playback", &ss, nullptr, nullptr,
+                                &err);
+#elif defined(_WIN32)
+    WAVEFORMATEX wf = { WAVE_FORMAT_PCM, 2, 44100, 44100*4, 4, 16, 0 };
+    waveOutOpen(&audioHandle, WAVE_MAPPER, &wf, 0, 0, CALLBACK_NULL);
+#endif
+  }
+
+  setEnableAudio(enableAudio);
 
   if(sock == nullptr) {
     try {
@@ -139,6 +159,14 @@ CConn::~CConn()
 
   if (desktop)
     delete desktop;
+
+#ifdef HAVE_PULSEAUDIO
+  if (audioHandle)
+    pa_simple_free(audioHandle);
+#elif defined(_WIN32)
+  if (audioHandle)
+    waveOutClose(audioHandle);
+#endif
 
   if (sock)
     Fl::remove_fd(sock->getFd());
@@ -457,6 +485,27 @@ void CConn::handleClipboardAnnounce(bool available)
 void CConn::handleClipboardData(const char* data)
 {
   desktop->handleClipboardData(data);
+}
+
+void CConn::audioData(const uint8_t* data, size_t len)
+{
+  if (!getEnableAudio())
+    return;
+#ifdef HAVE_PULSEAUDIO
+  if (audioHandle)
+    pa_simple_write(audioHandle, data, len, nullptr);
+#elif defined(_WIN32)
+  if (audioHandle) {
+    WAVEHDR hdr;
+    memset(&hdr, 0, sizeof(hdr));
+    hdr.lpData = (LPSTR)data;
+    hdr.dwBufferLength = len;
+    waveOutPrepareHeader(audioHandle, &hdr, sizeof(hdr));
+    waveOutWrite(audioHandle, &hdr, sizeof(hdr));
+    while (!(hdr.dwFlags & WHDR_DONE)) {}
+    waveOutUnprepareHeader(audioHandle, &hdr, sizeof(hdr));
+  }
+#endif
 }
 
 

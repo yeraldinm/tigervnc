@@ -303,6 +303,10 @@ every supported scheme.
 Send clipboard changes to the server. Default is on.
 .
 .TP
+.B \-EnableAudio
+Play audio sent from the server. Disabled by default.
+.
+.TP
 .B \-SendPrimary
 Send the primary selection to the server as well as the clipboard
 selection. Default is on.

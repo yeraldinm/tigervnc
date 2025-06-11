@@ -71,7 +71,8 @@ CConnection::CConnection()
     firstUpdate(true), pendingUpdate(false), continuousUpdates(false),
     forceNonincremental(true),
     framebuffer(nullptr), decoder(this),
-    hasRemoteClipboard(false), hasLocalClipboard(false)
+    hasRemoteClipboard(false), hasLocalClipboard(false),
+    enableAudio(false)
 {
 }
 
@@ -767,6 +768,10 @@ void CConnection::handleClipboardAnnounce(bool /*available*/)
 }
 
 void CConnection::handleClipboardData(const char* /*data*/)
+{
+}
+
+void CConnection::audioData(const uint8_t* /*data*/, size_t /*len*/)
 {
 }
 

@@ -108,6 +108,15 @@ void SMsgWriter::writeServerCutText(const char* str)
   endMsg();
 }
 
+void SMsgWriter::writeAudioData(const uint8_t* data, size_t len)
+{
+  startMsg(msgTypeAudio);
+  os->pad(3);
+  os->writeU32(len);
+  os->writeBytes(data, len);
+  endMsg();
+}
+
 void SMsgWriter::writeClipboardCaps(uint32_t caps,
                                     const uint32_t* lengths)
 {
