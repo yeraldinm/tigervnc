@@ -377,6 +377,8 @@ if (ENABLE_NETTLE)
     add_definitions("-DHAVE_NETTLE")
   endif()
 endif()
+# Check for OpenSSL library
+find_package(OpenSSL REQUIRED)
 
 # Check for PAM library
 if(UNIX AND NOT APPLE)
