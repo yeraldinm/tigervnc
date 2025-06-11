@@ -26,10 +26,12 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>@VERSION@</string>
-	<key>CFBundleVersion</key>
-	<string>@VERSION@f@BUILD@</string>
-	<key>LSRequiresCarbon</key>
-	<true/>
+        <key>CFBundleVersion</key>
+        <string>@VERSION@f@BUILD@</string>
+        <key>LSMinimumSystemVersion</key>
+        <string>10.9</string>
+        <key>LSRequiresCarbon</key>
+        <true/>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright (C) 1999-2025 TigerVNC team and many others (see README.rst)</string>
 </dict>
