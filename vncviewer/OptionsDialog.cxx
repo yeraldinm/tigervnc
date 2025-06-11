@@ -177,6 +177,10 @@ void OptionsDialog::loadOptions(void)
   else if (preferredEncoding == "H.264")
     h264Button->setonly();
 #endif
+#ifdef HAVE_H265
+  else if (preferredEncoding == "H.265")
+    h265Button->setonly();
+#endif
   else if (preferredEncoding == "Raw")
     rawButton->setonly();
 
@@ -391,6 +395,10 @@ void OptionsDialog::storeOptions(void)
   else if (h264Button->value())
     preferredEncoding.setParam(rfb::encodingName(rfb::encodingH264));
 #endif
+#ifdef HAVE_H265
+  else if (h265Button->value())
+    preferredEncoding.setParam(rfb::encodingName(rfb::encodingH265));
+#endif
   else if (rawButton->value())
     preferredEncoding.setParam(rfb::encodingName(rfb::encodingRaw));
 
@@ -603,6 +611,14 @@ void OptionsDialog::createCompressionPage(int tx, int ty, int tw, int th)
                                              RADIO_HEIGHT,
                                              "H.264"));
     h264Button->type(FL_RADIO_BUTTON);
+    ty += RADIO_HEIGHT + TIGHT_MARGIN;
+#endif
+#ifdef HAVE_H265
+    h265Button = new Fl_Round_Button(LBLRIGHT(tx, ty,
+                                             RADIO_MIN_WIDTH,
+                                             RADIO_HEIGHT,
+                                             "H.265"));
+    h265Button->type(FL_RADIO_BUTTON);
     ty += RADIO_HEIGHT + TIGHT_MARGIN;
 #endif
 

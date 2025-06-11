@@ -35,6 +35,9 @@ int rfb::encodingNum(const char* name)
 #ifdef HAVE_H264
   if (strcasecmp(name, "H.264") == 0)    return encodingH264;
 #endif
+#ifdef HAVE_H265
+  if (strcasecmp(name, "H.265") == 0)    return encodingH265;
+#endif
   return -1;
 }
 
@@ -50,6 +53,9 @@ const char* rfb::encodingName(int num)
   case encodingTight:    return "Tight";
 #ifdef HAVE_H264
   case encodingH264:     return "H.264";
+#endif
+#ifdef HAVE_H265
+  case encodingH265:     return "H.265";
 #endif
   default:               return "[unknown encoding]";
   }

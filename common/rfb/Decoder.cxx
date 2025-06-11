@@ -36,6 +36,9 @@
 #ifdef HAVE_H264
 #include <rfb/H264Decoder.h>
 #endif
+#ifdef HAVE_H265
+#include <rfb/H265Decoder.h>
+#endif
 
 using namespace rfb;
 
@@ -79,6 +82,9 @@ bool Decoder::supported(int encoding)
 #ifdef HAVE_H264
   case encodingH264:
 #endif
+#ifdef HAVE_H265
+  case encodingH265:
+#endif
     return true;
   default:
     return false;
@@ -103,6 +109,10 @@ Decoder* Decoder::createDecoder(int encoding)
 #ifdef HAVE_H264
   case encodingH264:
     return new H264Decoder();
+#endif
+#ifdef HAVE_H265
+  case encodingH265:
+    return new H265Decoder();
 #endif
   default:
     return nullptr;
