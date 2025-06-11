@@ -186,8 +186,32 @@ void H264LibavDecoderContext::decode(const uint8_t* h264_in_buffer,
   if (!frame->height)
     return;
 
+  AVPixelFormat dest_pix_fmt;
+  const PixelFormat& pf = pb->getPF();
+  if (pf.bpp == 32) {
+    if (pf.redShift == 16 && pf.greenShift == 8 && pf.blueShift == 0)
+      dest_pix_fmt = AV_PIX_FMT_BGR0;
+    else if (pf.redShift == 0 && pf.greenShift == 8 && pf.blueShift == 16)
+      dest_pix_fmt = AV_PIX_FMT_RGB0;
+    else if (pf.redShift == 8 && pf.greenShift == 16 && pf.blueShift == 24)
+      dest_pix_fmt = AV_PIX_FMT_0RGB;
+    else if (pf.redShift == 24 && pf.greenShift == 16 && pf.blueShift == 8)
+      dest_pix_fmt = AV_PIX_FMT_0BGR;
+    else
+      dest_pix_fmt = AV_PIX_FMT_RGB32;
+  } else if (pf.bpp == 24) {
+    if (pf.redShift == 16 && pf.greenShift == 8 && pf.blueShift == 0)
+      dest_pix_fmt = AV_PIX_FMT_BGR24;
+    else if (pf.redShift == 0 && pf.greenShift == 8 && pf.blueShift == 16)
+      dest_pix_fmt = AV_PIX_FMT_RGB24;
+    else
+      dest_pix_fmt = AV_PIX_FMT_RGB32;
+  } else {
+    dest_pix_fmt = AV_PIX_FMT_RGB32;
+  }
+
   sws = sws_getCachedContext(sws, frame->width, frame->height, avctx->pix_fmt,
-                             frame->width, frame->height, AV_PIX_FMT_RGB32,
+                             frame->width, frame->height, dest_pix_fmt,
                              SWS_POINT, nullptr, nullptr, nullptr);
 
   int inFull, outFull, brightness, contrast, saturation;
@@ -205,15 +229,15 @@ void H264LibavDecoderContext::decode(const uint8_t* h264_in_buffer,
   sws_setColorspaceDetails(sws, inTable, inFull, outTable, outFull, brightness,
       contrast, saturation);
 
-  if (rgbFrame && (rgbFrame->width != frame->width || rgbFrame->height != frame->height)) {
+  if (rgbFrame && (rgbFrame->width != frame->width || rgbFrame->height != frame->height ||
+                   rgbFrame->format != dest_pix_fmt)) {
     av_frame_free(&rgbFrame);
 
   }
 
   if (!rgbFrame) {
     rgbFrame = av_frame_alloc();
-    // TODO: Can we really assume that the pixel format will always be RGB32?
-    rgbFrame->format = AV_PIX_FMT_RGB32;
+    rgbFrame->format = dest_pix_fmt;
     rgbFrame->width = frame->width;
     rgbFrame->height = frame->height;
     av_frame_get_buffer(rgbFrame, 0);
@@ -222,5 +246,6 @@ void H264LibavDecoderContext::decode(const uint8_t* h264_in_buffer,
   sws_scale(sws, frame->data, frame->linesize, 0, frame->height, rgbFrame->data,
             rgbFrame->linesize);
 
-  pb->imageRect(rect, rgbFrame->data[0], rgbFrame->linesize[0] / 4);
+  pb->imageRect(rect, rgbFrame->data[0],
+                rgbFrame->linesize[0] / (pf.bpp / 8));
 }
