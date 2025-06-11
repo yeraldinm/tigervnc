@@ -51,9 +51,7 @@
 #include <FL/fl_draw.H>
 #include <FL/x.H>
 
-#ifdef WIN32
-#include "win32.h"
-#endif
+#include "fltk/KeyboardGrab.h"
 
 #ifdef __APPLE__
 #include "cocoa.h"
@@ -1111,31 +1109,9 @@ void DesktopWindow::grabKeyboard()
 
   // FIXME: Push this stuff into FLTK.
 
-#if defined(WIN32)
-  int ret;
-  
-  ret = win32_enable_lowlevel_keyboard(fl_xid(this));
-  if (ret != 0) {
-    vlog.error(_("Failure grabbing keyboard"));
-    return;
-  }
-#elif defined(__APPLE__)
-  bool ret;
-
-  ret = cocoa_tap_keyboard();
-  if (!ret) {
-    vlog.error(_("Failure grabbing keyboard"));
-    return;
-  }
-#else
-  int ret;
-
-  ret = XGrabKeyboard(fl_display, fl_xid(this), True,
-                      GrabModeAsync, GrabModeAsync, CurrentTime);
-  if (ret) {
-    if (ret == AlreadyGrabbed) {
-      // It seems like we can race with the WM in some cases.
-      // Try again in a bit.
+  fltk_keyboard_grab_result res = fltk_grab_keyboard(this);
+  if (res != FLTK_KEYBOARD_GRAB_SUCCESS) {
+    if (res == FLTK_KEYBOARD_GRAB_ALREADY) {
       if (!Fl::has_timeout(handleGrab, this))
         Fl::add_timeout(0.500, handleGrab, this);
     } else {
@@ -1143,7 +1119,6 @@ void DesktopWindow::grabKeyboard()
     }
     return;
   }
-#endif
 
   keyboardGrabbed = true;
 
@@ -1160,17 +1135,7 @@ void DesktopWindow::ungrabKeyboard()
 
   ungrabPointer();
 
-#if defined(WIN32)
-  win32_disable_lowlevel_keyboard(fl_xid(this));
-#elif defined(__APPLE__)
-  cocoa_untap_keyboard();
-#else
-  // FLTK has a grab so lets not mess with it
-  if (Fl::grab())
-    return;
-
-  XUngrabKeyboard(fl_display, CurrentTime);
-#endif
+  fltk_ungrab_keyboard(this);
 }
 
 

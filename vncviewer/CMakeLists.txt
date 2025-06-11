@@ -6,6 +6,7 @@ add_executable(vncviewer
   fltk/Fl_Monitor_Arrangement.cxx
   fltk/Fl_Navigation.cxx
   fltk/theme.cxx
+  fltk/KeyboardGrab.cxx
   menukey.cxx
   BaseTouchHandler.cxx
   CConn.cxx
