@@ -33,6 +33,8 @@
 #include <unistd.h>
 #include <syslog.h>
 #include <security/pam_appl.h>
+#include <netdb.h>
+#include <sys/socket.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -178,6 +180,25 @@ conv(int num_msg,
     return PAM_CONV_ERR;
 }
 
+static int
+has_ipv4_stack(void)
+{
+    struct addrinfo hints, *res;
+    int ret;
+
+    memset(&hints, 0, sizeof(hints));
+    hints.ai_family = AF_INET;
+    hints.ai_flags = AI_PASSIVE;
+
+    ret = getaddrinfo(NULL, "0", &hints, &res);
+    if (ret == 0) {
+        freeaddrinfo(res);
+        return 1;
+    }
+
+    return 0;
+}
+
 static pam_handle_t *
 run_pam(int *pamret, const char *username, const char *display)
 {
@@ -203,9 +224,9 @@ run_pam(int *pamret, const char *username, const char *display)
        what the client's address is though, and that might change on
        reconnects. We also don't want to set it to some text string as
        that results in a DNS lookup with e.g. libaudit. Let's use a
-       fake IPv4 address from the documentation range. */
-    /* FIXME: This might throw an error on a IPv6-only host */
-    *pamret = pam_set_item(pamh, PAM_RHOST, "203.0.113.20");
+       fake address from the documentation ranges. */
+    const char *rhost = has_ipv4_stack() ? "203.0.113.20" : "2001:db8::20";
+    *pamret = pam_set_item(pamh, PAM_RHOST, rhost);
     if (*pamret != PAM_SUCCESS) {
         syslog(LOG_CRIT, "pam_set_item(PAM_RHOST) failed: %d (%s)",
                *pamret, pam_strerror(pamh, *pamret));
