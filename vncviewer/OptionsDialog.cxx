@@ -64,7 +64,7 @@ static std::set<OptionsDialog *> instances;
 
 OptionsDialog::OptionsDialog()
   // TRANSLATORS: Title of the viewer options dialog window
-  : Fl_Window(580, 420, _("TigerVNC options"))
+  : Fl_Window(580, 420, _("YVNC options"))
 {
   int x, y;
   Fl_Navigation *navigation;

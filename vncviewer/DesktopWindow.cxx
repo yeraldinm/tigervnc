@@ -292,7 +292,7 @@ void DesktopWindow::setName()
 
   // FIXME: All of this consideres bytes, not characters
 
-  labelFormat = "%s - TigerVNC";
+  labelFormat = "%s - YVNC";
 
   // Ignore the length of '%s' since it is
   // a format marker which won't take up space
