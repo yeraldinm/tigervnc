@@ -24,11 +24,6 @@
 
 #include <rfb/CConnection.h>
 
-#ifdef _WIN32
-#include <windows.h>
-#include <mmsystem.h>
-#endif
-
 #include "UserDialog.h"
 
 namespace network { class Socket; }
