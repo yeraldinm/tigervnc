@@ -61,8 +61,6 @@
 #include "vncviewer.h"
 
 #ifdef WIN32
-#include <windows.h>
-#include <mmsystem.h>
 #include "win32.h"
 #endif
 
