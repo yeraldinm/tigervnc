@@ -119,10 +119,16 @@ core::EnumParameter
 #ifdef HAVE_H264
                     "H.264, "
 #endif
+#ifdef HAVE_H265
+                    "H.265, "
+#endif
                     "or Raw)",
                     {"Tight", "ZRLE", "Hextile",
 #ifdef HAVE_H264
                      "H.264",
+#endif
+#ifdef HAVE_H265
+                     "H.265",
 #endif
                      "Raw"},
                     "Tight");

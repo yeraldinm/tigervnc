@@ -31,6 +31,9 @@ namespace rfb {
 #ifdef HAVE_H264
   const int encodingH264 = 50;
 #endif
+#ifdef HAVE_H265
+  const int encodingH265 = 51;
+#endif
 
   const int encodingMax = 255;
 

@@ -1,0 +1,16 @@
+find_package(PkgConfig)
+
+if(PKG_CONFIG_FOUND)
+  pkg_check_modules(X265 x265)
+else()
+  find_path(X265_INCLUDE_DIRS NAMES x265.h PATH_SUFFIXES x265)
+  find_library(X265_LIBRARIES NAMES x265)
+  find_package_handle_standard_args(X265 DEFAULT_MSG X265_LIBRARIES X265_INCLUDE_DIRS)
+endif()
+
+if(X265_FOUND)
+  if(NOT DEFINED X265_LIBRARY_DIRS)
+    get_filename_component(_x265_libdir "${X265_LIBRARIES}" DIRECTORY)
+    set(X265_LIBRARY_DIRS ${_x265_libdir})
+  endif()
+endif()

@@ -70,6 +70,13 @@ if(ENABLE_H264 AND NOT H264_LIBS STREQUAL "NONE")
   target_link_directories(rfb PUBLIC ${H264_LIBRARY_DIRS})
 endif()
 
+if(ENABLE_H265 AND NOT H265_LIBS STREQUAL "NONE")
+  target_sources(rfb PRIVATE H265Decoder.cxx H265DecoderContext.cxx H265X265DecoderContext.cxx)
+  target_include_directories(rfb SYSTEM PUBLIC ${H265_INCLUDE_DIRS})
+  target_link_libraries(rfb ${H265_LIBRARIES})
+  target_link_directories(rfb PUBLIC ${H265_LIBRARY_DIRS})
+endif()
+
 if(WIN32)
   target_include_directories(rfb PUBLIC ${CMAKE_SOURCE_DIR}/win)
   target_sources(rfb PRIVATE WinPasswdValidator.cxx)

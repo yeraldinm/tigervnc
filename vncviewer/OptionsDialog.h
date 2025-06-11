@@ -88,6 +88,9 @@ protected:
 #ifdef HAVE_H264
   Fl_Round_Button *h264Button;
 #endif
+#ifdef HAVE_H265
+  Fl_Round_Button *h265Button;
+#endif
   Fl_Round_Button *rawButton;
 
   Fl_Group *colorlevelGroup;

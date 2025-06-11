@@ -54,6 +54,8 @@ Build requirements (Unix)
 -- Optional ffmpeg development kit support (libav)
    * You might have to enable additional repositories for this. E.g.,
      on RHEL, EPEL and RPMFusion (free + nonfree) need to be enabled.
+-- Optional H.265 codec support (libx265)
+   * Required for using the new H.265 encoding.
 
 -- If building vncpasswd with password quality check support:
    * libpwquality
