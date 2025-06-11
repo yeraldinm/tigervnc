@@ -30,6 +30,7 @@
 #endif
 
 #include <FL/Fl.H>
+#include <vector>
 
 #include <core/LogWriter.h>
 
@@ -50,6 +51,7 @@
 
 // Used to detect fake input (0xaa is not a real key)
 static const WORD SCAN_FAKE = 0xaa;
+static const int FAKE_KEY_CODE = 0xffff;
 
 static core::LogWriter vlog("KeyboardWin32");
 
@@ -203,6 +205,7 @@ bool KeyboardWin32::handleEvent(const void* event)
     bool isExtended;
     int systemKeyCode, keyCode;
     uint32_t keySym;
+    std::vector<uint32_t> keySyms;
 
     vKey = msg->wParam;
     isExtended = (msg->lParam & (1 << 24)) != 0;
@@ -257,7 +260,8 @@ bool KeyboardWin32::handleEvent(const void* event)
 
     keyCode = translateSystemKeyCode(systemKeyCode);
 
-    keySym = translateVKey(vKey, isExtended);
+    keySyms = translateVKey(vKey, isExtended);
+    keySym = keySyms.empty() ? NoSymbol : keySyms.front();
     if (keySym == NoSymbol) {
       if (isExtended)
         vlog.error(_("No symbol for extended virtual key 0x%02x"), (int)vKey);
@@ -284,7 +288,14 @@ bool KeyboardWin32::handleEvent(const void* event)
       }
     }
 
-    handler->handleKeyPress(systemKeyCode, keyCode, keySym);
+    for (size_t i = 0; i < keySyms.size(); i++) {
+      if (i == 0)
+        handler->handleKeyPress(systemKeyCode, keyCode, keySyms[i]);
+      else {
+        handler->handleKeyPress(FAKE_KEY_CODE, 0, keySyms[i]);
+        handler->handleKeyRelease(FAKE_KEY_CODE);
+      }
+    }
 
     // We don't get reliable WM_KEYUP for these
     switch (keySym) {
@@ -466,8 +477,9 @@ uint32_t KeyboardWin32::lookupVKeyMap(unsigned vkey, bool extended,
   return NoSymbol;
 }
 
-uint32_t KeyboardWin32::translateVKey(unsigned vkey, bool extended)
+std::vector<uint32_t> KeyboardWin32::translateVKey(unsigned vkey, bool extended)
 {
+  std::vector<uint32_t> syms;
   HKL layout;
   WORD lang, primary_lang;
 
@@ -479,8 +491,10 @@ uint32_t KeyboardWin32::translateVKey(unsigned vkey, bool extended)
   // generate the same symbol as some other key.
 
   ret = lookupVKeyMap(vkey, extended, vkey_map, ARRAY_SIZE(vkey_map));
-  if (ret != NoSymbol)
-    return ret;
+  if (ret != NoSymbol) {
+    syms.push_back(ret);
+    return syms;
+  }
 
   layout = GetKeyboardLayout(0);
   lang = LOWORD(layout);
@@ -489,15 +503,19 @@ uint32_t KeyboardWin32::translateVKey(unsigned vkey, bool extended)
   if (primary_lang == LANG_JAPANESE) {
     ret = lookupVKeyMap(vkey, extended,
                         vkey_map_jp, ARRAY_SIZE(vkey_map_jp));
-    if (ret != NoSymbol)
-      return ret;
+    if (ret != NoSymbol) {
+      syms.push_back(ret);
+      return syms;
+    }
   }
 
   if (primary_lang == LANG_KOREAN) {
     ret = lookupVKeyMap(vkey, extended,
                         vkey_map_ko, ARRAY_SIZE(vkey_map_ko));
-    if (ret != NoSymbol)
-      return ret;
+    if (ret != NoSymbol) {
+      syms.push_back(ret);
+      return syms;
+    }
   }
 
   // Windows is not consistent in which virtual key it uses for
@@ -512,11 +530,13 @@ uint32_t KeyboardWin32::translateVKey(unsigned vkey, bool extended)
     ch = MapVirtualKey(vkey, MAPVK_VK_TO_CHAR);
     switch (ch) {
     case ',':
-      return XK_KP_Separator;
+      syms.push_back(XK_KP_Separator);
+      return syms;
     case '.':
-      return XK_KP_Decimal;
+      syms.push_back(XK_KP_Decimal);
+      return syms;
     default:
-      return NoSymbol;
+      return syms;
     }
   }
 
@@ -533,8 +553,6 @@ uint32_t KeyboardWin32::translateVKey(unsigned vkey, bool extended)
   if (!(state[VK_LCONTROL] & 0x80) || !(state[VK_RMENU] & 0x80))
     state[VK_CONTROL] = state[VK_LCONTROL] = state[VK_RCONTROL] = 0;
 
-  // FIXME: Multi character results, like U+0644 U+0627
-  //        on Arabic layout
   ret = ToUnicode(vkey, 0, state, wstr, sizeof(wstr)/sizeof(wstr[0]), 0);
 
   if (ret == 0) {
@@ -544,8 +562,12 @@ uint32_t KeyboardWin32::translateVKey(unsigned vkey, bool extended)
     ret = ToUnicode(vkey, 0, state, wstr, sizeof(wstr)/sizeof(wstr[0]), 0);
   }
 
-  if (ret == 1)
-    return ucs2keysym(wstr[0]);
+  if (ret == 1) {
+    unsigned ucs4;
+    core::utf16ToUCS4(wstr, 1, &ucs4);
+    syms.push_back(ucs2keysym(ucs4));
+    return syms;
+  }
 
   if (ret == -1) {
     WCHAR dead_char;
@@ -561,10 +583,26 @@ uint32_t KeyboardWin32::translateVKey(unsigned vkey, bool extended)
 
     // Dead keys are represented by their spacing equivalent
     // (or something similar depending on the layout)
-    return ucs2keysym(ucs2combining(dead_char));
+    syms.push_back(ucs2keysym(ucs2combining(dead_char)));
+    return syms;
   }
 
-  return NoSymbol;
+  if (ret > 1) {
+    int remaining = ret;
+    const WCHAR *ptr = wstr;
+    while (remaining > 0) {
+      unsigned ucs4;
+      size_t len = core::utf16ToUCS4(ptr, remaining, &ucs4);
+      if (len == 0)
+        break;
+      syms.push_back(ucs2keysym(ucs4));
+      ptr += len;
+      remaining -= len;
+    }
+    return syms;
+  }
+
+  return syms;
 }
 
 bool KeyboardWin32::hasAltGr()

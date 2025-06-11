@@ -20,6 +20,7 @@
 #define __KEYBOARDWIN32_H__
 
 #include "Keyboard.h"
+#include <vector>
 
 class KeyboardWin32 : public Keyboard
 {
@@ -38,7 +39,7 @@ protected:
   uint32_t translateSystemKeyCode(int systemKeyCode);
   uint32_t lookupVKeyMap(unsigned vkey, bool extended,
                          const UINT map[][3], size_t size);
-  uint32_t translateVKey(unsigned vkey, bool extended);
+  std::vector<uint32_t> translateVKey(unsigned vkey, bool extended);
 
   bool hasAltGr();
   static void handleAltGrTimeout(void *data);
