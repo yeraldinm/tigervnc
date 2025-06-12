@@ -45,6 +45,7 @@
 #include "Viewport.h"
 #include "touch.h"
 #include "VideoRecorder.h"
+#include "PlatformPixelBuffer.h"
 
 #include <FL/Fl.H>
 #include <FL/Fl_Image_Surface.H>

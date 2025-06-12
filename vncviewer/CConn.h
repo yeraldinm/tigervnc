@@ -21,6 +21,10 @@
 #define __CCONN_H__
 
 #include <FL/Fl.H>
+#ifdef _WIN32
+#include <windows.h>
+#include <mmsystem.h>
+#endif
 
 #include <rfb/CConnection.h>
 
